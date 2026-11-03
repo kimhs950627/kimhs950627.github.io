@@ -209,10 +209,11 @@
       "category": "study",
       "order": 5,
       "access": "private",
-      "url": "https://neurology-outpatient-reference.pages.dev/",
+      "url": "https://neuro-ref.pages.dev/",
       "title": "신경과 외래 참고서",
       "note": "일차의료를 위한 초기평가·치료·추적관리. 증상별 접근과 부록. 승인한 이메일만 열린다.",
-      "host": "neurology-outpatient-reference.pages.dev"
+      "host": "neuro-ref.pages.dev",
+      "slug": "neuro-ref"
     }
   },
   "request_url": "https://pages-access.kimhs950627.workers.dev/"

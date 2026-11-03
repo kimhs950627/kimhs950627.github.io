@@ -236,7 +236,7 @@ def publish(repo: str, *, quiet: bool = False) -> str:
         raise RuntimeError(f"{repo}: Jekyll 사이트(index.md)는 Cloudflare 로 그대로 못 올린다 — HTML 로 빌드해야 한다.")
 
     data = load_curated()
-    slug = slug_of(repo)
+    slug = data["pages"].get(repo, {}).get("slug") or slug_of(repo)
     if info["private"]:
         cf_ensure_project(token, account, slug)
         tmp = Path(tempfile.mkdtemp(prefix="pages-"))

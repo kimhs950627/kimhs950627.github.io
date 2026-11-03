@@ -1,7 +1,7 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-03 11:32 UTC",
+  "generated_at": "2026-11-03 11:35 UTC",
   "total": 12,
   "link_total": 18,
   "groups": [
@@ -11,8 +11,8 @@
       "pages": [
         {
           "repo": "neurology-outpatient-reference",
-          "url": "https://neurology-outpatient-reference.pages.dev/",
-          "host": "neurology-outpatient-reference.pages.dev",
+          "url": "https://neuro-ref.pages.dev/",
+          "host": "neuro-ref.pages.dev",
           "title": "신경과 외래 참고서",
           "note": "일차의료를 위한 초기평가·치료·추적관리. 증상별 접근과 부록. 승인한 이메일만 열린다.",
           "category": "study",
