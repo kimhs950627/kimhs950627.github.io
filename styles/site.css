@@ -518,3 +518,22 @@ h1 em {
   outline-color: var(--paper);
   outline-offset: 2px;
 }
+
+.lock {
+  display: inline-block;
+  margin-left: 0.55rem;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  vertical-align: baseline;
+}
+
+.chip-request {
+  border-style: dashed;
+  border-color: var(--accent);
+  color: var(--accent);
+}

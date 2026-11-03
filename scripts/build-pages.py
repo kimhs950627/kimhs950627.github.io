@@ -183,6 +183,7 @@ def main() -> int:
                 "category": meta.get("category") or "other",
                 "order": meta.get("order", 9999),
                 "links": links,
+                "locked": meta.get("access") == "private",
                 "updated": (repo.get("pushed_at") or "")[:10],
             }
         )
@@ -204,6 +205,10 @@ def main() -> int:
 
     payload = {
         "owner": OWNER,
+        "request_url": curated.get(
+            "request_url",
+            "mailto:kimhs950627@gmail.com?subject=%EC%97%B4%EB%9E%8C%20%EC%8B%A0%EC%B2%AD",
+        ),
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
         "total": len(found),
         "link_total": sum(len(p["links"]) for p in found),

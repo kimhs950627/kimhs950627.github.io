@@ -63,7 +63,10 @@
 
       const rows = g.pages
         .map((p) => {
-          const sub = (p.links || []).length
+          const ask = p.locked
+            ? `<a class="chip chip-request" href="${esc(data.request_url || "")}">열람 신청</a>`
+            : "";
+          const sub = (p.links || []).length || p.locked
             ? `<div class="row-sub">${p.links
                 .map((l) => {
                   const tag =
@@ -74,16 +77,20 @@
                         : "";
                   return `<a class="chip" href="${esc(l.url)}" target="_blank" rel="noopener">${tag}<span class="chip-label">${esc(l.label)}</span><span aria-hidden="true">↗</span></a>`;
                 })
-                .join("")}</div>`
+                .join("")}${ask}</div>`
             : "";
           return `
         <div class="item">
           <a class="row" href="${esc(p.url)}" target="_blank" rel="noopener" style="--i:${i++}">
             <span class="idx">${pad(++n)}</span>
             <span class="row-main">
-              <span class="row-title">${esc(p.title)}</span>
+              <span class="row-title">${esc(p.title)}${
+                p.locked ? '<span class="lock" title="열람 승인 필요">비공개</span>' : ""
+              }</span>
               <span class="row-note">${esc(p.note)}</span>
-              <span class="row-host">${esc(p.host)}</span>
+              <span class="row-host">${esc(p.host)}${
+                p.locked ? " · 승인한 이메일만 열림" : ""
+              }</span>
             </span>
             <span class="go" aria-hidden="true">↗</span>
           </a>
