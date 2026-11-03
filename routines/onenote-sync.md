@@ -91,11 +91,14 @@ python3 scripts/onenote_submit.py /tmp/opencode/onenote-patch.json --page "<페�
 
 ## 5. 마무리
 
-```bash
-python3 scripts/noti.py add-onenote "원노트 반영 요청: <repo>/<file> · <페이지 제목>"
-```
+**보고는 웹훅이 한다. 이 스레드에 결과를 쓰지 않는다.**
 
-마지막 답변은 `기록됨` 한 줄만. 제출할 게 없으면 아무 것도 넣지 않는다.
+- 적용·배포 후 `pages-jobs` 의 Actions 가 `notify.py send` 로 **Discord 웹훅** 1회 발송:
+  원노트 페이지명 · 원노트 수정일시 · 대상 `repo/file` · GitHub Pages/Cloudflare Pages 구분 · URL · 성공/실패.
+- 로컬 세션 답변은 `기록됨 (제출 N건)` 한 줄만. 상세 설명·목록을 여기에 쓰지 않는다.
+- 제출할 게 없으면 아무 것도 넣지 않고, 답변도 한 줄로 끝낸다.
+
+job JSON 의 `source` 에 **`page` 와 `modified`(원노트 수정일시)를 반드시 넣는다** — 웹훅 본문이 이 값을 쓴다.
 
 ## 금지
 
