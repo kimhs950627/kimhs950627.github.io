@@ -214,6 +214,26 @@
       "note": "일차의료를 위한 초기평가·치료·추적관리. 증상별 접근과 부록. 승인한 이메일만 열린다.",
       "host": "neuro-ref.pages.dev",
       "slug": "neuro-ref"
+    },
+    "lab-followup": {
+      "category": "study",
+      "order": 6,
+      "title": "검진 Lab 이상 후속관리",
+      "note": "혈뇨·단백뇨, 간수치 상승, 무증상 갑상선기능이상. 재검 주기와 의뢰 기준을 도해로 정리.",
+      "links": [
+        {
+          "label": "혈뇨·단백뇨",
+          "url": "https://kimhs950627.github.io/lab-followup/urine.html"
+        },
+        {
+          "label": "간수치 상승",
+          "url": "https://kimhs950627.github.io/lab-followup/liver.html"
+        },
+        {
+          "label": "갑상선기능",
+          "url": "https://kimhs950627.github.io/lab-followup/thyroid.html"
+        }
+      ]
     }
   },
   "request_url": "https://pages-access.kimhs950627.workers.dev/"

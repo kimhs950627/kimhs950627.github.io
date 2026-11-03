@@ -1,9 +1,9 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-03 15:37 UTC",
-  "total": 12,
-  "link_total": 18,
+  "generated_at": "2026-11-03 16:40 UTC",
+  "total": 13,
+  "link_total": 21,
   "groups": [
     {
       "id": "study",
@@ -20,6 +20,34 @@
           "links": [],
           "locked": true,
           "updated": ""
+        },
+        {
+          "repo": "lab-followup",
+          "url": "https://kimhs950627.github.io/lab-followup/",
+          "host": "kimhs950627.github.io/lab-followup",
+          "title": "검진 Lab 이상 후속관리",
+          "note": "혈뇨·단백뇨, 간수치 상승, 무증상 갑상선기능이상. 재검 주기와 의뢰 기준을 도해로 정리.",
+          "category": "study",
+          "order": 6,
+          "links": [
+            {
+              "label": "혈뇨·단백뇨",
+              "url": "https://kimhs950627.github.io/lab-followup/urine.html",
+              "status": ""
+            },
+            {
+              "label": "간수치 상승",
+              "url": "https://kimhs950627.github.io/lab-followup/liver.html",
+              "status": ""
+            },
+            {
+              "label": "갑상선기능",
+              "url": "https://kimhs950627.github.io/lab-followup/thyroid.html",
+              "status": ""
+            }
+          ],
+          "locked": false,
+          "updated": "2026-11-03"
         },
         {
           "repo": "endoscopy-study",
