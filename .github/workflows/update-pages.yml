@@ -1,0 +1,42 @@
+name: pages.json 갱신
+
+on:
+  schedule:
+    - cron: "0 21 * * *" # 06:00 KST
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build-pages.py"
+      - "data/curated.json"
+      - ".github/workflows/update-pages.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 목록 생성
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/build-pages.py
+
+      - name: 바뀐 게 있으면 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/pages.json
+          if git diff --staged --quiet; then
+            echo "변경 없음"
+          else
+            git commit -m "chore: 페이지 목록 갱신"
+            git push
+          fi
