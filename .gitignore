@@ -1,2 +1,5 @@
 node_modules/
 .DS_Store
+
+# gh 토큰에 workflow scope 가 없어 아직 못 올린다 (README 참고)
+.github/workflows/
