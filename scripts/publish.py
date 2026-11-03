@@ -49,6 +49,34 @@ def cf_env() -> tuple[str, str]:
     return token, account
 
 
+def gh_token() -> str:
+    token = os.environ.get("PAGES_TOKEN") or os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if token:
+        return token
+    return subprocess.run(["gh", "auth", "token"], capture_output=True, text=True).stdout.strip()
+
+
+def api(path: str, method: str = "GET", body: dict | None = None) -> dict | list:
+    """GitHub REST. 토큰은 PAGES_TOKEN/GH_TOKEN/GITHUB_TOKEN 중 먼저 있는 것."""
+    req = urllib.request.Request(
+        f"https://api.github.com{path}" if path.startswith("/") else path,
+        method=method,
+        data=json.dumps(body).encode() if body is not None else None,
+        headers={
+            "Authorization": f"Bearer {gh_token()}",
+            "Accept": "application/vnd.github+json",
+            "Content-Type": "application/json",
+            "User-Agent": "pages-publish",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=60) as res:
+            raw = res.read()
+            return json.loads(raw) if raw else {}
+    except urllib.error.HTTPError as err:
+        raise RuntimeError(f"GitHub API {method} {path} → {err.code} {err.read()[:200]!r}") from err
+
+
 def gh(args: list[str]) -> str:
     out = subprocess.run(["gh", *args], capture_output=True, text=True)
     if out.returncode != 0:
@@ -72,13 +100,13 @@ def cf(token: str, account: str, path: str, method: str = "GET", body: dict | No
 
 # ── 저장소 살펴보기 ────────────────────────────────────────────────
 def repo_info(repo: str) -> dict:
-    data = json.loads(gh(["api", f"repos/{OWNER}/{repo}"]))
+    data = api(f"/repos/{OWNER}/{repo}")
     return {"private": data["private"], "branch": data["default_branch"], "description": data.get("description") or ""}
 
 
 def site_root(repo: str, branch: str) -> tuple[str, bool] | None:
     """(경로, 정적여부). 루트 docs 우선, 없으면 Jekyll(index.md) 사이트로 본다."""
-    tree = json.loads(gh(["api", f"repos/{OWNER}/{repo}/git/trees/{branch}?recursive=1"]))["tree"]
+    tree = api(f"/repos/{OWNER}/{repo}/git/trees/{branch}?recursive=1")["tree"]
     names = {t["path"] for t in tree}
     if "index.html" in names:
         return "/", True
@@ -93,7 +121,7 @@ def site_root(repo: str, branch: str) -> tuple[str, bool] | None:
 
 def has_pages(repo: str) -> dict | None:
     try:
-        return json.loads(gh(["api", f"repos/{OWNER}/{repo}/pages"]))
+        return api(f"/repos/{OWNER}/{repo}/pages")
     except RuntimeError:
         return None
 
@@ -103,12 +131,11 @@ def publish_github_pages(repo: str, branch: str, path: str) -> str:
     current = has_pages(repo)
     if current and current.get("source", {}).get("branch") == branch and current.get("source", {}).get("path") == path:
         return current["html_url"]
-    payload = json.dumps({"source": {"branch": branch, "path": path}})
-    if current:
-        gh(["api", "-X", "PUT", f"repos/{OWNER}/{repo}/pages", "--input", "-"]) if False else None
-        subprocess.run(["gh", "api", "-X", "PUT", f"repos/{OWNER}/{repo}/pages", "--input", "-"], input=payload, text=True, capture_output=True)
-    else:
-        subprocess.run(["gh", "api", "-X", "POST", f"repos/{OWNER}/{repo}/pages", "--input", "-"], input=payload, text=True, capture_output=True)
+    body = {"source": {"branch": branch, "path": path}}
+    try:
+        api(f"/repos/{OWNER}/{repo}/pages", "PUT" if current else "POST", body)
+    except RuntimeError as err:
+        print(f"  ! {repo}: Pages 설정 실패 — {err}", file=sys.stderr)
     for _ in range(2):
         info = has_pages(repo)
         if info:
@@ -117,7 +144,10 @@ def publish_github_pages(repo: str, branch: str, path: str) -> str:
 
 
 def unpublish_github_pages(repo: str) -> None:
-    subprocess.run(["gh", "api", "-X", "DELETE", f"repos/{OWNER}/{repo}/pages"], capture_output=True)
+    try:
+        api(f"/repos/{OWNER}/{repo}/pages", "DELETE")
+    except RuntimeError:
+        pass
 
 
 # ── 발행: Cloudflare Pages (+ Access) ──────────────────────────────
@@ -142,8 +172,9 @@ def cf_ensure_project(token: str, account: str, slug: str) -> dict:
 
 def cf_deploy(slug: str, workdir: Path, token: str, account: str) -> str:
     env = dict(os.environ, CLOUDFLARE_API_TOKEN=token, CLOUDFLARE_ACCOUNT_ID=account)
+    runner = ["bunx", "--bun", "wrangler"] if shutil.which("bunx") else ["npx", "--yes", "wrangler@4"]
     out = subprocess.run(
-        ["bunx", "--bun", "wrangler", "pages", "deploy", str(workdir), "--project-name", slug, "--branch", "main", "--commit-dirty=true"],
+        [*runner, "pages", "deploy", str(workdir), "--project-name", slug, "--branch", "main", "--commit-dirty=true"],
         capture_output=True, text=True, env=env, cwd=str(workdir),
     )
     blob = out.stdout + out.stderr
@@ -193,7 +224,7 @@ def cf_remove(token: str, account: str, slug: str) -> None:
 
 
 def clone_repo(repo: str, branch: str, path: str, dest: Path) -> Path:
-    token = subprocess.run(["gh", "auth", "token"], capture_output=True, text=True).stdout.strip()
+    token = gh_token()
     subprocess.run(
         ["git", "clone", "-q", "--depth", "1", "--branch", branch,
          f"https://x-access-token:{token}@github.com/{OWNER}/{repo}.git", str(dest)],
