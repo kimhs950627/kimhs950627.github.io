@@ -1,14 +1,26 @@
 {
   "owner": "kimhs950627",
   "request_url": "mailto:kimhs950627@gmail.com?subject=%EC%97%B4%EB%9E%8C%20%EC%8B%A0%EC%B2%AD",
-  "generated_at": "2026-11-03 10:59 UTC",
-  "total": 11,
+  "generated_at": "2026-11-03 11:17 UTC",
+  "total": 12,
   "link_total": 18,
   "groups": [
     {
       "id": "study",
       "label": "임상 학습",
       "pages": [
+        {
+          "repo": "neurology-outpatient-reference",
+          "url": "https://neuro-ref.pages.dev/",
+          "host": "neuro-ref.pages.dev",
+          "title": "신경과 외래 참고서",
+          "note": "일차의료를 위한 초기평가·치료·추적관리. 증상별 접근과 부록. 승인한 이메일만 열린다.",
+          "category": "study",
+          "order": 5,
+          "links": [],
+          "locked": true,
+          "updated": ""
+        },
         {
           "repo": "endoscopy-study",
           "url": "https://kimhs950627.github.io/endoscopy-study/",

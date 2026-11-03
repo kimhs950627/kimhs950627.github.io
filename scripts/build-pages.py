@@ -136,6 +136,7 @@ def main() -> int:
 
     site_root = f"https://{OWNER}.github.io"
     found: list[dict] = []
+    seen: set[str] = set()
 
     for repo in list_repos(token):
         name = repo["name"]
@@ -163,6 +164,7 @@ def main() -> int:
                 continue
         title, desc = parse_page(body)
         meta = known.get(name, {})
+        seen.add(name)
         links = []
         for link in meta.get("links", []):
             target, status_ = link["url"], ""
@@ -188,6 +190,37 @@ def main() -> int:
             }
         )
         time.sleep(0.2)
+
+    # 공개 저장소 목록에 안 보이는 항목(비공개 저장소) — curated 에 url 이 있으면 그 주소로 넣는다
+    for name, meta in known.items():
+        if name in seen or not meta.get("url"):
+            continue
+        url = meta["url"]
+        status, body = get(url, token)
+        if status != 200:
+            print(f"  ! {name}: 지정한 url 이 열리지 않음 {url} (HTTP {status})", file=sys.stderr)
+            continue
+        links = []
+        for link in meta.get("links", []):
+            code, _ = get(link["url"], token)
+            if code == 200:
+                links.append({"label": link["label"], "url": link["url"], "status": link.get("status", "")})
+            else:
+                print(f"  ! {name}: 쓰러진 바로가기 {link['url']} (HTTP {code})", file=sys.stderr)
+        found.append(
+            {
+                "repo": name,
+                "url": url,
+                "host": url.replace("https://", "").rstrip("/"),
+                "title": meta.get("title") or name,
+                "note": meta.get("note") or "",
+                "category": meta.get("category") or "other",
+                "order": meta.get("order", 9999),
+                "links": links,
+                "locked": meta.get("access") == "private",
+                "updated": "",
+            }
+        )
 
     groups = []
     for cat in order:
