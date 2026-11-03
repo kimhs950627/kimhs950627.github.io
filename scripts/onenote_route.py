@@ -24,17 +24,39 @@ def tokens(text: str) -> set[str]:
     return {w.lower() for w in WORD.findall(text or "")}
 
 
-def score(query: dict[str, set[str]], entry: dict) -> float:
-    t = tokens(entry["title"])
-    h = tokens(" ".join(entry.get("headings", [])))
-    k = set(entry.get("keywords", []))
-    q_title, q_section, q_body = query["title"], query["section"], query["body"]
-    s = 0.0
-    s += 4 * len(q_title & t) + 2 * len(q_title & h) + 1.5 * len(q_title & k)
-    s += 2 * len(q_section & t) + 1.5 * len(q_section & h) + len(q_section & k)
-    s += 1.5 * len(q_body & t) + 1.5 * len(q_body & h) + len(q_body & k)
-    denom = 1 + (len(q_title) * 2 + len(q_section) + len(q_body) * 0.2)
-    return round(s / denom, 3)
+def build_idf(entries: list[dict]) -> dict[str, float]:
+    """흔한 단어(학회, 정리, 공부 …)의 가중치를 낮춘다."""
+    import math
+
+    df: dict[str, int] = {}
+    for e in entries:
+        toks = tokens(e["title"]) | tokens(" ".join(e.get("headings", []))) | set(e.get("keywords", []))
+        for t in toks:
+            df[t] = df.get(t, 0) + 1
+    n = max(len(entries), 1)
+    return {t: math.log((n + 1) / (c + 1)) + 0.2 for t, c in df.items()}
+
+
+STOP = {"정리", "공부", "내용", "학회", "학회내용", "노트", "참고", "방법", "개요", "총론",
+        "study", "note", "notes", "reference", "guide", "intro", "정리본", "자료", "시험", "대비"}
+
+
+def score(query: dict[str, set[str]], entry: dict, idf: dict[str, float]) -> float:
+    """같은 단어를 여러 필드에서 중복 계산하지 않는다. 흔한 단어는 STOP 으로 뺀다."""
+    t = tokens(entry["title"]) - STOP
+    h = tokens(" ".join(entry.get("headings", []))) - STOP
+    k = set(entry.get("keywords", [])) - STOP
+
+    total = 0.0
+    denom = 1.0
+    for q, qweight in ((query["title"], 3.0), (query["section"], 1.5), (query["body"], 1.0)):
+        q = q - STOP
+        denom += qweight * sum(idf.get(x, 0.2) for x in q)
+        for tok in q:
+            bonus = 3.0 if tok in t else (2.0 if tok in h else (1.0 if tok in k else 0.0))
+            if bonus:
+                total += qweight * bonus * idf.get(tok, 0.2)
+    return round(total / denom, 3)
 
 
 def main() -> int:
@@ -51,10 +73,11 @@ def main() -> int:
     query = {
         "title": tokens(arg("--title")),
         "section": tokens(arg("--section")),
-        "body": tokens(arg("--excerpt")[:3000]),
+        "body": tokens(re.sub(r"\]\]>|<[^>]+>", " ", arg("--excerpt"))[:3000]),
     }
+    idf = build_idf(data["pages"])
     ranked = sorted(
-        ({**e, "score": score(query, e)} for e in data["pages"]),
+        ({**e, "score": score(query, e, idf)} for e in data["pages"] if score(query, e, idf) > 0),
         key=lambda e: -e["score"],
     )[:6]
     out = {
