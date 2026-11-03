@@ -20,18 +20,25 @@ description: >
 
 ## 0. 원칙
 
+- **소스는 Graph(웹) 1순위.** 데스크톱 COM 은 캐시가 덜 동기화돼 본문이 잘려 있다(실측: 같은 페이지
+  로컬 8,243자 vs Graph 62,759자 — 진정내시경 파트가 로컬에 없음). COM 은 오프라인 폴백으로만 쓴다.
+- **타임스탬프는 믿지 않는다.** 같은 편집이 Graph 는 9-01, 로컬은 11-03 15:52 로 나왔다. 변경 감지는
+  `scripts/onenote_graph.py` 의 **본문 해시 비교**로만 한다.
+
 - **Graph(MCP) 대신 로컬 원노트 COM 을 쓴다.** MCP 는 429 레이트리밋에 걸리고 `lastModifiedDateTime` 이
   낡아 최근 수정을 놓친다(실측: GI 학회 정리 2026-11-03 수정이 MCP 에선 9월로 보였다).
 - **변경 감지는 코드, 판단은 모델, 적용은 스크립트.** 본문은 파일로만 다루고 컨텍스트에 싣지 않는다.
 - 확신이 없으면 **큐에 제안만** 남기고 파일을 건드리지 않는다.
 
-## 1. 변경 감지 (토큰 0)
+## 1. 변경 감지 (본문 해시, Graph)
 
 ```bash
-python3 scripts/onenote_sync_local.py --commit     # manifest + state 갱신, 바뀐 페이지 출력
+python3 scripts/onenote_graph.py --notebook Books_for_Meds --limit 40   # 하루 40쪽씩 순환
+python3 scripts/onenote_graph.py --page-id <id>                         # 특정 페이지만
 ```
 
-출력에서 `changed` 목록을 본다. 300자 미만 페이지는 내용이 없으므로 건너뛴다.
+`changed` 에 실제로 내용이 바뀐 페이지만 나온다. 처음 한 바퀴는 전부 changed 로 뜨는 게 정상이다
+(해시가 없으니까). 300자 미만은 건너뛴다. Graph 가 429 면 로컬 COM 으로 폴백하고 그 사실을 남긴다.
 
 ## 2. 본문 확보 (파일로만)
 
@@ -77,6 +84,20 @@ python3 scripts/onenote_decide.py --title "<페이지 제목>" --section "<섹�
 - 종료코드 **0** = patch 생성 → 4단계로.
 - 종료코드 **3** = 확신 부족(`/tmp/opencode/onenote-proposal.json` 에 후보·이유 저장) → 큐에 알림만 넣고 끝낸다.
 - 후보 밖 파일을 고르면 코드가 거부한다.
+
+## 3-2. 기존 단원에 써넣기 (단순 append 금지)
+
+새 섹션을 페이지 끝에 붙이지 말고, **기존 장의 해당 단원 안**에 넣는다. patch 의 update 에
+`region` 대신 앵커를 쓴다.
+
+```json
+{"repo": "endoscopy-study", "file": "egd/00-총론.html", "anchor_id": "s-진정-sedation", "html": "…"}
+{"repo": "lab-followup", "file": "liver.html", "anchor_heading": "지방간을 진단받았을 때", "html": "…"}
+```
+
+- `anchor_id` 는 그 페이지의 `<h2 id="…">`, `anchor_heading` 은 제목 텍스트.
+- 삽입 위치는 앵커 단원의 끝(다음 `<h2>` 직전). 두 번 돌려도 중복되지 않는다(마커로 교체).
+- 어느 단원인지 애매하면 붙이지 말고 제안만 남긴다.
 
 ## 4. 큐에 제출 (적용은 Actions 가 한다)
 

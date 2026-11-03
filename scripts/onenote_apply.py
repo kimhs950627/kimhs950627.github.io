@@ -65,11 +65,42 @@ def region_pattern(region: str) -> re.Pattern:
     )
 
 
+def insert_into_section(text: str, update: dict) -> tuple[str, str]:
+    """기존 장의 특정 단원(앵커) 안에 써넣는다. 앵커는 id 또는 제목 텍스트로 지정한다."""
+    anchor_id = update.get("anchor_id") or ""
+    anchor_heading = update.get("anchor_heading") or ""
+    tag = anchor_id or anchor_heading
+    if not tag:
+        return text, "앵커 없음"
+
+    start = f"<!-- onenote-insert:{tag}:start -->"
+    end = f"<!-- onenote-insert:{tag}:end -->"
+    block = f'{start}\n{update["html"]}\n{end}'
+
+    if start in text and end in text:
+        pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.S)
+        return pattern.sub(lambda _m: block, text, count=1), "갱신"
+
+    if anchor_id:
+        m = re.search(rf'<h2[^>]*id="{re.escape(anchor_id)}"[^>]*>.*?</h2>', text, re.S)
+    else:
+        m = re.search(rf'<h2[^>]*>(?:(?!</h2>).)*{re.escape(anchor_heading)}.*?</h2>', text, re.S)
+    if not m:
+        return text, f"단원 못 찾음: {tag}"
+
+    rest = text[m.end():]
+    nxt = re.search(r"<h2[\s>]", rest)
+    cut = m.end() + (nxt.start() if nxt else len(rest))
+    wrapper = f'\n<div class="onenote-insert" data-anchor="{tag}">\n{block}\n</div>\n'
+    return text[:cut].rstrip() + wrapper + text[cut:], "삽입"
+
+
 def apply_one(update: dict, check_only: bool) -> str:
     repo = update["repo"]
     rel = update["file"]
     region = update.get("region", "onenote")
     html = update["html"]
+    anchored = bool(update.get("anchor_id") or update.get("anchor_heading"))
 
     tmp = Path(tempfile.mkdtemp(prefix="onenote-"))
     try:
@@ -78,29 +109,35 @@ def apply_one(update: dict, check_only: bool) -> str:
         if not target.exists():
             return f"{repo}/{rel}: 파일 없음"
         text = target.read_text(encoding="utf-8")
-        pat = region_pattern(region)
-        if not pat.search(text):
-            if not update.get("create_region", True):
-                return f"{repo}/{rel}: '{region}' 마커 없음 — 건드리지 않음"
-            block = (
-                f'<section id="{region}" class="note-sync">\n'
-                f'  <h2>{update.get("heading") or "원노트"}</h2>\n'
-                f'  <!-- {region}:start -->\n{html}\n  <!-- {region}:end -->\n'
-                f'</section>\n\n'
-            )
-            anchor = "</main>" if "</main>" in text else ("</body>" if "</body>" in text else None)
-            if not anchor:
-                return f"{repo}/{rel}: 삽입 위치(</main> 또는 </body>)가 없음 — 건드리지 않음"
-            new = text.replace(anchor, block + anchor, 1)
+
+        if anchored:
+            new, how = insert_into_section(text, update)
+            if new == text:
+                return f"{repo}/{rel}: {how} — 건드리지 않음"
         else:
-            new = pat.sub(lambda m: f"{m.group(1)}\n{html}\n{m.group(3)}", text)
+            pat = region_pattern(region)
+            if not pat.search(text):
+                if not update.get("create_region", True):
+                    return f"{repo}/{rel}: '{region}' 마커 없음 — 건드리지 않음"
+                section = (
+                    f'<section id="{region}" class="note-sync">\n'
+                    f'  <h2>{update.get("heading") or "원노트"}</h2>\n'
+                    f'  <!-- {region}:start -->\n{html}\n  <!-- {region}:end -->\n'
+                    f'</section>\n\n'
+                )
+                anchor = "</main>" if "</main>" in text else ("</body>" if "</body>" in text else None)
+                if not anchor:
+                    return f"{repo}/{rel}: 삽입 위치(</main> 또는 </body>)가 없음 — 건드리지 않음"
+                new = text.replace(anchor, section + anchor, 1)
+            else:
+                new = pat.sub(lambda m: f"{m.group(1)}\n{html}\n{m.group(3)}", text)
+
         if new == text:
             return f"{repo}/{rel}: 변경 없음"
         if check_only:
             return f"{repo}/{rel}: 변경 예정 ({len(html)}자)"
 
         target.write_text(new, encoding="utf-8")
-        # 원노트에서 뽑은 그림을 같은 커밋에 넣는다
         added = [rel]
         for asset in update.get("assets", []):
             apath = tmp / "repo" / asset["path"]
