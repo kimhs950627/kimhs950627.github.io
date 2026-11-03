@@ -11,11 +11,12 @@ description: >
 
 ## 0-0. 모델 고정 (필수)
 
-판단(어느 파일·어느 구간)은 **`commandcode/deepseek/deepseek-v4.1-flash` + effort `low`** 만 쓴다.
-- routine 설정도 이 모델로 고정돼 있다(`kimaki routine list` 로 확인). 바꾸지 않는다.
-- Command Code CLI(`commandcode -p ... -m ... --effort low`)를 먼저 시도하고, 이 PC 에서 미인증이면
-  (현재 상태: `Not authenticated`) **kimaki 세션**(같은 모델)으로 판단한다.
-- subagent·다른 모델로 우회하지 않는다. 모델을 바꿔야 하면 사용자에게 먼저 묻는다.
+판단(어느 파일·어느 구간)은 **`deepseek/deepseek-v4.1-flash` + `reasoning_effort: low`** 만 쓴다.
+`scripts/onenote_decide.py` 가 **Command Code API**(`https://api.commandcode.ai/provider/v1/chat/completions`)를
+직접 호출하며, CLI 는 쓰지 않는다. 키는 `$COMMANDCODE_API_KEY` 또는 `~/.config/pfarm/commandcode.env`.
+
+- 다른 모델·subagent 로 우회하지 않는다. 모델을 바꿔야 하면 사용자에게 먼저 묻는다.
+- API 가 실패(403·타임아웃)하면 같은 모델의 kimaki 세션으로 판단하고, 그 사실을 답변에 한 줄 남긴다.
 
 ## 0. 원칙
 
@@ -58,17 +59,24 @@ python3 scripts/onenote_images.py --xml /tmp/opencode/onenote-img/<id>.xml --pre
 `assets.json` 의 `assets` 배열을 `onenote-patch.json` 의 `assets` 로 넣으면 그림도 같은 커밋에 들어간다.
 `tags` 는 본문에 넣을 `<img>` 문자열이다. 그림은 **원본 페이지의 것만** 쓰고, 12장까지만 넣는다(`--max`).
 
-## 3. 어느 페이지로 갈지 후보 좁히기
+## 3. 후보 좁히기 (토큰 0)
 
 ```bash
-python3 scripts/onenote_route.py --title "<페이지 제목>" --section "<섹션>" --excerpt "<도입부 300자>"
+python3 scripts/onenote_route.py --title "<페이지 제목>" --section "<섹션>" \
+  --excerpt "$(head -c 400 data/onenote-raw/<id>.txt)" > /tmp/opencode/cand.json
 ```
 
-상위 6개 후보와 `marker` 유무가 나온다. 판단 규칙:
+## 3-1. 판단 (API, 모델 고정)
 
-- 1위 점수가 2위의 **1.5배 이상**이고, 후보 파일이 주제상 명백하면 → 적용
-- 비슷하거나(1위/2위 < 1.5), 주제가 어긋나면 → **제안만** 큐에 남긴다
-- 마커가 없어도 `create_region` 이 기본 true 라 새 구간을 만든다. 파일 끝(`</main>`/`</body>`)에 추가된다
+```bash
+python3 scripts/onenote_decide.py --title "<페이지 제목>" --section "<섹션>" \
+  --text data/onenote-raw/<id>.txt --candidates /tmp/opencode/cand.json \
+  --out /tmp/opencode/onenote-patch.json --min-confidence 0.7
+```
+
+- 종료코드 **0** = patch 생성 → 4단계로.
+- 종료코드 **3** = 확신 부족(`/tmp/opencode/onenote-proposal.json` 에 후보·이유 저장) → 큐에 알림만 넣고 끝낸다.
+- 후보 밖 파일을 고르면 코드가 거부한다.
 
 ## 4. 큐에 제출 (적용은 Actions 가 한다)
 
