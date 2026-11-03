@@ -100,6 +100,20 @@ def call_mcp(tool: str, arguments: dict, timeout: int = 180) -> dict:
     raise RuntimeError(f"MCP 응답 없음: {proc.stdout[-300:]} {proc.stderr[-300:]}")
 
 
+def from_manifest(since: str) -> dict:
+    """로컬 COM 이 만들어 둔 manifest 를 먼저 쓴다(레이트리밋 없음)."""
+    m = ROOT / "data" / "onenote-manifest.json"
+    rows = json.loads(m.read_text(encoding="utf-8-sig"))
+    pages = [
+        {"id": r["id"], "title": r["page"], "section": r["section"], "modified": r["modified"],
+         "webUrl": None, "source": "local"}
+        for r in rows
+        if r.get("modified") and r["modified"] > since
+    ]
+    pages.sort(key=lambda p: p["modified"], reverse=True)
+    return {"cutoff": since, "count": len(pages), "pages": pages, "source": "local"}
+
+
 def main() -> int:
     args = sys.argv[1:]
     since = None
@@ -111,11 +125,16 @@ def main() -> int:
     else:
         since = cutoff_from_state()
 
-    try:
-        result = call_mcp("recentPages", {"since": since, "limit": 40})
-    except Exception as err:  # noqa: BLE001
-        print(json.dumps({"error": str(err)}, ensure_ascii=False), file=sys.stderr)
-        return 1
+    manifest = ROOT / "data" / "onenote-manifest.json"
+    if "--mcp" not in args and manifest.exists():
+        result = from_manifest(since)
+    else:
+        try:
+            result = call_mcp("recentPages", {"since": since, "limit": 40})
+            result["source"] = "mcp"
+        except Exception as err:  # noqa: BLE001
+            print(json.dumps({"error": str(err)}, ensure_ascii=False), file=sys.stderr)
+            return 1
 
     print(json.dumps(result, ensure_ascii=False, indent=1))
     return 0

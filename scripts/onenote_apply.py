@@ -28,6 +28,7 @@ patch.json
 
 from __future__ import annotations
 
+import base64
 import json
 import re
 import shutil
@@ -99,8 +100,15 @@ def apply_one(update: dict, check_only: bool) -> str:
             return f"{repo}/{rel}: 변경 예정 ({len(html)}자)"
 
         target.write_text(new, encoding="utf-8")
+        # 원노트에서 뽑은 그림을 같은 커밋에 넣는다
+        added = [rel]
+        for asset in update.get("assets", []):
+            apath = tmp / "repo" / asset["path"]
+            apath.parent.mkdir(parents=True, exist_ok=True)
+            apath.write_bytes(base64.b64decode(asset["base64"]))
+            added.append(asset["path"])
         msg = update.get("commit_message") or "chore: 원노트 변경 반영"
-        subprocess.run(["git", "-C", str(tmp / "repo"), "add", rel], check=True)
+        subprocess.run(["git", "-C", str(tmp / "repo"), "add", *added], check=True)
         subprocess.run(
             ["git", "-C", str(tmp / "repo"), "-c", "user.name=kimhs950627", "-c", "user.email=kimhs950627@gmail.com",
              "commit", "-q", "-m", msg],

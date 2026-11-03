@@ -9,6 +9,7 @@ param(
   [string]$PageId = '',
   [string]$Out = '',
   [string]$Notebook = '',
+  [string]$OnlyPage = '',
   [int]$Limit = 0
 )
 
@@ -66,13 +67,14 @@ if ($Mode -eq 'exportall') {
   $done = 0; $failed = 0
   foreach ($page in $doc.SelectNodes('//one:Notebook/one:Section/one:Page', $nsm)) {
     if ($Notebook -ne '' -and $page.ParentNode.ParentNode.name -ne $Notebook) { continue }
+    if ($OnlyPage -ne '' -and $page.name -ne $OnlyPage) { continue }
     $safe = ($page.ID -replace '[^A-Za-z0-9!._-]', '_')
     $target = Join-Path $Out ($safe + '.xml')
     if (Test-Path $target) { $done++; continue }
     try {
       # Publish 는 섹션이 닫혀 있으면 실패(0x8004201A)하므로 페이지 XML 을 직접 받는다.
       $xml = ''
-      $on.GetPageContent($page.ID, [ref]$xml, 0)
+      $on.GetPageContent($page.ID, [ref]$xml, 3)
       [System.IO.File]::WriteAllText($target, $xml, [System.Text.UTF8Encoding]::new($false))
       $done++
     } catch {

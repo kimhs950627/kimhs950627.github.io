@@ -36,6 +36,20 @@ python3 scripts/onenote_inventory_local.py --manifest data/onenote-manifest.json
 `data/onenote-inventory.json` 에 페이지별 제목·섹션·글자수·소제목·키워드·도입부가 있다.
 **본문 전문은 읽지 않는다.** 필요한 페이지만 `data/onenote-raw/<pageid>.xml` 에서 발췌한다.
 
+## 2-1. 그림이 있는 페이지
+
+원노트 페이지 161쪽 중 111쪽에 그림이 있다. 적용할 페이지에 `<one:Image>` 가 있으면 **그 페이지만**
+`piAll` 로 다시 뽑아 그림을 꺼낸다.
+
+```bash
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$(wslpath -w scripts/onenote-export.ps1)" \
+  -Mode exportall -Notebook "Books_for_Meds" -OnlyPage "<페이지 제목>" -Out "$(wslpath -w /tmp/opencode/onenote-img)"
+python3 scripts/onenote_images.py --xml /tmp/opencode/onenote-img/<id>.xml --prefix <repo>-<장> --out /tmp/opencode/assets.json
+```
+
+`assets.json` 의 `assets` 배열을 `onenote-patch.json` 의 `assets` 로 넣으면 그림도 같은 커밋에 들어간다.
+`tags` 는 본문에 넣을 `<img>` 문자열이다. 그림은 **원본 페이지의 것만** 쓰고, 12장까지만 넣는다(`--max`).
+
 ## 3. 어느 페이지로 갈지 후보 좁히기
 
 ```bash
