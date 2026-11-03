@@ -99,7 +99,9 @@
           "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/softmax-cross-entropy/",
           "kind": "workbook"
         }
-      ]
+      ],
+      "url": "https://kimhs950627.github.io/ml_dl_study_material/",
+      "host": "kimhs950627.github.io/ml_dl_study_material"
     },
     "27paper-echo-hfmref": {
       "category": "research",
