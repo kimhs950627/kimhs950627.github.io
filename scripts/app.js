@@ -65,10 +65,15 @@
         .map((p) => {
           const sub = (p.links || []).length
             ? `<div class="row-sub">${p.links
-                .map(
-                  (l) =>
-                    `<a class="chip" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}<span aria-hidden="true">↗</span></a>`,
-                )
+                .map((l) => {
+                  const tag =
+                    l.status === "reviewed"
+                      ? '<span class="chip-tag is-reviewed">검토본</span>'
+                      : l.status === "draft"
+                        ? '<span class="chip-tag is-draft">초안</span>'
+                        : "";
+                  return `<a class="chip" href="${esc(l.url)}" target="_blank" rel="noopener">${tag}<span class="chip-label">${esc(l.label)}</span><span aria-hidden="true">↗</span></a>`;
+                })
                 .join("")}</div>`
             : "";
           return `

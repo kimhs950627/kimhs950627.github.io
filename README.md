@@ -37,9 +37,12 @@ GitHub Actions (매일 06:00 KST)
 
 ```json
 "links": [
-  { "label": "CT-HMM · HFmrEF 워크북", "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/ct-hmm-hfmref/" }
+  { "label": "CT-HMM · HFmrEF 워크북", "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/ct-hmm-hfmref/", "kind": "workbook" }
 ]
 ```
+
+`kind: "workbook"` 을 달면 빌드할 때 그 디렉터리의 `reviewed/*.html` 을 먼저 찾아 그리로 걸고,
+없으면 `draft/*.html`, 둘 다 없으면 원래 URL 을 쓴다. 칩에는 `검토본` / `초안` 표시가 붙는다.
 
 ## 직접 돌려보기
 

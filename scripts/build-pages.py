@@ -79,6 +79,47 @@ def clean(text: str) -> str:
     return text
 
 
+_TREE_CACHE: dict[str, list[str]] = {}
+
+
+def repo_tree(repo: str, token: str | None) -> list[str]:
+    """저장소의 파일 경로 목록. 실패하면 빈 목록."""
+    if repo in _TREE_CACHE:
+        return _TREE_CACHE[repo]
+    status, body = get(f"https://api.github.com/repos/{OWNER}/{repo}", token)
+    if status != 200:
+        _TREE_CACHE[repo] = []
+        return []
+    branch = json.loads(body).get("default_branch", "main")
+    status, body = get(f"https://api.github.com/repos/{OWNER}/{repo}/git/trees/{branch}?recursive=1", token)
+    paths = [t["path"] for t in json.loads(body).get("tree", [])] if status == 200 else []
+    _TREE_CACHE[repo] = paths
+    return paths
+
+
+def resolve_workbook(url: str, token: str | None) -> tuple[str, str]:
+    """워크북 링크를 '검토본 우선, 없으면 초안'으로 바꾼다.
+
+    <repo>/workbooks/<slug>/ 처럼 디렉터리 URL 이면 그 아래 reviewed/*.html 을 먼저 찾고,
+    없으면 draft/*.html, 둘 다 없으면 원래 URL 을 그대로 쓴다.
+    """
+    m = re.match(rf"^https://{re.escape(OWNER)}\.github\.io/([^/]+)/(.*)$", url)
+    if not m:
+        return url, ""
+    repo, sub = m.group(1), m.group(2).strip("/")
+    prefix = f"{sub}/" if sub else ""
+    paths = repo_tree(repo, token)
+    if not paths:
+        return url, ""
+    for status_ in ("reviewed", "draft"):
+        hits = sorted(
+            p for p in paths if p.startswith(f"{prefix}{status_}/") and p.endswith(".html")
+        )
+        if hits:
+            return f"https://{OWNER}.github.io/{repo}/{hits[0]}", status_
+    return url, ""
+
+
 def parse_page(body: str) -> tuple[str, str]:
     head = body[:20000]
     title = clean(TITLE_RE.search(head).group(1)) if TITLE_RE.search(head) else ""
@@ -111,11 +152,14 @@ def main() -> int:
         meta = known.get(name, {})
         links = []
         for link in meta.get("links", []):
-            code, _ = get(link["url"], token)
+            target, status_ = link["url"], ""
+            if link.get("kind") == "workbook":
+                target, status_ = resolve_workbook(link["url"], token)
+            code, _ = get(target, token)
             if code == 200:
-                links.append({"label": link["label"], "url": link["url"]})
+                links.append({"label": link["label"], "url": target, "status": status_})
             else:
-                print(f"  ! {name}: 쓰러진 바로가기 {link['url']} (HTTP {code})", file=sys.stderr)
+                print(f"  ! {name}: 쓰러진 바로가기 {target} (HTTP {code})", file=sys.stderr)
         found.append(
             {
                 "repo": name,

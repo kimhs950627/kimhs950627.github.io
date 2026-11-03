@@ -1,6 +1,6 @@
 {
   "owner": "kimhs950627",
-  "generated_at": "2026-11-03 02:21 UTC",
+  "generated_at": "2026-11-03 02:29 UTC",
   "total": 10,
   "link_total": 16,
   "groups": [
@@ -19,15 +19,18 @@
           "links": [
             {
               "label": "EGD 워크북",
-              "url": "https://kimhs950627.github.io/endoscopy-study/egd/"
+              "url": "https://kimhs950627.github.io/endoscopy-study/egd/",
+              "status": ""
             },
             {
               "label": "CFS(대장) 워크북",
-              "url": "https://kimhs950627.github.io/endoscopy-study/cfs/"
+              "url": "https://kimhs950627.github.io/endoscopy-study/cfs/",
+              "status": ""
             },
             {
               "label": "감별 증례",
-              "url": "https://kimhs950627.github.io/endoscopy-study/egd/07-감별증례.html"
+              "url": "https://kimhs950627.github.io/endoscopy-study/egd/07-감별증례.html",
+              "status": ""
             }
           ],
           "updated": "2026-11-02"
@@ -43,15 +46,18 @@
           "links": [
             {
               "label": "5분 요약",
-              "url": "https://kimhs950627.github.io/ktirads-study/01-1-한-문장-정의와-5분-요약.html"
+              "url": "https://kimhs950627.github.io/ktirads-study/01-1-한-문장-정의와-5분-요약.html",
+              "status": ""
             },
             {
               "label": "등급별 악성률 표",
-              "url": "https://kimhs950627.github.io/ktirads-study/04-4-등급별-악성률과-생검-기준-한-표.html"
+              "url": "https://kimhs950627.github.io/ktirads-study/04-4-등급별-악성률과-생검-기준-한-표.html",
+              "status": ""
             },
             {
               "label": "증례 연습",
-              "url": "https://kimhs950627.github.io/ktirads-study/09-9-예시-증례-연습용-실제-환자-아님.html"
+              "url": "https://kimhs950627.github.io/ktirads-study/09-9-예시-증례-연습용-실제-환자-아님.html",
+              "status": ""
             }
           ],
           "updated": "2026-10-19"
@@ -67,7 +73,8 @@
           "links": [
             {
               "label": "Vision Mamba 설명",
-              "url": "https://kimhs950627.github.io/fundoscopy-study/docs/vision-mamba.html"
+              "url": "https://kimhs950627.github.io/fundoscopy-study/docs/vision-mamba.html",
+              "status": ""
             }
           ],
           "updated": "2026-10-13"
@@ -83,11 +90,13 @@
           "links": [
             {
               "label": "CT-HMM · HFmrEF 워크북",
-              "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/ct-hmm-hfmref/"
+              "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/ct-hmm-hfmref/draft/ct-hmm-hfmref-workbook-draft.html",
+              "status": "draft"
             },
             {
               "label": "softmax · cross-entropy 워크북",
-              "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/softmax-cross-entropy/"
+              "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/softmax-cross-entropy/reviewed/softmax-cross-entropy-workbook.html",
+              "status": "reviewed"
             }
           ],
           "updated": "2026-11-01"
@@ -109,7 +118,8 @@
           "links": [
             {
               "label": "리뷰 노트",
-              "url": "https://kimhs950627.github.io/27paper-echo-hfmref/review/"
+              "url": "https://kimhs950627.github.io/27paper-echo-hfmref/review/",
+              "status": ""
             }
           ],
           "updated": "2026-11-01"
@@ -125,7 +135,8 @@
           "links": [
             {
               "label": "리뷰 노트",
-              "url": "https://kimhs950627.github.io/27paper-echo-topic-gdmt/review/"
+              "url": "https://kimhs950627.github.io/27paper-echo-topic-gdmt/review/",
+              "status": ""
             }
           ],
           "updated": "2026-10-31"
@@ -152,19 +163,23 @@
           "links": [
             {
               "label": "도플러 프로토콜",
-              "url": "https://kimhs950627.github.io/ksecho-research/doppler-protocol.html"
+              "url": "https://kimhs950627.github.io/ksecho-research/doppler-protocol.html",
+              "status": ""
             },
             {
               "label": "AI 트랙",
-              "url": "https://kimhs950627.github.io/ksecho-research/ai-tracks.html"
+              "url": "https://kimhs950627.github.io/ksecho-research/ai-tracks.html",
+              "status": ""
             },
             {
               "label": "리더 연구",
-              "url": "https://kimhs950627.github.io/ksecho-research/reader-study.html"
+              "url": "https://kimhs950627.github.io/ksecho-research/reader-study.html",
+              "status": ""
             },
             {
               "label": "에코 AI 리포트",
-              "url": "https://kimhs950627.github.io/ksecho-research/reports/echo-ai-report.html"
+              "url": "https://kimhs950627.github.io/ksecho-research/reports/echo-ai-report.html",
+              "status": ""
             }
           ],
           "updated": "2026-10-24"
@@ -186,7 +201,8 @@
           "links": [
             {
               "label": "가이드",
-              "url": "https://kimhs950627.github.io/ai-research-copilot/guide/"
+              "url": "https://kimhs950627.github.io/ai-research-copilot/guide/",
+              "status": ""
             }
           ],
           "updated": "2026-10-25"

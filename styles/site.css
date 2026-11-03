@@ -300,10 +300,27 @@ h1 em {
     background-color var(--dur) var(--ease);
 }
 
-.chip span {
+.chip > span[aria-hidden] {
   font-size: 0.7rem;
   color: var(--ink-3);
   transition: transform var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.chip-tag {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  padding-right: 0.45rem;
+  margin-right: 0.1rem;
+  border-right: 1px solid var(--rule);
+}
+
+.chip-tag.is-reviewed {
+  color: var(--accent);
+}
+
+.chip-tag.is-draft {
+  color: var(--ink-3);
 }
 
 .chip:hover {
@@ -312,7 +329,7 @@ h1 em {
   background: var(--accent-soft);
 }
 
-.chip:hover span {
+.chip:hover > span[aria-hidden] {
   color: var(--accent);
   transform: translate(1px, -1px);
 }

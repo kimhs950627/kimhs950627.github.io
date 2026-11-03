@@ -31,11 +31,13 @@
       "links": [
         {
           "label": "EGD 워크북",
-          "url": "https://kimhs950627.github.io/endoscopy-study/egd/"
+          "url": "https://kimhs950627.github.io/endoscopy-study/egd/",
+          "kind": "workbook"
         },
         {
           "label": "CFS(대장) 워크북",
-          "url": "https://kimhs950627.github.io/endoscopy-study/cfs/"
+          "url": "https://kimhs950627.github.io/endoscopy-study/cfs/",
+          "kind": "workbook"
         },
         {
           "label": "감별 증례",
@@ -83,11 +85,13 @@
       "links": [
         {
           "label": "CT-HMM · HFmrEF 워크북",
-          "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/ct-hmm-hfmref/"
+          "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/ct-hmm-hfmref/",
+          "kind": "workbook"
         },
         {
           "label": "softmax · cross-entropy 워크북",
-          "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/softmax-cross-entropy/"
+          "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/softmax-cross-entropy/",
+          "kind": "workbook"
         }
       ]
     },
