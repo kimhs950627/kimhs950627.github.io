@@ -235,7 +235,7 @@ h1 em {
 
 .row {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: var(--idx-w) 1fr auto;
   align-items: baseline;
   gap: clamp(0.8rem, 2vw, 1.5rem);
   padding: 1.05rem 0 1.1rem;
@@ -273,6 +273,64 @@ h1 em {
   color: var(--ink-3);
   letter-spacing: 0.06em;
   padding-top: 0.45em;
+}
+
+/* 그 페이지 안의 워크북·장 단위 바로가기 */
+.row-sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.45rem;
+  padding: 0 0 0.95rem calc(var(--idx-w) + clamp(0.8rem, 2vw, 1.5rem));
+  margin-top: -0.15rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  padding: 0.14rem 0.62rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-decoration: none;
+  background: var(--paper);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.chip span {
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  transition: transform var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.chip:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.chip:hover span {
+  color: var(--accent);
+  transform: translate(1px, -1px);
+}
+
+.item {
+  border-bottom: 1px solid var(--rule);
+}
+
+.item .row {
+  border-bottom: 0;
+}
+
+.item:has(.row-sub) .row {
+  padding-bottom: 0.3rem;
+}
+
+.item:last-child {
+  border-bottom: 0;
 }
 
 .row-main {

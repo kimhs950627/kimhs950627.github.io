@@ -26,6 +26,7 @@
   /* space */
   --pad-x: clamp(28px, 5vw, 76px);
   --maxw: 1080px;
+  --idx-w: 2.7rem;
   --gap: clamp(1.1rem, 1.6vw, 1.6rem);
   --s1: 0.4rem;
   --s2: 0.8rem;

@@ -29,6 +29,7 @@
 
   document.getElementById("stat-total").textContent = pad(total);
   document.getElementById("stat-groups").textContent = pad(groups.length);
+  document.getElementById("stat-links").textContent = pad(data.link_total || 0);
 
   const newest = groups
     .flatMap((g) => g.pages)
@@ -61,18 +62,29 @@
         </div>`;
 
       const rows = g.pages
-        .map(
-          (p) => `
-        <a class="row" href="${esc(p.url)}" target="_blank" rel="noopener" style="--i:${i++}">
-          <span class="idx">${pad(++n)}</span>
-          <span class="row-main">
-            <span class="row-title">${esc(p.title)}</span>
-            <span class="row-note">${esc(p.note)}</span>
-            <span class="row-host">${esc(p.host)}</span>
-          </span>
-          <span class="go" aria-hidden="true">↗</span>
-        </a>`,
-        )
+        .map((p) => {
+          const sub = (p.links || []).length
+            ? `<div class="row-sub">${p.links
+                .map(
+                  (l) =>
+                    `<a class="chip" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}<span aria-hidden="true">↗</span></a>`,
+                )
+                .join("")}</div>`
+            : "";
+          return `
+        <div class="item">
+          <a class="row" href="${esc(p.url)}" target="_blank" rel="noopener" style="--i:${i++}">
+            <span class="idx">${pad(++n)}</span>
+            <span class="row-main">
+              <span class="row-title">${esc(p.title)}</span>
+              <span class="row-note">${esc(p.note)}</span>
+              <span class="row-host">${esc(p.host)}</span>
+            </span>
+            <span class="go" aria-hidden="true">↗</span>
+          </a>
+          ${sub}
+        </div>`;
+        })
         .join("");
 
       return `<section class="group" aria-labelledby="h-${esc(g.id)}">

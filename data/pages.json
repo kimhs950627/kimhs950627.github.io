@@ -1,7 +1,8 @@
 {
   "owner": "kimhs950627",
-  "generated_at": "2026-11-03 02:08 UTC",
+  "generated_at": "2026-11-03 02:21 UTC",
   "total": 10,
+  "link_total": 16,
   "groups": [
     {
       "id": "study",
@@ -15,6 +16,20 @@
           "note": "상부위장관내시경과 대장내시경 학습 워크북. EndoTODAY 참고서와 학회 노트를 매일 갱신.",
           "category": "study",
           "order": 10,
+          "links": [
+            {
+              "label": "EGD 워크북",
+              "url": "https://kimhs950627.github.io/endoscopy-study/egd/"
+            },
+            {
+              "label": "CFS(대장) 워크북",
+              "url": "https://kimhs950627.github.io/endoscopy-study/cfs/"
+            },
+            {
+              "label": "감별 증례",
+              "url": "https://kimhs950627.github.io/endoscopy-study/egd/07-감별증례.html"
+            }
+          ],
           "updated": "2026-11-02"
         },
         {
@@ -25,6 +40,20 @@
           "note": "갑상선결절 초음파 분류 체계를 외우기 위한 노트.",
           "category": "study",
           "order": 20,
+          "links": [
+            {
+              "label": "5분 요약",
+              "url": "https://kimhs950627.github.io/ktirads-study/01-1-한-문장-정의와-5분-요약.html"
+            },
+            {
+              "label": "등급별 악성률 표",
+              "url": "https://kimhs950627.github.io/ktirads-study/04-4-등급별-악성률과-생검-기준-한-표.html"
+            },
+            {
+              "label": "증례 연습",
+              "url": "https://kimhs950627.github.io/ktirads-study/09-9-예시-증례-연습용-실제-환자-아님.html"
+            }
+          ],
           "updated": "2026-10-19"
         },
         {
@@ -35,6 +64,12 @@
           "note": "안저 AI 앱과 학습자료를 한데 모은 프로젝트 허브. Vision Mamba 설명 포함.",
           "category": "study",
           "order": 30,
+          "links": [
+            {
+              "label": "Vision Mamba 설명",
+              "url": "https://kimhs950627.github.io/fundoscopy-study/docs/vision-mamba.html"
+            }
+          ],
           "updated": "2026-10-13"
         },
         {
@@ -45,6 +80,16 @@
           "note": "단계별 워크북. softmax·cross-entropy 수치 예제부터 시작한다.",
           "category": "study",
           "order": 40,
+          "links": [
+            {
+              "label": "CT-HMM · HFmrEF 워크북",
+              "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/ct-hmm-hfmref/"
+            },
+            {
+              "label": "softmax · cross-entropy 워크북",
+              "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/softmax-cross-entropy/"
+            }
+          ],
           "updated": "2026-11-01"
         }
       ]
@@ -61,6 +106,12 @@
           "note": "EF 40–49에서 진행·회복·사망을 다중상태 모형과 CT-HMM으로 예측하는 연구 설계. MIMIC-IV-ECHO 5,315명.",
           "category": "research",
           "order": 10,
+          "links": [
+            {
+              "label": "리뷰 노트",
+              "url": "https://kimhs950627.github.io/27paper-echo-hfmref/review/"
+            }
+          ],
           "updated": "2026-11-01"
         },
         {
@@ -71,6 +122,12 @@
           "note": "EF 하락 후 4제 요법이 시작되지 않는 환자를 예측하는 치료 격차 연구 설계.",
           "category": "research",
           "order": 20,
+          "links": [
+            {
+              "label": "리뷰 노트",
+              "url": "https://kimhs950627.github.io/27paper-echo-topic-gdmt/review/"
+            }
+          ],
           "updated": "2026-10-31"
         },
         {
@@ -81,6 +138,7 @@
           "note": "영상과 예후 라벨을 함께 가진 공개 데이터의 실지형, 그리고 재층화 연구 계획.",
           "category": "research",
           "order": 30,
+          "links": [],
           "updated": "2026-10-31"
         },
         {
@@ -91,6 +149,24 @@
           "note": "심초음파 AI·오픈데이터 전략과 도플러 E/e′ 실험설계.",
           "category": "research",
           "order": 40,
+          "links": [
+            {
+              "label": "도플러 프로토콜",
+              "url": "https://kimhs950627.github.io/ksecho-research/doppler-protocol.html"
+            },
+            {
+              "label": "AI 트랙",
+              "url": "https://kimhs950627.github.io/ksecho-research/ai-tracks.html"
+            },
+            {
+              "label": "리더 연구",
+              "url": "https://kimhs950627.github.io/ksecho-research/reader-study.html"
+            },
+            {
+              "label": "에코 AI 리포트",
+              "url": "https://kimhs950627.github.io/ksecho-research/reports/echo-ai-report.html"
+            }
+          ],
           "updated": "2026-10-24"
         }
       ]
@@ -107,6 +183,12 @@
           "note": "논문·발표 워크플로를 자동화하는 OpenCode 스킬 7종과 KNHANES 실전 가이드.",
           "category": "tooling",
           "order": 10,
+          "links": [
+            {
+              "label": "가이드",
+              "url": "https://kimhs950627.github.io/ai-research-copilot/guide/"
+            }
+          ],
           "updated": "2026-10-25"
         }
       ]
@@ -123,6 +205,7 @@
           "note": "4도시 10박 11일. 항공·숙소·일정·예산을 한 파일로 정리한 여행 계획.",
           "category": "travel",
           "order": 10,
+          "links": [],
           "updated": "2026-11-01"
         }
       ]

@@ -1,48 +1,119 @@
 {
-  "_note": "손으로 고치는 파일. 여기 없는 저장소는 자동으로 '그 밖'에 들어가고 제목·설명은 그 페이지의 <title>·meta description을 쓴다.",
+  "_note": "손으로 고치는 파일. 여기 없는 저장소는 자동으로 '그 밖'에 들어가고 제목·설명은 그 페이지의 <title>·meta description을 쓴다. links 는 그 페이지 안의 워크북·장 단위 바로가기다(빌드할 때 200 확인 후 남는다).",
   "category_order": [
-    { "id": "study", "label": "임상 학습" },
-    { "id": "research", "label": "연구 설계" },
-    { "id": "tooling", "label": "도구" },
-    { "id": "travel", "label": "여행" },
-    { "id": "other", "label": "그 밖" }
+    {
+      "id": "study",
+      "label": "임상 학습"
+    },
+    {
+      "id": "research",
+      "label": "연구 설계"
+    },
+    {
+      "id": "tooling",
+      "label": "도구"
+    },
+    {
+      "id": "travel",
+      "label": "여행"
+    },
+    {
+      "id": "other",
+      "label": "그 밖"
+    }
   ],
   "pages": {
     "endoscopy-study": {
       "category": "study",
       "order": 10,
       "title": "내시경 워크북 — EGD · CFS",
-      "note": "상부위장관내시경과 대장내시경 학습 워크북. EndoTODAY 참고서와 학회 노트를 매일 갱신."
+      "note": "상부위장관내시경과 대장내시경 학습 워크북. EndoTODAY 참고서와 학회 노트를 매일 갱신.",
+      "links": [
+        {
+          "label": "EGD 워크북",
+          "url": "https://kimhs950627.github.io/endoscopy-study/egd/"
+        },
+        {
+          "label": "CFS(대장) 워크북",
+          "url": "https://kimhs950627.github.io/endoscopy-study/cfs/"
+        },
+        {
+          "label": "감별 증례",
+          "url": "https://kimhs950627.github.io/endoscopy-study/egd/07-감별증례.html"
+        }
+      ]
     },
     "ktirads-study": {
       "category": "study",
       "order": 20,
       "title": "K-TIRADS 2021 암기 노트",
-      "note": "갑상선결절 초음파 분류 체계를 외우기 위한 노트."
+      "note": "갑상선결절 초음파 분류 체계를 외우기 위한 노트.",
+      "links": [
+        {
+          "label": "5분 요약",
+          "url": "https://kimhs950627.github.io/ktirads-study/01-1-한-문장-정의와-5분-요약.html"
+        },
+        {
+          "label": "등급별 악성률 표",
+          "url": "https://kimhs950627.github.io/ktirads-study/04-4-등급별-악성률과-생검-기준-한-표.html"
+        },
+        {
+          "label": "증례 연습",
+          "url": "https://kimhs950627.github.io/ktirads-study/09-9-예시-증례-연습용-실제-환자-아님.html"
+        }
+      ]
     },
     "fundoscopy-study": {
       "category": "study",
       "order": 30,
       "title": "안저 판독 · Vision Mamba",
-      "note": "안저 AI 앱과 학습자료를 한데 모은 프로젝트 허브. Vision Mamba 설명 포함."
+      "note": "안저 AI 앱과 학습자료를 한데 모은 프로젝트 허브. Vision Mamba 설명 포함.",
+      "links": [
+        {
+          "label": "Vision Mamba 설명",
+          "url": "https://kimhs950627.github.io/fundoscopy-study/docs/vision-mamba.html"
+        }
+      ]
     },
     "ml_dl_study_material": {
       "category": "study",
       "order": 40,
       "title": "ML/DL 학습 워크북",
-      "note": "단계별 워크북. softmax·cross-entropy 수치 예제부터 시작한다."
+      "note": "단계별 워크북. softmax·cross-entropy 수치 예제부터 시작한다.",
+      "links": [
+        {
+          "label": "CT-HMM · HFmrEF 워크북",
+          "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/ct-hmm-hfmref/"
+        },
+        {
+          "label": "softmax · cross-entropy 워크북",
+          "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/softmax-cross-entropy/"
+        }
+      ]
     },
     "27paper-echo-hfmref": {
       "category": "research",
       "order": 10,
       "title": "HFmrEF는 두 갈래로 갈라진다",
-      "note": "EF 40–49에서 진행·회복·사망을 다중상태 모형과 CT-HMM으로 예측하는 연구 설계. MIMIC-IV-ECHO 5,315명."
+      "note": "EF 40–49에서 진행·회복·사망을 다중상태 모형과 CT-HMM으로 예측하는 연구 설계. MIMIC-IV-ECHO 5,315명.",
+      "links": [
+        {
+          "label": "리뷰 노트",
+          "url": "https://kimhs950627.github.io/27paper-echo-hfmref/review/"
+        }
+      ]
     },
     "27paper-echo-topic-gdmt": {
       "category": "research",
       "order": 20,
       "title": "EF가 떨어져도 약은 그대로",
-      "note": "EF 하락 후 4제 요법이 시작되지 않는 환자를 예측하는 치료 격차 연구 설계."
+      "note": "EF 하락 후 4제 요법이 시작되지 않는 환자를 예측하는 치료 격차 연구 설계.",
+      "links": [
+        {
+          "label": "리뷰 노트",
+          "url": "https://kimhs950627.github.io/27paper-echo-topic-gdmt/review/"
+        }
+      ]
     },
     "27paper-echo-plan": {
       "category": "research",
@@ -54,13 +125,37 @@
       "category": "research",
       "order": 40,
       "title": "KSEcho 연구 자료",
-      "note": "심초음파 AI·오픈데이터 전략과 도플러 E/e′ 실험설계."
+      "note": "심초음파 AI·오픈데이터 전략과 도플러 E/e′ 실험설계.",
+      "links": [
+        {
+          "label": "도플러 프로토콜",
+          "url": "https://kimhs950627.github.io/ksecho-research/doppler-protocol.html"
+        },
+        {
+          "label": "AI 트랙",
+          "url": "https://kimhs950627.github.io/ksecho-research/ai-tracks.html"
+        },
+        {
+          "label": "리더 연구",
+          "url": "https://kimhs950627.github.io/ksecho-research/reader-study.html"
+        },
+        {
+          "label": "에코 AI 리포트",
+          "url": "https://kimhs950627.github.io/ksecho-research/reports/echo-ai-report.html"
+        }
+      ]
     },
     "ai-research-copilot": {
       "category": "tooling",
       "order": 10,
       "title": "AI Research Copilot",
-      "note": "논문·발표 워크플로를 자동화하는 OpenCode 스킬 7종과 KNHANES 실전 가이드."
+      "note": "논문·발표 워크플로를 자동화하는 OpenCode 스킬 7종과 KNHANES 실전 가이드.",
+      "links": [
+        {
+          "label": "가이드",
+          "url": "https://kimhs950627.github.io/ai-research-copilot/guide/"
+        }
+      ]
     },
     "iberia-2027-02": {
       "category": "travel",

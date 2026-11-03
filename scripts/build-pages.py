@@ -17,6 +17,7 @@ import re
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -30,7 +31,8 @@ TIMEOUT = 20
 
 
 def get(url: str, token: str | None = None) -> tuple[int, str]:
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html,*/*"})
+    safe_url = urllib.parse.quote(url, safe=":/?#[]@!$&'()*+,;=%")
+    req = urllib.request.Request(safe_url, headers={"User-Agent": UA, "Accept": "text/html,*/*"})
     if token:
         req.add_header("Authorization", f"Bearer {token}")
     try:
@@ -107,6 +109,13 @@ def main() -> int:
             continue
         title, desc = parse_page(body)
         meta = known.get(name, {})
+        links = []
+        for link in meta.get("links", []):
+            code, _ = get(link["url"], token)
+            if code == 200:
+                links.append({"label": link["label"], "url": link["url"]})
+            else:
+                print(f"  ! {name}: 쓰러진 바로가기 {link['url']} (HTTP {code})", file=sys.stderr)
         found.append(
             {
                 "repo": name,
@@ -116,6 +125,7 @@ def main() -> int:
                 "note": meta.get("note") or desc or clean(repo.get("description") or ""),
                 "category": meta.get("category") or "other",
                 "order": meta.get("order", 9999),
+                "links": links,
                 "updated": (repo.get("pushed_at") or "")[:10],
             }
         )
@@ -139,10 +149,11 @@ def main() -> int:
         "owner": OWNER,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
         "total": len(found),
+        "link_total": sum(len(p["links"]) for p in found),
         "groups": groups,
     }
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"{len(found)}개 페이지 → {OUT.relative_to(ROOT)}")
+    print(f"{len(found)}개 페이지 · 바로가기 {payload['link_total']}개 → {OUT.relative_to(ROOT)}")
     return 0
 
 

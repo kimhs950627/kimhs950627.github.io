@@ -33,6 +33,14 @@ GitHub Actions (매일 06:00 KST)
 
 분류(`category`)는 `category_order` 에 있는 id 중 하나를 쓴다. `order` 는 그룹 안 정렬 순서다.
 
+그 페이지 안의 워크북·장 단위로 바로 걸고 싶으면 `links` 를 붙인다. 빌드할 때 실제로 열리는지(200) 확인하고 죽은 링크는 뺀다.
+
+```json
+"links": [
+  { "label": "CT-HMM · HFmrEF 워크북", "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/ct-hmm-hfmref/" }
+]
+```
+
 ## 직접 돌려보기
 
 ```bash
