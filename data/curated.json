@@ -43,7 +43,9 @@
           "label": "감별 증례",
           "url": "https://kimhs950627.github.io/endoscopy-study/egd/07-감별증례.html"
         }
-      ]
+      ],
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "host": "kimhs950627.github.io/endoscopy-study"
     },
     "ktirads-study": {
       "category": "study",
@@ -63,7 +65,9 @@
           "label": "증례 연습",
           "url": "https://kimhs950627.github.io/ktirads-study/09-9-예시-증례-연습용-실제-환자-아님.html"
         }
-      ]
+      ],
+      "url": "https://kimhs950627.github.io/ktirads-study/",
+      "host": "kimhs950627.github.io/ktirads-study"
     },
     "fundoscopy-study": {
       "category": "study",
@@ -75,7 +79,9 @@
           "label": "Vision Mamba 설명",
           "url": "https://kimhs950627.github.io/fundoscopy-study/docs/vision-mamba.html"
         }
-      ]
+      ],
+      "url": "https://kimhs950627.github.io/fundoscopy-study/",
+      "host": "kimhs950627.github.io/fundoscopy-study"
     },
     "ml_dl_study_material": {
       "category": "study",
@@ -105,7 +111,9 @@
           "label": "리뷰 노트",
           "url": "https://kimhs950627.github.io/27paper-echo-hfmref/review/"
         }
-      ]
+      ],
+      "url": "https://kimhs950627.github.io/27paper-echo-hfmref/",
+      "host": "kimhs950627.github.io/27paper-echo-hfmref"
     },
     "27paper-echo-topic-gdmt": {
       "category": "research",
@@ -117,13 +125,17 @@
           "label": "리뷰 노트",
           "url": "https://kimhs950627.github.io/27paper-echo-topic-gdmt/review/"
         }
-      ]
+      ],
+      "url": "https://kimhs950627.github.io/27paper-echo-topic-gdmt/",
+      "host": "kimhs950627.github.io/27paper-echo-topic-gdmt"
     },
     "27paper-echo-plan": {
       "category": "research",
       "order": 30,
       "title": "EF 40–50%에서 무엇을 더 볼 것인가",
-      "note": "영상과 예후 라벨을 함께 가진 공개 데이터의 실지형, 그리고 재층화 연구 계획."
+      "note": "영상과 예후 라벨을 함께 가진 공개 데이터의 실지형, 그리고 재층화 연구 계획.",
+      "url": "https://kimhs950627.github.io/27paper-echo-plan/",
+      "host": "kimhs950627.github.io/27paper-echo-plan"
     },
     "ksecho-research": {
       "category": "research",
@@ -147,7 +159,9 @@
           "label": "에코 AI 리포트",
           "url": "https://kimhs950627.github.io/ksecho-research/reports/echo-ai-report.html"
         }
-      ]
+      ],
+      "url": "https://kimhs950627.github.io/ksecho-research/",
+      "host": "kimhs950627.github.io/ksecho-research"
     },
     "ai-research-copilot": {
       "category": "tooling",
@@ -159,13 +173,17 @@
           "label": "가이드",
           "url": "https://kimhs950627.github.io/ai-research-copilot/guide/"
         }
-      ]
+      ],
+      "url": "https://kimhs950627.github.io/ai-research-copilot/",
+      "host": "kimhs950627.github.io/ai-research-copilot"
     },
     "iberia-2027-02": {
       "category": "travel",
       "order": 10,
       "title": "포르투갈 · 스페인 2027-02",
-      "note": "4도시 10박 11일. 항공·숙소·일정·예산을 한 파일로 정리한 여행 계획."
+      "note": "4도시 10박 11일. 항공·숙소·일정·예산을 한 파일로 정리한 여행 계획.",
+      "url": "https://kimhs950627.github.io/iberia-2027-02/",
+      "host": "kimhs950627.github.io/iberia-2027-02"
     },
     "hcc-vs-hemangioma": {
       "category": "research",
@@ -182,15 +200,18 @@
           "label": "연구 저장소",
           "url": "https://github.com/kimhs950627/hcc-vs-hemangioma"
         }
-      ]
+      ],
+      "manual": true
     },
     "neurology-outpatient-reference": {
       "category": "study",
       "order": 5,
       "access": "private",
-      "url": "https://neuro-ref.pages.dev/",
+      "url": "https://neurology-outpatient-reference.pages.dev/",
       "title": "신경과 외래 참고서",
-      "note": "일차의료를 위한 초기평가·치료·추적관리. 증상별 접근과 부록. 승인한 이메일만 열린다."
+      "note": "일차의료를 위한 초기평가·치료·추적관리. 증상별 접근과 부록. 승인한 이메일만 열린다.",
+      "host": "neurology-outpatient-reference.pages.dev"
     }
-  }
+  },
+  "request_url": "https://pages-access.kimhs950627.workers.dev/"
 }
