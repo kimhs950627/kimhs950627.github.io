@@ -3,17 +3,18 @@
   "targets": [
     {
       "notebook": "Books_for_Meds",
-      "section": "갑상선초음파 공부",
-      "repo": "ktirads-study",
-      "file": "04-4-등급별-악성률과-생검-기준-한-표.html",
+      "section": "검진 protocol, DDx",
+      "page": "위내시경 질환 Study",
+      "repo": "endoscopy-study",
+      "file": "egd/index.html",
       "region": "onenote",
-      "enabled": false
+      "enabled": true
     },
     {
       "notebook": "Books_for_Meds",
-      "section": "Echo_Measure",
-      "repo": "ksecho-research",
-      "file": "doppler-protocol.html",
+      "section": "갑상선초음파 공부",
+      "repo": "ktirads-study",
+      "file": "04-4-등급별-악성률과-생검-기준-한-표.html",
       "region": "onenote",
       "enabled": false
     }
