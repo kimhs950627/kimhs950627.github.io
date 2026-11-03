@@ -54,5 +54,6 @@ jobs:
             echo "변경 없음"
           else
             git commit -m "chore: 발행 상태 동기화"
-            git push
+            git pull --rebase --autostash origin master || true
+            git push || (git pull --rebase --autostash origin master && git push)
           fi
