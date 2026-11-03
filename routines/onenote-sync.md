@@ -9,6 +9,14 @@ description: >
 
 작업 폴더: `/home/kimhs950627/projects/ghpages-hub` · 스킬: `pages-publish`
 
+## 0-0. 모델 고정 (필수)
+
+판단(어느 파일·어느 구간)은 **`commandcode/deepseek/deepseek-v4.1-flash` + effort `low`** 만 쓴다.
+- routine 설정도 이 모델로 고정돼 있다(`kimaki routine list` 로 확인). 바꾸지 않는다.
+- Command Code CLI(`commandcode -p ... -m ... --effort low`)를 먼저 시도하고, 이 PC 에서 미인증이면
+  (현재 상태: `Not authenticated`) **kimaki 세션**(같은 모델)으로 판단한다.
+- subagent·다른 모델로 우회하지 않는다. 모델을 바꿔야 하면 사용자에게 먼저 묻는다.
+
 ## 0. 원칙
 
 - **Graph(MCP) 대신 로컬 원노트 COM 을 쓴다.** MCP 는 429 레이트리밋에 걸리고 `lastModifiedDateTime` 이
@@ -62,33 +70,24 @@ python3 scripts/onenote_route.py --title "<페이지 제목>" --section "<섹션
 - 비슷하거나(1위/2위 < 1.5), 주제가 어긋나면 → **제안만** 큐에 남긴다
 - 마커가 없어도 `create_region` 이 기본 true 라 새 구간을 만든다. 파일 끝(`</main>`/`</body>`)에 추가된다
 
-## 4. 반영
+## 4. 큐에 제출 (적용은 Actions 가 한다)
 
 ```bash
-cat > /tmp/opencode/onenote-patch.json <<'JSON'
-{"updates":[{"repo":"…","file":"…","region":"onenote","heading":"원노트 — …","html":"…"}]}
-JSON
-python3 scripts/onenote_apply.py --check /tmp/opencode/onenote-patch.json
-python3 scripts/onenote_apply.py /tmp/opencode/onenote-patch.json
+python3 scripts/onenote_submit.py /tmp/opencode/onenote-patch.json --page "<페이지 제목>"
 ```
 
-`onenote_apply.py` 가 ①마커 구간 교체(없으면 새 구간) ②커밋·push ③비공개 저장소면 Cloudflare 재배포까지 한다.
-public 은 push 만으로 GitHub Pages 가 갱신된다.
+- 비공개 staging `kimhs950627/pages-jobs` 의 `jobs/` 에 들어가고, 그 저장소의 **Actions 가 적용·배포**한다
+  (대상 repo 커밋·push → private 이면 Cloudflare 재배포 → 소비한 job 삭제 → `status/` 기록).
+- 로컬에서는 **적용하지 않는다.** 세션이 짧아지고, PC 가 꺼져도 Actions 가 이어받는다.
+- 원노트 본문이 공개 저장소에 남지 않도록 staging 은 private 이다.
 
 ## 5. 마무리
 
 ```bash
-python3 scripts/pages_index.py            # 새 구간이 색인에 반영되게
-GITHUB_TOKEN=$(gh auth token) python3 scripts/build-pages.py
+python3 scripts/noti.py add-onenote "원노트 반영 요청: <repo>/<file> · <페이지 제목>"
 ```
 
-변경이 있으면 `data/` 를 커밋·push. 결과는 알림 큐에 넣고 **직접 보고하지 않는다**(07:00 에 한 번에 간다).
-
-```bash
-python3 scripts/noti.py add-onenote "원노트 반영: <repo>/<file> · <페이지 제목>"
-```
-
-마지막 답변은 `기록됨` 한 줄만. 바뀐 게 없으면 아무 것도 넣지 않는다.
+마지막 답변은 `기록됨` 한 줄만. 제출할 게 없으면 아무 것도 넣지 않는다.
 
 ## 금지
 
