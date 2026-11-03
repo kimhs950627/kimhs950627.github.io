@@ -30,7 +30,14 @@ description: >
 6. 문제 없으면 `python3 scripts/onenote_apply.py /tmp/opencode/onenote-patch.json` 실행.
    public 저장소는 push 로 GitHub Pages 가 갱신되고, private 저장소는 스크립트가 Cloudflare 에 재배포한다.
 7. `GITHUB_TOKEN=$(gh auth token) python3 scripts/build-pages.py` → 변경 있으면 커밋·push.
-8. 결과를 한 줄씩 보고한다: 어떤 파일이 바뀌었고, 어디에 발행됐는지. 바뀐 게 없으면 보고하지 않고 끝낸다.
+8. 결과를 **알림 큐**에 넣는다. 사용자에게 직접 보고하지 않는다(아침 07:00 에 한 번에 간다).
+
+   ```bash
+   python3 scripts/noti.py add-onenote "원노트 반영: <파일> 1건 · <repo>"
+   ```
+
+   큐에 넣은 뒤 변경이 있으면 `noti-queue.jsonl` 도 함께 커밋·push 한다.
+9. 마지막 답변은 `기록됨` 한 줄만 쓴다. 상세 보고는 큐에만 남긴다. 바뀐 게 없으면 아무 것도 넣지 않고 끝낸다.
 
 ## 허용/금지
 
