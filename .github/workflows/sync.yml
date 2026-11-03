@@ -44,7 +44,8 @@ jobs:
           summary=$(grep -E "^sync 완료" /tmp/sync.log | tail -1)
           fails=$(grep -c "  ! " /tmp/sync.log || true)
           [ -n "$summary" ] || summary="sync 요약 없음"
-          python3 scripts/noti.py add "${summary}${fails:+ · 실패 ${fails}건}"
+          if [ "${fails:-0}" -gt 0 ]; then summary="$summary · 실패 ${fails}건"; fi
+          python3 scripts/noti.py add "$summary"
 
       - name: 색인 재생성
         env:
