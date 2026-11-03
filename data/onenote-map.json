@@ -1,0 +1,21 @@
+{
+  "_note": "원노트 섹션/페이지 → 발행 파일 매핑. 여기 있는 항목만 자동 반영된다. 대상 파일에는 <!-- onenote:start --> … <!-- onenote:end --> 마커가 있어야 한다.",
+  "targets": [
+    {
+      "notebook": "Books_for_Meds",
+      "section": "갑상선초음파 공부",
+      "repo": "ktirads-study",
+      "file": "04-4-등급별-악성률과-생검-기준-한-표.html",
+      "region": "onenote",
+      "enabled": false
+    },
+    {
+      "notebook": "Books_for_Meds",
+      "section": "Echo_Measure",
+      "repo": "ksecho-research",
+      "file": "doppler-protocol.html",
+      "region": "onenote",
+      "enabled": false
+    }
+  ]
+}
