@@ -79,9 +79,20 @@ def apply_one(update: dict, check_only: bool) -> str:
         text = target.read_text(encoding="utf-8")
         pat = region_pattern(region)
         if not pat.search(text):
-            return f"{repo}/{rel}: '{region}' 마커 없음 — 건드리지 않음"
-
-        new = pat.sub(lambda m: f"{m.group(1)}\n{html}\n{m.group(3)}", text)
+            if not update.get("create_region", True):
+                return f"{repo}/{rel}: '{region}' 마커 없음 — 건드리지 않음"
+            block = (
+                f'<section id="{region}" class="note-sync">\n'
+                f'  <h2>{update.get("heading") or "원노트"}</h2>\n'
+                f'  <!-- {region}:start -->\n{html}\n  <!-- {region}:end -->\n'
+                f'</section>\n\n'
+            )
+            anchor = "</main>" if "</main>" in text else ("</body>" if "</body>" in text else None)
+            if not anchor:
+                return f"{repo}/{rel}: 삽입 위치(</main> 또는 </body>)가 없음 — 건드리지 않음"
+            new = text.replace(anchor, block + anchor, 1)
+        else:
+            new = pat.sub(lambda m: f"{m.group(1)}\n{html}\n{m.group(3)}", text)
         if new == text:
             return f"{repo}/{rel}: 변경 없음"
         if check_only:

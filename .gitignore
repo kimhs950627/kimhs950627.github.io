@@ -1,2 +1,4 @@
 node_modules/
 .DS_Store
+data/onenote-raw/
+data/onenote-manifest.json

@@ -7,41 +7,78 @@ description: >
 
 # 원노트 변경을 발행된 페이지에 반영한다
 
-작업 폴더: `/home/kimhs950627/projects/ghpages-hub`
-스킬: `pages-publish` (필요하면 로드)
+작업 폴더: `/home/kimhs950627/projects/ghpages-hub` · 스킬: `pages-publish`
 
-## 절차
+## 0. 원칙
 
-1. `data/onenote-map.json` 을 읽는다. `enabled: true` 인 항목이 없으면 **아무 것도 하지 않고 종료**한다
-   (사용자에게 알리지 않는다).
-2. 활성 항목마다 OneNote MCP 로 해당 노트북 → 섹션 → 페이지를 읽는다
-   (`onenote.searchPages` 또는 `getPageByTitle`, `format: "html"`).
-3. 페이지 내용을 발행 파일에 넣을 HTML 조각으로 만든다.
-   - 원문의 표·목록·수치를 그대로 살린다. 요약하거나 윤문하지 않는다.
-   - 제목 계층은 발행 파일의 기존 태그 수준에 맞춘다(h2/h3).
-4. `/tmp/opencode/onenote-patch.json` 을 만든다.
+- **Graph(MCP) 대신 로컬 원노트 COM 을 쓴다.** MCP 는 429 레이트리밋에 걸리고 `lastModifiedDateTime` 이
+  낡아 최근 수정을 놓친다(실측: GI 학회 정리 2026-11-03 수정이 MCP 에선 9월로 보였다).
+- **변경 감지는 코드, 판단은 모델, 적용은 스크립트.** 본문은 파일로만 다루고 컨텍스트에 싣지 않는다.
+- 확신이 없으면 **큐에 제안만** 남기고 파일을 건드리지 않는다.
 
-   ```json
-   {"updates":[{"repo":"…","file":"…","region":"onenote","html":"…"}]}
-   ```
+## 1. 변경 감지 (토큰 0)
 
-5. `python3 scripts/onenote_apply.py --check /tmp/opencode/onenote-patch.json` 으로 먼저 확인한다.
-   "마커 없음" 이 나오면 그 항목은 건너뛰고 사용자에게 마커가 필요하다고 알린다.
-6. 문제 없으면 `python3 scripts/onenote_apply.py /tmp/opencode/onenote-patch.json` 실행.
-   public 저장소는 push 로 GitHub Pages 가 갱신되고, private 저장소는 스크립트가 Cloudflare 에 재배포한다.
-7. `GITHUB_TOKEN=$(gh auth token) python3 scripts/build-pages.py` → 변경 있으면 커밋·push.
-8. 결과를 **알림 큐**에 넣는다. 사용자에게 직접 보고하지 않는다(아침 07:00 에 한 번에 간다).
+```bash
+python3 scripts/onenote_sync_local.py --commit     # manifest + state 갱신, 바뀐 페이지 출력
+```
 
-   ```bash
-   python3 scripts/noti.py add-onenote "원노트 반영: <파일> 1건 · <repo>"
-   ```
+출력에서 `changed` 목록을 본다. 300자 미만 페이지는 내용이 없으므로 건너뛴다.
 
-   큐에 넣은 뒤 변경이 있으면 `noti-queue.jsonl` 도 함께 커밋·push 한다.
-9. 마지막 답변은 `기록됨` 한 줄만 쓴다. 상세 보고는 큐에만 남긴다. 바뀐 게 없으면 아무 것도 넣지 않고 끝낸다.
+## 2. 본문 확보 (파일로만)
 
-## 허용/금지
+```bash
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$(wslpath -w scripts/onenote-export.ps1)" \
+  -Mode exportall -Notebook "Books_for_Meds" -Out "$(wslpath -w /tmp/opencode/onenote-html)"
+python3 scripts/onenote_inventory_local.py --manifest data/onenote-manifest.json \
+  --raw /tmp/opencode/onenote-html --out data/onenote-inventory.json
+```
 
-- 원노트 페이지에 붙은 **그림**은 `assets/img/onenote/` 에 내려받아 본문에서 참조해도 된다(원본 페이지의 그림만).
+`data/onenote-inventory.json` 에 페이지별 제목·섹션·글자수·소제목·키워드·도입부가 있다.
+**본문 전문은 읽지 않는다.** 필요한 페이지만 `data/onenote-raw/<pageid>.xml` 에서 발췌한다.
+
+## 3. 어느 페이지로 갈지 후보 좁히기
+
+```bash
+python3 scripts/onenote_route.py --title "<페이지 제목>" --section "<섹션>" --excerpt "<도입부 300자>"
+```
+
+상위 6개 후보와 `marker` 유무가 나온다. 판단 규칙:
+
+- 1위 점수가 2위의 **1.5배 이상**이고, 후보 파일이 주제상 명백하면 → 적용
+- 비슷하거나(1위/2위 < 1.5), 주제가 어긋나면 → **제안만** 큐에 남긴다
+- 마커가 없어도 `create_region` 이 기본 true 라 새 구간을 만든다. 파일 끝(`</main>`/`</body>`)에 추가된다
+
+## 4. 반영
+
+```bash
+cat > /tmp/opencode/onenote-patch.json <<'JSON'
+{"updates":[{"repo":"…","file":"…","region":"onenote","heading":"원노트 — …","html":"…"}]}
+JSON
+python3 scripts/onenote_apply.py --check /tmp/opencode/onenote-patch.json
+python3 scripts/onenote_apply.py /tmp/opencode/onenote-patch.json
+```
+
+`onenote_apply.py` 가 ①마커 구간 교체(없으면 새 구간) ②커밋·push ③비공개 저장소면 Cloudflare 재배포까지 한다.
+public 은 push 만으로 GitHub Pages 가 갱신된다.
+
+## 5. 마무리
+
+```bash
+python3 scripts/pages_index.py            # 새 구간이 색인에 반영되게
+GITHUB_TOKEN=$(gh auth token) python3 scripts/build-pages.py
+```
+
+변경이 있으면 `data/` 를 커밋·push. 결과는 알림 큐에 넣고 **직접 보고하지 않는다**(07:00 에 한 번에 간다).
+
+```bash
+python3 scripts/noti.py add-onenote "원노트 반영: <repo>/<file> · <페이지 제목>"
+```
+
+마지막 답변은 `기록됨` 한 줄만. 바뀐 게 없으면 아무 것도 넣지 않는다.
+
+## 금지
+
 - 마커 밖의 내용을 고치지 않는다.
 - 원노트에 없는 내용을 지어내지 않는다.
-- 커밋 메시지에 PHI 를 넣지 않는다.
+- 본문 전문을 컨텍스트에 붙여 넣지 않는다(파일로 처리).
+- 처방·용량이 들어간 내용은 적용 전에 사용자 확인을 받는다.
