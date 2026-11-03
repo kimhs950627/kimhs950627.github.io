@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>없는 페이지 · 페이지 아카이브</title>
+<meta name="description" content="페이지 아카이브에 없는 주소다. 색인으로 돌아가 발행한 페이지를 볼 수 있다.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+  :root {
+    --paper: #f5f0e6; --ink: #1b1712; --ink-2: #5b5245; --ink-3: #857a68;
+    --rule: #d7cdb8; --accent: #9e3b1f;
+    --font-display: "Gowun Batang", Georgia, serif;
+    --font-mono: "IBM Plex Mono", monospace;
+    --pad-x: clamp(28px, 5vw, 76px);
+  }
+  body {
+    margin: 0; min-height: 100svh; display: grid; align-content: center;
+    background: var(--paper); color: var(--ink);
+    font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", sans-serif;
+    word-break: keep-all; line-break: strict; overflow-wrap: break-word;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-inline: var(--pad-x); width: 100%; }
+  .kicker { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); }
+  h1 { font-family: var(--font-display); font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.1; letter-spacing: -.02em; margin: .6rem 0 1rem; }
+  p { color: var(--ink-2); max-width: 46ch; line-height: 1.8; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  a:hover { border-color: var(--accent); }
+  .rule { height: 1px; background: var(--rule); margin: 2rem 0; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kicker">404 · not found</p>
+    <h1>없는 페이지<em>.</em></h1>
+    <p>주소가 바뀌었거나 아직 발행하지 않은 페이지다. 색인으로 돌아가면 발행한 페이지가 전부 있다.</p>
+    <div class="rule"></div>
+    <p><a href="/">페이지 아카이브로 돌아가기</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+{
+  "owner": "kimhs950627",
+  "generated_at": "2026-11-03 01:56 UTC",
+  "total": 10,
+  "groups": [
+    {
+      "id": "study",
+      "label": "임상 학습",
+      "pages": [
+        {
+          "repo": "endoscopy-study",
+          "url": "https://kimhs950627.github.io/endoscopy-study/",
+          "host": "kimhs950627.github.io/endoscopy-study",
+          "title": "내시경 워크북 — EGD · CFS",
+          "note": "상부위장관내시경과 대장내시경 학습 워크북. EndoTODAY 참고서와 학회 노트를 매일 갱신.",
+          "category": "study",
+          "order": 10,
+          "updated": "2026-11-02"
+        },
+        {
+          "repo": "ktirads-study",
+          "url": "https://kimhs950627.github.io/ktirads-study/",
+          "host": "kimhs950627.github.io/ktirads-study",
+          "title": "K-TIRADS 2021 암기 노트",
+          "note": "갑상선결절 초음파 분류 체계를 외우기 위한 노트.",
+          "category": "study",
+          "order": 20,
+          "updated": "2026-10-19"
+        },
+        {
+          "repo": "fundoscopy-study",
+          "url": "https://kimhs950627.github.io/fundoscopy-study/",
+          "host": "kimhs950627.github.io/fundoscopy-study",
+          "title": "안저 판독 · Vision Mamba",
+          "note": "안저 AI 앱과 학습자료를 한데 모은 프로젝트 허브. Vision Mamba 설명 포함.",
+          "category": "study",
+          "order": 30,
+          "updated": "2026-10-13"
+        },
+        {
+          "repo": "ml_dl_study_material",
+          "url": "https://kimhs950627.github.io/ml_dl_study_material/",
+          "host": "kimhs950627.github.io/ml_dl_study_material",
+          "title": "ML/DL 학습 워크북",
+          "note": "단계별 워크북. softmax·cross-entropy 수치 예제부터 시작한다.",
+          "category": "study",
+          "order": 40,
+          "updated": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "label": "연구 설계",
+      "pages": [
+        {
+          "repo": "27paper-echo-hfmref",
+          "url": "https://kimhs950627.github.io/27paper-echo-hfmref/",
+          "host": "kimhs950627.github.io/27paper-echo-hfmref",
+          "title": "HFmrEF는 두 갈래로 갈라진다",
+          "note": "EF 40–49에서 진행·회복·사망을 다중상태 모형과 CT-HMM으로 예측하는 연구 설계. MIMIC-IV-ECHO 5,315명.",
+          "category": "research",
+          "order": 10,
+          "updated": "2026-11-01"
+        },
+        {
+          "repo": "27paper-echo-topic-gdmt",
+          "url": "https://kimhs950627.github.io/27paper-echo-topic-gdmt/",
+          "host": "kimhs950627.github.io/27paper-echo-topic-gdmt",
+          "title": "EF가 떨어져도 약은 그대로",
+          "note": "EF 하락 후 4제 요법이 시작되지 않는 환자를 예측하는 치료 격차 연구 설계.",
+          "category": "research",
+          "order": 20,
+          "updated": "2026-10-31"
+        },
+        {
+          "repo": "27paper-echo-plan",
+          "url": "https://kimhs950627.github.io/27paper-echo-plan/",
+          "host": "kimhs950627.github.io/27paper-echo-plan",
+          "title": "EF 40–50%에서 무엇을 더 볼 것인가",
+          "note": "영상과 예후 라벨을 함께 가진 공개 데이터의 실지형, 그리고 재층화 연구 계획.",
+          "category": "research",
+          "order": 30,
+          "updated": "2026-10-31"
+        },
+        {
+          "repo": "ksecho-research",
+          "url": "https://kimhs950627.github.io/ksecho-research/",
+          "host": "kimhs950627.github.io/ksecho-research",
+          "title": "KSEcho 연구 자료",
+          "note": "심초음파 AI·오픈데이터 전략과 도플러 E/e′ 실험설계.",
+          "category": "research",
+          "order": 40,
+          "updated": "2026-10-24"
+        }
+      ]
+    },
+    {
+      "id": "tooling",
+      "label": "도구",
+      "pages": [
+        {
+          "repo": "ai-research-copilot",
+          "url": "https://kimhs950627.github.io/ai-research-copilot/",
+          "host": "kimhs950627.github.io/ai-research-copilot",
+          "title": "AI Research Copilot",
+          "note": "논문·발표 워크플로를 자동화하는 OpenCode 스킬 7종과 KNHANES 실전 가이드.",
+          "category": "tooling",
+          "order": 10,
+          "updated": "2026-10-25"
+        }
+      ]
+    },
+    {
+      "id": "travel",
+      "label": "여행",
+      "pages": [
+        {
+          "repo": "iberia-2027-02",
+          "url": "https://kimhs950627.github.io/iberia-2027-02/",
+          "host": "kimhs950627.github.io/iberia-2027-02",
+          "title": "포르투갈 · 스페인 2027-02",
+          "note": "4도시 10박 11일. 항공·숙소·일정·예산을 한 파일로 정리한 여행 계획.",
+          "category": "travel",
+          "order": 10,
+          "updated": "2026-11-01"
+        }
+      ]
+    }
+  ]
+}

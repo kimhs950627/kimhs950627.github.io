@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#f5f0e6"/>
+  <rect x="0" y="0" width="1200" height="10" fill="#9e3b1f"/>
+  <g font-family="Georgia, serif">
+    <text x="90" y="150" font-size="26" letter-spacing="6" fill="#857a68">KIMHS950627 / GITHUB PAGES</text>
+    <text x="86" y="330" font-size="128" font-weight="bold" fill="#1b1712">페이지 아카이브</text>
+    <text x="90" y="410" font-size="30" fill="#5b5245">발행한 학습 자료 · 연구 설계 · 도구 · 여행 계획의 색인</text>
+  </g>
+  <line x1="90" y1="500" x2="1110" y2="500" stroke="#d7cdb8" stroke-width="2"/>
+  <g font-family="monospace" font-size="22" fill="#857a68">
+    <text x="90" y="550">kimhs950627.github.io</text>
+    <text x="980" y="550">AUTO-INDEXED</text>
+  </g>
+</svg>

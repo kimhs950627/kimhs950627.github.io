@@ -1,0 +1,72 @@
+{
+  "_note": "손으로 고치는 파일. 여기 없는 저장소는 자동으로 '그 밖'에 들어가고 제목·설명은 그 페이지의 <title>·meta description을 쓴다.",
+  "category_order": [
+    { "id": "study", "label": "임상 학습" },
+    { "id": "research", "label": "연구 설계" },
+    { "id": "tooling", "label": "도구" },
+    { "id": "travel", "label": "여행" },
+    { "id": "other", "label": "그 밖" }
+  ],
+  "pages": {
+    "endoscopy-study": {
+      "category": "study",
+      "order": 10,
+      "title": "내시경 워크북 — EGD · CFS",
+      "note": "상부위장관내시경과 대장내시경 학습 워크북. EndoTODAY 참고서와 학회 노트를 매일 갱신."
+    },
+    "ktirads-study": {
+      "category": "study",
+      "order": 20,
+      "title": "K-TIRADS 2021 암기 노트",
+      "note": "갑상선결절 초음파 분류 체계를 외우기 위한 노트."
+    },
+    "fundoscopy-study": {
+      "category": "study",
+      "order": 30,
+      "title": "안저 판독 · Vision Mamba",
+      "note": "안저 AI 앱과 학습자료를 한데 모은 프로젝트 허브. Vision Mamba 설명 포함."
+    },
+    "ml_dl_study_material": {
+      "category": "study",
+      "order": 40,
+      "title": "ML/DL 학습 워크북",
+      "note": "단계별 워크북. softmax·cross-entropy 수치 예제부터 시작한다."
+    },
+    "27paper-echo-hfmref": {
+      "category": "research",
+      "order": 10,
+      "title": "HFmrEF는 두 갈래로 갈라진다",
+      "note": "EF 40–49에서 진행·회복·사망을 다중상태 모형과 CT-HMM으로 예측하는 연구 설계. MIMIC-IV-ECHO 5,315명."
+    },
+    "27paper-echo-topic-gdmt": {
+      "category": "research",
+      "order": 20,
+      "title": "EF가 떨어져도 약은 그대로",
+      "note": "EF 하락 후 4제 요법이 시작되지 않는 환자를 예측하는 치료 격차 연구 설계."
+    },
+    "27paper-echo-plan": {
+      "category": "research",
+      "order": 30,
+      "title": "EF 40–50%에서 무엇을 더 볼 것인가",
+      "note": "영상과 예후 라벨을 함께 가진 공개 데이터의 실지형, 그리고 재층화 연구 계획."
+    },
+    "ksecho-research": {
+      "category": "research",
+      "order": 40,
+      "title": "KSEcho 연구 자료",
+      "note": "심초음파 AI·오픈데이터 전략과 도플러 E/e′ 실험설계."
+    },
+    "ai-research-copilot": {
+      "category": "tooling",
+      "order": 10,
+      "title": "AI Research Copilot",
+      "note": "논문·발표 워크플로를 자동화하는 OpenCode 스킬 7종과 KNHANES 실전 가이드."
+    },
+    "iberia-2027-02": {
+      "category": "travel",
+      "order": 10,
+      "title": "포르투갈 · 스페인 2027-02",
+      "note": "4도시 10박 11일. 항공·숙소·일정·예산을 한 파일로 정리한 여행 계획."
+    }
+  }
+}

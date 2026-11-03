@@ -1,0 +1,42 @@
+/* tokens.css — 모든 색·타입·간격·모션은 여기서만 정의한다 */
+:root {
+  /* color — warm paper + archival ink + one brick accent */
+  --paper: #f5f0e6;
+  --paper-2: #ece5d6;
+  --paper-3: #e2d9c6;
+  --ink: #1b1712;
+  --ink-2: #5b5245;
+  --ink-3: #6b6152;
+  --rule: #d7cdb8;
+  --accent: #9e3b1f;
+  --accent-soft: rgba(158, 59, 31, 0.08);
+
+  /* type */
+  --font-display: "Gowun Batang", "Noto Serif KR", Georgia, serif;
+  --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --fs-kicker: 0.76rem;
+  --fs-body: clamp(0.95rem, 0.5vw + 0.81rem, 1.02rem);
+  --fs-note: clamp(0.86rem, 0.35vw + 0.78rem, 0.93rem);
+  --fs-h1: clamp(2.3rem, 4.6vw, 3.9rem);
+  --fs-h2: clamp(1.02rem, 0.5vw + 0.9rem, 1.15rem);
+  --fs-item: clamp(1.12rem, 0.9vw + 0.9rem, 1.42rem);
+
+  /* space */
+  --pad-x: clamp(28px, 5vw, 76px);
+  --maxw: 1080px;
+  --gap: clamp(1.1rem, 1.6vw, 1.6rem);
+  --s1: 0.4rem;
+  --s2: 0.8rem;
+  --s3: 1.4rem;
+  --s4: 2.4rem;
+  --s5: 4rem;
+  --s6: 6.5rem;
+
+  /* shape + motion */
+  --radius: 2px;
+  --dur: 420ms;
+  --ease: cubic-bezier(0.22, 0.68, 0.24, 1);
+  --shadow-soft: 0 18px 50px -32px rgba(27, 23, 18, 0.5);
+}
