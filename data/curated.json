@@ -233,7 +233,9 @@
           "label": "갑상선기능",
           "url": "https://kimhs950627.github.io/lab-followup/thyroid.html"
         }
-      ]
+      ],
+      "url": "https://kimhs950627.github.io/lab-followup/",
+      "host": "kimhs950627.github.io/lab-followup"
     }
   },
   "request_url": "https://pages-access.kimhs950627.workers.dev/"
