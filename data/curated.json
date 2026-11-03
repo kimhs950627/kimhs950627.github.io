@@ -166,6 +166,23 @@
       "order": 10,
       "title": "포르투갈 · 스페인 2027-02",
       "note": "4도시 10박 11일. 항공·숙소·일정·예산을 한 파일로 정리한 여행 계획."
+    },
+    "hcc-vs-hemangioma": {
+      "category": "research",
+      "order": 50,
+      "url": "https://kimhs950627.github.io/hcc-vs-hemangioma/talk/",
+      "title": "AI가 예측한 간암, 확률을 넘어 유사도 점수까지",
+      "note": "B-mode 간초음파로 간세포암과 혈관종을 가르는 분류 연구. 학회 발표 13장과 브라우저 추론 데모.",
+      "links": [
+        {
+          "label": "추론 데모",
+          "url": "https://kimhs950627.github.io/hcc-vs-hemangioma/web-demo/"
+        },
+        {
+          "label": "연구 저장소",
+          "url": "https://github.com/kimhs950627/hcc-vs-hemangioma"
+        }
+      ]
     }
   }
 }

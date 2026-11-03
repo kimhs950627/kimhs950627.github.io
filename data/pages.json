@@ -1,8 +1,8 @@
 {
   "owner": "kimhs950627",
-  "generated_at": "2026-11-03 02:29 UTC",
-  "total": 10,
-  "link_total": 16,
+  "generated_at": "2026-11-03 02:39 UTC",
+  "total": 11,
+  "link_total": 18,
   "groups": [
     {
       "id": "study",
@@ -183,6 +183,28 @@
             }
           ],
           "updated": "2026-10-24"
+        },
+        {
+          "repo": "hcc-vs-hemangioma",
+          "url": "https://kimhs950627.github.io/hcc-vs-hemangioma/talk/",
+          "host": "kimhs950627.github.io/hcc-vs-hemangioma/talk",
+          "title": "AI가 예측한 간암, 확률을 넘어 유사도 점수까지",
+          "note": "B-mode 간초음파로 간세포암과 혈관종을 가르는 분류 연구. 학회 발표 13장과 브라우저 추론 데모.",
+          "category": "research",
+          "order": 50,
+          "links": [
+            {
+              "label": "추론 데모",
+              "url": "https://kimhs950627.github.io/hcc-vs-hemangioma/web-demo/",
+              "status": ""
+            },
+            {
+              "label": "연구 저장소",
+              "url": "https://github.com/kimhs950627/hcc-vs-hemangioma",
+              "status": ""
+            }
+          ],
+          "updated": "2026-10-31"
         }
       ]
     },

@@ -143,11 +143,24 @@ def main() -> int:
             continue
         url = f"{site_root}/{name}/"
         status, body = get(url, token)
-        if status != 200:
-            continue
-        if "Page not found" in body[:4000] and "github.io" in body[:4000]:
-            print(f"  - {name}: 페이지 없음(404 화면)", file=sys.stderr)
-            continue
+        root_ok = status == 200 and "Page not found" not in body[:4000]
+        if not root_ok:
+            # 루트에 index.html 이 없는 경우(Pages 소스가 /docs 등) — curated.json 의 url 로 지정하면 잡힌다
+            override = known.get(name, {}).get("url")
+            if not override:
+                pages_ok, _ = get(f"https://api.github.com/repos/{OWNER}/{name}/pages", token)
+                if pages_ok == 200:
+                    print(
+                        f"  - {name}: 페이지는 켜져 있는데 루트에 index.html 이 없다. "
+                        f"curated.json 의 url 로 실제 주소를 지정하면 잡힌다",
+                        file=sys.stderr,
+                    )
+                continue
+            url = override
+            status, body = get(url, token)
+            if status != 200:
+                print(f"  ! {name}: 지정한 url 도 열리지 않음 {url} (HTTP {status})", file=sys.stderr)
+                continue
         title, desc = parse_page(body)
         meta = known.get(name, {})
         links = []
@@ -164,7 +177,7 @@ def main() -> int:
             {
                 "repo": name,
                 "url": url,
-                "host": f"{OWNER}.github.io/{name}",
+                "host": url.replace("https://", "").rstrip("/"),
                 "title": meta.get("title") or title or name,
                 "note": meta.get("note") or desc or clean(repo.get("description") or ""),
                 "category": meta.get("category") or "other",
