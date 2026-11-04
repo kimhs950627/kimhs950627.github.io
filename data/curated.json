@@ -45,7 +45,7 @@
         },
         {
           "label": "합본 PDF (LFS)",
-          "url": "https://media.githubusercontent.com/media/kimhs950627/endoscopy-study/master/downloads/EGD-workbook.pdf",
+          "url": "https://github.com/kimhs950627/endoscopy-study/releases/latest/download/EGD-workbook.pdf",
           "kind": "pdf"
         }
       ],

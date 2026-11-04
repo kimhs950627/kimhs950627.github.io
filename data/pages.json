@@ -1,9 +1,9 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-04 02:38 UTC",
+  "generated_at": "2026-11-04 02:39 UTC",
   "total": 15,
-  "link_total": 31,
+  "link_total": 32,
   "groups": [
     {
       "id": "study",
@@ -147,6 +147,11 @@
             {
               "label": "감별 증례",
               "url": "https://kimhs950627.github.io/endoscopy-study/egd/07-감별증례.html",
+              "status": ""
+            },
+            {
+              "label": "합본 PDF (LFS)",
+              "url": "https://github.com/kimhs950627/endoscopy-study/releases/latest/download/EGD-workbook.pdf",
               "status": ""
             }
           ],
