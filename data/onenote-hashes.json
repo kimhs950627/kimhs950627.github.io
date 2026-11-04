@@ -4,7 +4,819 @@
    "hash": "50e0e5ccbad406cc5787054aed949223",
    "title": "GI 학회 정리",
    "section": ""
+  },
+  "0-00034030260e4fd8b09669c98e23e323!102-7B7300AE98D01EB7!22114": {
+   "hash": "5bc421babbc76f06714ea816baea3942",
+   "title": "Metaformer",
+   "section": ""
+  },
+  "0-01060b0b455706942249dbf82e8d776a!1-7B7300AE98D01EB7!s7c18af0cfa164e20946f629ad3a335d1": {
+   "hash": "e3f96dc73488991545c786625932f95e",
+   "title": "TEE",
+   "section": ""
+  },
+  "0-013bd5d23706c649899bca604635a93a!1-7B7300AE98D01EB7!22119": {
+   "hash": "1efb2f51ac4cbd1ebc48c942fe3e467e",
+   "title": "YOLOR - You only learn one representation",
+   "section": ""
+  },
+  "0-01b0bcd4820543419ab513849d03e5bc!1-7B7300AE98D01EB7!22271": {
+   "hash": "37be904fb34b79360640c3dc3fc7e123",
+   "title": "19 매매일지",
+   "section": ""
+  },
+  "0-01e441555692403b9087e857e59d0281!1-7B7300AE98D01EB7!22425": {
+   "hash": "aa628be071ab70d66bef89f583e4f242",
+   "title": "Index",
+   "section": ""
+  },
+  "0-024e9734291f0071082d7baaf35a1783!1-7B7300AE98D01EB7!465": {
+   "hash": "76f4372f6cd0998e95bd6f2788da79e8",
+   "title": "초음파를 이용한 신경차단과 통증치료",
+   "section": ""
+  },
+  "0-03e02137021c4acbb3793399968cb3ef!1-7B7300AE98D01EB7!22425": {
+   "hash": "9a773b4b15192f65b35a68e45bd856ce",
+   "title": "19. Porting Models from TensorFlow to TensorFlow Lite",
+   "section": ""
+  },
+  "0-03e621ca5e5d4b14a3c75ca5a3de8ee0!1-7B7300AE98D01EB7!22432": {
+   "hash": "9d6f25e4e2f4cb1a8d365fad506b53e3",
+   "title": "II. Adjusting for Bias",
+   "section": ""
+  },
+  "0-0454cb0b62a342389484f6f5bb1f82d5!1-7B7300AE98D01EB7!22426": {
+   "hash": "2bd8ea57db1156223ea31d903a4e3d0a",
+   "title": "3. Bayesian Networks in the Presence of Temporal Information",
+   "section": ""
+  },
+  "0-0461347c49a4480734b9641ea536926e!1-7B7300AE98D01EB7!22114": {
+   "hash": "e6f37bce0ade139cd33be48f3349fdf1",
+   "title": "SSLA.pdf",
+   "section": ""
+  },
+  "0-05545153b13b493793371eb9430c221e!1-7B7300AE98D01EB7!22433": {
+   "hash": "961e30788f9c2b9a8d2ab13edce1cb8c",
+   "title": "D. TensorFlow Graphs",
+   "section": ""
+  },
+  "0-05606372bf468e0111f1fd39a840f7c5!1-7B7300AE98D01EB7!s1a079557ab70471481fdbff49fec8d91": {
+   "hash": "fee1d183126b8324c13e47a73884a384",
+   "title": "EGD protocol (personal)",
+   "section": ""
+  },
+  "0-056a48649b9e47f4aed5e1e3ab1a64d5!1-7B7300AE98D01EB7!22115": {
+   "hash": "d116522262f0467ffcbfb74ca69d257e",
+   "title": "HYPE: Hyperbolic Entailment Filtering for Underspecified Images and Texts",
+   "section": ""
+  },
+  "0-0651a6377425250d2914100181d6ea21!1-7B7300AE98D01EB7!s95ea1935b68b4ebf8d3d00e11aadcfba": {
+   "hash": "c19c019f0635742dff2e17d97785e774",
+   "title": "어깨 4 임상응용, Case discussion",
+   "section": ""
+  },
+  "0-06f346ac2b23834498171dab54ff9bff!1-7B7300AE98D01EB7!22109": {
+   "hash": "d06cd0bedba3b4bd2f9ac039f1662fc5",
+   "title": "Mamba : Linear-Time Sequence Modeling with Selective State Spaces",
+   "section": ""
+  },
+  "0-06f5a33750e00641a432184ca98b16b3!1-7B7300AE98D01EB7!22125": {
+   "hash": "94162cbc5edb5b0a4e080b8913bdefa6",
+   "title": "ch 01_Why_Backpropagation_and_Jacobians_",
+   "section": ""
+  },
+  "0-0708d43b62592c42ba7eaaead6f34576!1-7B7300AE98D01EB7!22119": {
+   "hash": "2dd5661fcfcfb7c0f6dd4aed504e5f7d",
+   "title": "Vision Transformer based Object Detection",
+   "section": ""
+  },
+  "0-07264fab5c92914a8f814d469df52589!1-7B7300AE98D01EB7!22117": {
+   "hash": "255533a550b47311ee3a47bfae8e8584",
+   "title": "Focus Your Distribution : Coarse-to-Fine Non-Contrastive Learning for Anomaly Detection and Localization",
+   "section": ""
+  },
+  "0-077a8e161506067d2bab7ea340d49a74!1-7B7300AE98D01EB7!s6fe88e7efc9849e18fd8ebdaf4af4dfd": {
+   "hash": "8f30c80333067b9ec5ba1ada6c7bbadf",
+   "title": "Infection 학회 정리",
+   "section": ""
+  },
+  "0-079b4f74668e402bb1d38a8e5e798c6e!1-7B7300AE98D01EB7!22433": {
+   "hash": "02e7cd2a6c285ab6f7ed46f3914909f3",
+   "title": "15. Processing Sequences Using RNNs and CNNs",
+   "section": ""
+  },
+  "0-07d7cc96666acd4b937650a234f1562b!1-7B7300AE98D01EB7!22273": {
+   "hash": "14f4c498a616f8efcd123b21991d6154",
+   "title": "Quant 전략 모음",
+   "section": ""
+  },
+  "0-080450e25beee20e3c9b176b7d16daee!1-7B7300AE98D01EB7!s1dad3385386e4323b18aa6d810d08bf2": {
+   "hash": "d9258d2139712ab32722d6e1c1b88ccf",
+   "title": "혈액줄기세포 : 노화방지, 조직재생을 위한 제일 간편한 접근",
+   "section": ""
+  },
+  "0-081d3229066f0b7c3f0a35b5518196a9!1-7B7300AE98D01EB7!s828a70c5e8974b9cb6389a47cae97777": {
+   "hash": "2177066b239c30e5a2c02590e91293b9",
+   "title": "260614 개원세미나 하이닥터",
+   "section": ""
+  },
+  "0-08607ffd97804486a45beb7f25913ff8!1-7B7300AE98D01EB7!22115": {
+   "hash": "1a1788e781f9e373916baea004b6670f",
+   "title": "CARZero_Cross Attention Alignment",
+   "section": ""
+  },
+  "0-08c24f45b5235c4787a8b10dc19ba4d5!1-7B7300AE98D01EB7!22271": {
+   "hash": "df84dbce5e9e438887bb9e4f7207dfff",
+   "title": "5/5 매매일지",
+   "section": ""
+  },
+  "0-09bd50bb49d6804cb56d1dadaf2a55c2!1-7B7300AE98D01EB7!22127": {
+   "hash": "47acafe3c8276aa29ae8794931f0888f",
+   "title": "Geometric Interpretation of Diffusion Model (DDPM, DDIM & Beyond)",
+   "section": ""
+  },
+  "0-09dc26cac7414272ab2b58a73a02b227!1-7B7300AE98D01EB7!22433": {
+   "hash": "b9d0e756d4bfa8b2e346e3380c429c1a",
+   "title": "19. Training and Deploying TensorFlow Models at Scale",
+   "section": ""
+  },
+  "0-09f33d03c17d411d9f6ac489b22b6959!1-7B7300AE98D01EB7!22433": {
+   "hash": "4dd7ae903e00f20f7fb90f365204aaec",
+   "title": "10. Introduction to Artificial Neural",
+   "section": ""
+  },
+  "0-0b0834413adffb449ea57196797c351f!1-7B7300AE98D01EB7!22273": {
+   "hash": "98da3e92a8ed0ecfc8eafbd29cead751",
+   "title": "Tailong 4분할 매매 - 단일 차트 활용 및 misc",
+   "section": ""
+  },
+  "0-0b298ce95fa19a47b398e43a88ec4993!1-7B7300AE98D01EB7!22275": {
+   "hash": "c543ab82d5f3cb778674b0dd69aef907",
+   "title": "비철금속 산업",
+   "section": ""
+  },
+  "0-0b441d6af5e49e43961ea47adf09e9c1!1-7B7300AE98D01EB7!22271": {
+   "hash": "522945eb23403a5ea689b2b5d36d1bd4",
+   "title": "220818 매매(향후)계획",
+   "section": ""
+  },
+  "0-0baf83dec879784bb38bda3ea19a0233!1-7B7300AE98D01EB7!22123": {
+   "hash": "76d954503204f0c2912cc5fc74ff9698",
+   "title": "Introduction",
+   "section": ""
+  },
+  "0-0c81b61bc0ec4a9ebd4a1373562cda7c!1-7B7300AE98D01EB7!22433": {
+   "hash": "3c08fe468e73e5248e769f3a8594860a",
+   "title": "II. Neural Networks and Deep Learning",
+   "section": ""
+  },
+  "0-0da88f83c4e1204b935349fabc3ebdd7!1-7B7300AE98D01EB7!22119": {
+   "hash": "e9dfa03b53acc95ea7bee997b78a64dd",
+   "title": "DETR like object detection",
+   "section": ""
+  },
+  "0-0fd5db09c7c2e20d0142cd28db7721eb!1-7B7300AE98D01EB7!s95ea1935b68b4ebf8d3d00e11aadcfba": {
+   "hash": "cfceaa308c789249095ce8cec3eb0ae0",
+   "title": "참관",
+   "section": ""
+  },
+  "0-109c7f7ca5674ad98cc42849c38aa765!1-7B7300AE98D01EB7!22433": {
+   "hash": "f1b9cf757886926720d3c3f8f8c14a30",
+   "title": "Index",
+   "section": ""
+  },
+  "0-10aebb7b776de24788a7ce621f69addf!1-7B7300AE98D01EB7!22129": {
+   "hash": "5bdd2bb92ab01c9740c54934bd87b822",
+   "title": "R conference) 게임으로 알아보는 인과추론",
+   "section": ""
+  },
+  "0-1121c8fa116ea9498e3e612d9b3ae7ab!1-7B7300AE98D01EB7!22271": {
+   "hash": "97e1040ef5b64a1309fd03576e25f0a7",
+   "title": "220822 매매일지",
+   "section": ""
+  },
+  "0-11af6afa2532b84c9460eeb3ac741702!1-7B7300AE98D01EB7!22109": {
+   "hash": "d9c6e7e386c0b6a7d7a4df1ddf338bd5",
+   "title": "GaLore: Memory Efficient LLM Training by Gradient Low-Rank Projection",
+   "section": ""
+  },
+  "0-11b4165688194ae6a2ff494d27e653ca!1-7B7300AE98D01EB7!sa69feaea27a14b039bf6ee7ff480f2d3": {
+   "hash": "ebde8defcbf3e5b71ded362b93e2eb8c",
+   "title": "ReadMe.md",
+   "section": ""
+  },
+  "0-120f95e57c640dc901f430df3f686a83!1-7B7300AE98D01EB7!22127": {
+   "hash": "2c7a5f91bc5011fb2327b46151c0290f",
+   "title": "Language Rectified Flow: Advancing Diffusion Language Generation with Probabilistic Flows",
+   "section": ""
+  },
+  "0-136074a374079c428302de11024aa6c1!1-7B7300AE98D01EB7!22127": {
+   "hash": "d2081c1f5da79b99c225c74670903a55",
+   "title": "The 2 formulations of diffusion models",
+   "section": ""
+  },
+  "0-1488a8a86a99554a86f45b89a533ae2a!1-7B7300AE98D01EB7!465": {
+   "hash": "a8a0284ede224c834b855dc6c7a8b721",
+   "title": "PMC FM_IM 인계 스캔.pdf",
+   "section": ""
+  },
+  "0-14b55db67f808645944df61a3b91f331!1-7B7300AE98D01EB7!22125": {
+   "hash": "1b9bd832d392a3e6877b64ba2c5b5600",
+   "title": "ch 07_Linear_and_Logistic_Regression2",
+   "section": ""
+  },
+  "0-16d1b240b82944de850d1963bd878d48!14-7B7300AE98D01EB7!s39c51b28e26f4075a856f93f291ca6c9": {
+   "hash": "c3b71ec392860f36de2fa320b596209c",
+   "title": "CV",
+   "section": ""
+  },
+  "0-16d1b240b82944de850d1963bd878d48!140-7B7300AE98D01EB7!s39c51b28e26f4075a856f93f291ca6c9": {
+   "hash": "67b1d85a1a66257a586df029847909f2",
+   "title": "Nephro",
+   "section": ""
+  },
+  "0-16d1b240b82944de850d1963bd878d48!57-7B7300AE98D01EB7!s39c51b28e26f4075a856f93f291ca6c9": {
+   "hash": "67baeef6d674e7a00050a25b2fa2c776",
+   "title": "IG",
+   "section": ""
+  },
+  "0-16d1b240b82944de850d1963bd878d48!98-7B7300AE98D01EB7!s39c51b28e26f4075a856f93f291ca6c9": {
+   "hash": "fe6d03ebac8547daa3b33ecc8f67852a",
+   "title": "Pul",
+   "section": ""
+  },
+  "0-1722521d205ac44f8f42874cee838efd!1-7B7300AE98D01EB7!22119": {
+   "hash": "e51be94321c3e03e1edd22fe0b442fb7",
+   "title": "Finding Objects without BBoxes",
+   "section": ""
+  },
+  "0-174b63f7887949ebbd790f9300748d5b!1-7B7300AE98D01EB7!22115": {
+   "hash": "fc83bcf52093eced2c65c166049664bd",
+   "title": "SELF-SUPERVISED VISION-LANGUAGE PRETRAINING FOR MEDIAL VISUAL QUESTION ANSWERING (M2I2)",
+   "section": ""
+  },
+  "0-181ea1102066460eb64b8273a56fedcd!1-7B7300AE98D01EB7!22425": {
+   "hash": "75344ade5e9f679234675be8ab49bba5",
+   "title": "15. Optimizing Latency",
+   "section": ""
+  },
+  "0-1845b32d3c3e4940b7c0caccc257de38!1-7B7300AE98D01EB7!22123": {
+   "hash": "10343984a18f8aa507db249038b9d8ca",
+   "title": "A3C journal reading",
+   "section": ""
+  },
+  "0-184d02c61fb7c844a663b805258cd404!1-7B7300AE98D01EB7!22125": {
+   "hash": "3c458baa7090a47a9047fd1908359563",
+   "title": "ch 06_Element-wise_Operations_and_Jacobians_",
+   "section": ""
+  },
+  "0-18f17f668d667c0e264711f06ebdc6ce!1-7B7300AE98D01EB7!sb01efbbfbcb24512a695c10acc02b349": {
+   "hash": "ca946bbe8733c58d632ad58e096c1aa1",
+   "title": "초음파검사학",
+   "section": ""
+  },
+  "0-195414151c3f041a14df5641b293edf2!1-7B7300AE98D01EB7!22125": {
+   "hash": "c47d43d1c3534498ecedc768292505b8",
+   "title": "모두를 위한 컨벡스 최적화(임시)",
+   "section": ""
+  },
+  "0-1990ceda8fdb9943afddbf0e1a0e3b84!1-7B7300AE98D01EB7!22117": {
+   "hash": "f96677b95c8c78f5ace35c4bd21325e5",
+   "title": "Diffusion-based for Anomaly Detection_20240112.pdf",
+   "section": ""
+  },
+  "0-19b0c50815d80c11156740c4690bf279!1-7B7300AE98D01EB7!22109": {
+   "hash": "a56d3a0835efe4b79477ffa3869cda7c",
+   "title": "CPC : Representation learning with Mutual information",
+   "section": ""
+  },
+  "0-1a42bcbfa6d8b34f93737a0869d0702b!1-7B7300AE98D01EB7!22123": {
+   "hash": "fd98ff139aa90d85840b2bf651e4b103",
+   "title": "Value iteration vs Policy Iteration - REINFORCE, A2C, DDPG, ...",
+   "section": ""
+  },
+  "0-1a56354f09e8c443900eb7b2f205e27d!1-7B7300AE98D01EB7!22117": {
+   "hash": "ed00db0f93082cb1fe28bdefbf6db51c",
+   "title": "Introduction to Anomaly Detection_김서연.pdf",
+   "section": ""
+  },
+  "0-1b5f24e6c9aa794095042a8c3e7358ad!1-7B7300AE98D01EB7!22275": {
+   "hash": "a2d03b24cf6fb4d0530ba5d977d921e7",
+   "title": "철강 산업",
+   "section": ""
+  },
+  "0-1b6ea5cdaef9474e8984b3694f24f3c7!1-7B7300AE98D01EB7!22119": {
+   "hash": "8d774a1e26b04b433d297f1415efa9b9",
+   "title": "EfficientDet - SoTA!",
+   "section": ""
+  },
+  "0-1c7d35798784a846992f25489727d935!1-7B7300AE98D01EB7!22126": {
+   "hash": "e8ac54076789d1efdfdeb6d3993dd54c",
+   "title": "최종 프로젝트 안내",
+   "section": ""
+  },
+  "0-1d2bbf71be9a07202a81785a799cb3cf!1-7B7300AE98D01EB7!22117": {
+   "hash": "94c3ca1acab962dca2867bb36a5c6334",
+   "title": "Unsupervised Anomaly Localization : OmniAL as a unified framework for AL",
+   "section": ""
+  },
+  "0-1f71043bbe6afe4193a7b0ec9091f934!1-7B7300AE98D01EB7!22127": {
+   "hash": "eb1641579ad7ed7d7fcfe5c9a5d82957",
+   "title": "Semantic-Conditional Diffusion Networks for Image Captioning",
+   "section": ""
+  },
+  "0-1fd631a3cbfe684fa4d972c6ea4d363f!1-7B7300AE98D01EB7!22126": {
+   "hash": "5fc0c5cda249970df9596b22e19e0ba5",
+   "title": "20200720_PoolingBasedGNN_김형석",
+   "section": ""
+  },
+  "0-2053db0468b3d5479064e03d85c62633!1-7B7300AE98D01EB7!22126": {
+   "hash": "ec8be54502ddcdd67245aaa57f1885f9",
+   "title": "PageRank, GDC, APPNP : Graph Conv layer other than GCNs",
+   "section": ""
+  },
+  "0-21793abd42e548a784419516a198d4ce!130-7B7300AE98D01EB7!s073bf4254ab94332b3b0410a25b6c1a8": {
+   "hash": "7f907c880bcf2d770007f78c4d2fbb9e",
+   "title": "Views, scans",
+   "section": ""
+  },
+  "0-21793abd42e548a784419516a198d4ce!171-7B7300AE98D01EB7!sa6e7da52835643c5ae1ff4e305f8a1be": {
+   "hash": "dcdbee65958fbe536ee4ac229d0fe6e4",
+   "title": "핸드북",
+   "section": ""
+  },
+  "0-21793abd42e548a784419516a198d4ce!46-7B7300AE98D01EB7!sd4ecd6d0d7334a688da915f7558605ae": {
+   "hash": "b3124a6d2d53130a82cd3f62c92c989b",
+   "title": "이완기 및 수축기 기능 평가",
+   "section": ""
+  },
+  "0-21793abd42e548a784419516a198d4ce!87-7B7300AE98D01EB7!sb6d6ea31c98d44ae9ca0356bc049b562": {
+   "hash": "64afa080f28a69911b17ee1a22d46c1b",
+   "title": "술기핸드북",
+   "section": ""
+  },
+  "0-229d12eda515ca43b1d15b9e1b50c6b3!1-7B7300AE98D01EB7!22127": {
+   "hash": "6c2d34b08018454d4432e104d1e65a8f",
+   "title": "Summary of CAPSFUSION_ Rethinking Image-Text Data at Scale.pdf",
+   "section": ""
+  },
+  "0-22c90cfd45e13a4687ccbf9aca4ca034!1-7B7300AE98D01EB7!s1dad3385386e4323b18aa6d810d08bf2": {
+   "hash": "8248e9e7093def0ba48490ec7460a853",
+   "title": "LASER",
+   "section": ""
+  },
+  "0-2338ba7009cb0549a1212c87df7ac285!1-7B7300AE98D01EB7!22125": {
+   "hash": "a8d0a74bd473381527a69c3066b41bbe",
+   "title": "ch 03_Multivariate_Functions_and_Jacobians_",
+   "section": ""
+  },
+  "0-233c69f8b30a4aacae78e16ad1f92bd2!1-7B7300AE98D01EB7!22425": {
+   "hash": "235be1ce7ed490893ad2cc2fe8facf26",
+   "title": "12. Magic Wand: Training a Model",
+   "section": ""
+  },
+  "0-2373fea09a57199cb3071ab2f708be7c!1-7B7300AE98D01EB7!22114": {
+   "hash": "c44c62c656ef813097e2928b4422c2a1",
+   "title": "simMIM, Cutout",
+   "section": ""
+  },
+  "0-2386e388fc4e0d281dd6af7868a156c5!1-7B7300AE98D01EB7!s7c18af0cfa164e20946f629ad3a335d1": {
+   "hash": "ab4e0f052e81d1b04893345e9a1ae19a",
+   "title": "경동맥 초음파",
+   "section": ""
+  },
+  "0-23c3d562d17d3705089c3c114bb33582!1-7B7300AE98D01EB7!465": {
+   "hash": "8280e395a2df6d2fe20f0008a22c82bc",
+   "title": "25하반기 fm timetable",
+   "section": ""
+  },
+  "0-24d038e38396cb999d182a930d47b523!1-7B7300AE98D01EB7!22114": {
+   "hash": "18c3c5bf511ea9f292a8c6b3c844466f",
+   "title": "Unsupervised Universal Image Segmentation",
+   "section": ""
+  },
+  "0-2528b6235ffa0e3d3f55f4166335016b!1-7B7300AE98D01EB7!s7c18af0cfa164e20946f629ad3a335d1": {
+   "hash": "26eae771c5910b88d5ea4463bfaa47c4",
+   "title": "MS, MR",
+   "section": ""
+  },
+  "0-253cdbd425a24e4eab7178e6daf7011b!1-7B7300AE98D01EB7!22125": {
+   "hash": "1dc641cc72e51f55aa02c285534c2d43",
+   "title": "<선형대수와 통계학으로 배우는 머신러닝> - 통계 Part",
+   "section": ""
+  },
+  "0-253edfe3bc2a4b3e9c642f308141037e!1-7B7300AE98D01EB7!22432": {
+   "hash": "f18a8482071fe18bb68f9c1b497422b8",
+   "title": "3. Graphical Causal Models",
+   "section": ""
+  },
+  "0-2584a132df9ed097922dc7f9f7201758!1-7B7300AE98D01EB7!22114": {
+   "hash": "79244d075d62ca8dafd2bc719e5062ae",
+   "title": "HASSOD: Hierarchical Adaptive Self-Supervised Object Detection",
+   "section": ""
+  },
+  "0-25e9117a9f2809c42898bf1db3616335!1-7B7300AE98D01EB7!22127": {
+   "hash": "4863f6a9e12f00a59a7d3465165bbc0f",
+   "title": "Latent diffusion models for Languange Generation",
+   "section": ""
+  },
+  "0-26314af69b5647bab6081198d22c5ee7!1-7B7300AE98D01EB7!22433": {
+   "hash": "0030818d76a16f060d7080df500ab857",
+   "title": "16. Natural Language Processing with RNNs and Attention",
+   "section": ""
+  },
+  "0-26f081daf3a74137a40ae2d2d8284f77!1-7B7300AE98D01EB7!22433": {
+   "hash": "e24e628bde16a3ce2a951233aa8c1093",
+   "title": "C. Special Data Structures",
+   "section": ""
+  },
+  "0-27154090a7e2e5082486073e58a7c974!1-7B7300AE98D01EB7!s95ea1935b68b4ebf8d3d00e11aadcfba": {
+   "hash": "0bd8d5726054daf8266577a75d901d6c",
+   "title": "어깨 2 근육초음파 강의록",
+   "section": ""
+  },
+  "0-276deae039b38d01058bad32349dab04!1-7B7300AE98D01EB7!s9e9c8fe03e2d4e35a6ba8240c295d08e": {
+   "hash": "968ddba645ea827c13c34320b1ac5879",
+   "title": "경부(목)",
+   "section": ""
+  },
+  "0-277add28b51a4378b703e7f83e70c5b5!147-7B7300AE98D01EB7!s1dad3385386e4323b18aa6d810d08bf2": {
+   "hash": "49c6d9dad123662e9afe56de690c1aca",
+   "title": "Intro, m/c procedures",
+   "section": ""
+  },
+  "0-27e2c2be1ce949e2a15a12ff34f7b1e8!1-7B7300AE98D01EB7!22432": {
+   "hash": "bae703e9af32d655cff6321f6e6af7a3",
+   "title": "V. Alternative Experimental Designs",
+   "section": ""
+  },
+  "0-2803326adc2a47b78efbbb2a42262188!1-7B7300AE98D01EB7!22120": {
+   "hash": "46c6d423683f6a0d448afb699997486b",
+   "title": "ALBERT : a little Self-supervised learning of language representations",
+   "section": ""
+  },
+  "0-297807e1df2b0dd005a7d3f6222a2e7f!1-7B7300AE98D01EB7!465": {
+   "hash": "5909ecb078a9715ddcd0b93f60e260b0",
+   "title": "IG Note",
+   "section": ""
+  },
+  "0-29f5b43624794bab86315c032d4f8638!1-7B7300AE98D01EB7!22120": {
+   "hash": "388c9fc95c69bbe0f009ce12973f8ddd",
+   "title": "LangCon 2023-4, ElutherAI에서의 1년",
+   "section": ""
+  },
+  "0-2a04cae0189d1398aa78af9e83ce5164!1-7B7300AE98D01EB7!22114": {
+   "hash": "29d7fbba46140b551b0530b3ca6558b0",
+   "title": "Unsupervised Learning of Image Segmentation",
+   "section": ""
+  },
+  "0-2a2cea367d449b96ad2a1f5b0e520dd6!1-7B7300AE98D01EB7!22114": {
+   "hash": "8090edc135537450213f6c7ab0960bbb",
+   "title": "New ssl model",
+   "section": ""
+  },
+  "0-2b3dfa07de85b048acada8dff9df5240!1-7B7300AE98D01EB7!22126": {
+   "hash": "28ba36bf2a725abed2c2f9ac64de52ac",
+   "title": "GNN _ GAT와 Graph Pooling 그리고 Over Smoothing.pdf",
+   "section": ""
+  },
+  "0-2bceb709f8adbe022af48e88e69c8a51!1-7B7300AE98D01EB7!s9e9c8fe03e2d4e35a6ba8240c295d08e": {
+   "hash": "5a8350cb0ece417cc59a3739d1666a30",
+   "title": "발",
+   "section": ""
+  },
+  "0-2c49da31c95982053b10a7f28a59e98b!1-7B7300AE98D01EB7!s742e48081d5c43e29c7913585a33aad7": {
+   "hash": "40eb40a8264191b490b979dd89807c11",
+   "title": "실기 안내 및 View 실전 정리",
+   "section": ""
+  },
+  "0-2cc6fa4c41f940a995ebdf93369a82ec!1-7B7300AE98D01EB7!22120": {
+   "hash": "6d526a87489b814eb37aa690ccb7b56c",
+   "title": "Faithfulness vs. Plausibility: On the (Un)Reliability of Explanations",
+   "section": ""
+  },
+  "0-2d6e9e064fa16843a9574a9905d674a0!1-7B7300AE98D01EB7!22127": {
+   "hash": "01bbecfdef8e5b72bdb757f9941072d5",
+   "title": "Diffusion All-in-one 정리",
+   "section": ""
+  },
+  "0-2dd2597c91e739489b4c6995f01d1a64!1-7B7300AE98D01EB7!22119": {
+   "hash": "e15efa94d633d8f99c37a18ca323537d",
+   "title": "PIN_Positional_Insert_Unlocks Object Localisation Abilities in VLMs",
+   "section": ""
+  },
+  "0-2e360679a17908f1367cd6082a1ed3ce!1-7B7300AE98D01EB7!s7c18af0cfa164e20946f629ad3a335d1": {
+   "hash": "b81fffb6cd23d3c61a6598aa2d145b60",
+   "title": "허상 및 정상구조물",
+   "section": ""
+  },
+  "0-2e61236ec74501a81d83c0f9d4ec42ff!1-7B7300AE98D01EB7!s7c18af0cfa164e20946f629ad3a335d1": {
+   "hash": "008b9b99baf5e6b9ded1f9dcb817b080",
+   "title": "대동맥 및 전신질환",
+   "section": ""
+  },
+  "0-2eba17dc59b2a14cb145a3d7dd168a15!1-7B7300AE98D01EB7!22123": {
+   "hash": "0a8515e5d13c12d0c498adfc78ac3efd",
+   "title": "Markov Decision Process",
+   "section": ""
+  },
+  "0-2ed4a91ba56f2f0b333d93216e5efb83!1-7B7300AE98D01EB7!22109": {
+   "hash": "18f1ebe4fd942f4f7a38b2be53601c7f",
+   "title": "AI 의료기술의 다면적 가치평가 예시집.pdf",
+   "section": ""
+  },
+  "0-2f137b70797aa04cb3f52c18516123bf!1-7B7300AE98D01EB7!22119": {
+   "hash": "d15f0a90bffcd6e4d2286c28fefc4b96",
+   "title": "Proper Reuse of Image Classification Features Improves Object Detection.pdf",
+   "section": ""
+  },
+  "0-2f3585ae268e405cb44e62e631e20532!1-7B7300AE98D01EB7!22432": {
+   "hash": "f7314f751f353195fca1c57105b150b1",
+   "title": "5. Propensity Score",
+   "section": ""
+  },
+  "0-2f7066392bf19a4085f75bd4a47a5731!1-7B7300AE98D01EB7!22275": {
+   "hash": "25cb6e9c5454d2749c37a464ce477240",
+   "title": "통신 산업",
+   "section": ""
+  },
+  "0-2ff9554bdecb4e5f9339d1520b8bb77b!1-7B7300AE98D01EB7!22426": {
+   "hash": "6df32fd48b29a2323f33d8ea9173bd51",
+   "title": "Frontmatter",
+   "section": ""
+  },
+  "0-30f75f2452614d81895b4e155691b59d!1-7B7300AE98D01EB7!22433": {
+   "hash": "9c24c02b3ef9c067f27554b4e288a105",
+   "title": "Colophon",
+   "section": ""
+  },
+  "0-31c47a28eaccfe45998672c274245199!1-7B7300AE98D01EB7!22119": {
+   "hash": "2d90ca612de55968cfaf05725d86a7f3",
+   "title": "DETR Object detection with transformer",
+   "section": ""
+  },
+  "0-31ef4e5ce1974ee49d139ee6344c8801!1-7B7300AE98D01EB7!22115": {
+   "hash": "41f96ed858b3bde9d28667ec28acd1f8",
+   "title": "Long-CLIP: Unlocking the Long-Text Capability of CLIP",
+   "section": ""
+  },
+  "0-333c0c55da721f42bfe57ef4fcd2abf7!1-7B7300AE98D01EB7!22117": {
+   "hash": "9ae9735fe7e3cfef5e28fc802ca7ce1e",
+   "title": "Anomaly Detection via Reverse Distillation from One-Class Embedding",
+   "section": ""
+  },
+  "0-333da229e84d49d7993682f8c5968618!1-7B7300AE98D01EB7!s974fef67f5514c2a9bdfd7fbd8ddf945": {
+   "hash": "88fde9581746942bb3385eb0981b774e",
+   "title": "Intro - Pain differential diagnosis",
+   "section": ""
+  },
+  "0-3363aa713f564a089d3bf355a09db15f!1-7B7300AE98D01EB7!22120": {
+   "hash": "c47cee44c070cd7a21db1b78746d5fcf",
+   "title": "Unsupervised NMT for low-resource domains via meta-learning",
+   "section": ""
+  },
+  "0-33652fae235fcd80a0a825f60582530c!1-7B7300AE98D01EB7!109": {
+   "hash": "3f5a32d5392332049c01a902d8d1426c",
+   "title": "PMC 메모",
+   "section": ""
+  },
+  "0-33d4e2030ba64c4bb62fdc69e78418ab!1-7B7300AE98D01EB7!22127": {
+   "hash": "cf45ea560bbe1a754c06a378ae30f1df",
+   "title": "Applications of Diffusion Models.pdf",
+   "section": ""
+  },
+  "0-34fb860394404d13ab7b3e8a89825a1e!110-7B7300AE98D01EB7!s742e48081d5c43e29c7913585a33aad7": {
+   "hash": "47c3e8af343628109dd5ec30d531b2e1",
+   "title": "AV disease",
+   "section": ""
+  },
+  "0-34fb860394404d13ab7b3e8a89825a1e!151-7B7300AE98D01EB7!s742e48081d5c43e29c7913585a33aad7": {
+   "hash": "e8bd373475e34e569238ee43f39f8fe5",
+   "title": "Prosthetic valve and IE",
+   "section": ""
+  },
+  "0-34fb860394404d13ab7b3e8a89825a1e!205-7B7300AE98D01EB7!s742e48081d5c43e29c7913585a33aad7": {
+   "hash": "35bf715c16085bf824150ce036074c83",
+   "title": "기타 판막질환",
+   "section": ""
+  },
+  "0-34fb860394404d13ab7b3e8a89825a1e!245-7B7300AE98D01EB7!s742e48081d5c43e29c7913585a33aad7": {
+   "hash": "b121aa20ad07e5b4bc4b53c91d0ef2de",
+   "title": "허혈성심질환",
+   "section": ""
+  },
+  "0-34fb860394404d13ab7b3e8a89825a1e!4-7B7300AE98D01EB7!s742e48081d5c43e29c7913585a33aad7": {
+   "hash": "e9934c4faf42fe6ba2a1df698f4dda52",
+   "title": "Diastolic function",
+   "section": ""
+  },
+  "0-34fb860394404d13ab7b3e8a89825a1e!62-7B7300AE98D01EB7!s742e48081d5c43e29c7913585a33aad7": {
+   "hash": "7bfd8457072ad896dce0a11a61c0cfa2",
+   "title": "MV disease",
+   "section": ""
+  },
+  "0-353c990d9b92d34aaac60349b4290f00!1-7B7300AE98D01EB7!22125": {
+   "hash": "bf8945779cda110105ce860ede871a12",
+   "title": "<선형대수와 통계학으로 배우는 머신러닝> - 최적화 Part",
+   "section": ""
+  },
+  "0-35ec822e0303495cb83f62a0b2f622fd!1-7B7300AE98D01EB7!22432": {
+   "hash": "20ff011a8146d81ac8fe20e5e4411596",
+   "title": "10. Geo and Switchback Experiments",
+   "section": ""
+  },
+  "0-368b59f32390bd4aa49ad268df10b849!1-7B7300AE98D01EB7!22129": {
+   "hash": "8b2eb16c84f40480ce952d32051f422d",
+   "title": "Bayesian Network with R - discrete case 이론정리",
+   "section": ""
+  },
+  "0-37ed56f6685ce146b67db2399b2d9b6f!1-7B7300AE98D01EB7!22117": {
+   "hash": "555cdf2b190f366bed70afa15a3fe88c",
+   "title": "Self-Supervised Anomaly Detection",
+   "section": ""
+  },
+  "0-380fb1c2971e9a020e61a0df58b2373f!1-7B7300AE98D01EB7!s95ea1935b68b4ebf8d3d00e11aadcfba": {
+   "hash": "e3624da8cdbe696bd84d0f104ec9290d",
+   "title": "어깨 1 관절초음파 강의록",
+   "section": ""
+  },
+  "0-38ce47dda16d4113a41b56e8a51755da!1-7B7300AE98D01EB7!22426": {
+   "hash": "32c9047ea032a69bc5731a3f55e2b806",
+   "title": "1. Introduction",
+   "section": ""
+  },
+  "0-3a9c7d9f0bb6e443879e912802b706d0!1-7B7300AE98D01EB7!22109": {
+   "hash": "e0b2dd99fd8b172966a650023508f6b9",
+   "title": "생성형+인공지능+의료기기+허가·심사+가이드라인.pdf",
+   "section": ""
+  },
+  "0-3ad1b5567b4776093acfe4ecfe70fc4f!1-7B7300AE98D01EB7!s95ea1935b68b4ebf8d3d00e11aadcfba": {
+   "hash": "b8fd7c5af80517fd73fe79de6a27f1cc",
+   "title": "어깨 3 신경 초음파 및 hydrorelease",
+   "section": ""
+  },
+  "0-3ae8e288974647ce876e74419df826d7!200-7B7300AE98D01EB7!sd4ecd6d0d7334a688da915f7558605ae": {
+   "hash": "cbc71e6539351614379213ea4bed269f",
+   "title": "MV, MR",
+   "section": ""
+  },
+  "0-3ae8e288974647ce876e74419df826d7!255-7B7300AE98D01EB7!sd4ecd6d0d7334a688da915f7558605ae": {
+   "hash": "bd98be78e222b107cb55acdbd7c88a9d",
+   "title": "AV, AR",
+   "section": ""
+  },
+  "0-3b38d358b6fd1e499b24e87b026cf217!1-7B7300AE98D01EB7!22271": {
+   "hash": "5ae620c1af8416f9412ffe76560c9b82",
+   "title": "4/23 ~ 25(월) 매매일지",
+   "section": ""
+  },
+  "0-3b6a00585b29b70f3e960385e2c59bfa!1-7B7300AE98D01EB7!s9e9c8fe03e2d4e35a6ba8240c295d08e": {
+   "hash": "3528fd21f9360c2caf566981ed816182",
+   "title": "총론",
+   "section": ""
+  },
+  "0-3c7a5935299dce649dde30cf8b950ea8!1-7B7300AE98D01EB7!22120": {
+   "hash": "5599d7c5ba11a9c06dc4799c224e5fcc",
+   "title": "StableMask for NLG",
+   "section": ""
+  },
+  "0-3cd6635b6ed3b8439aea094ad4d4a2e1!1-7B7300AE98D01EB7!22123": {
+   "hash": "b66b285c4cb2b4ebfb1fe97d961ee75d",
+   "title": "PPO journal reading",
+   "section": ""
+  },
+  "0-3cddacc3cda09047875d7a133ff70f02!1-7B7300AE98D01EB7!22126": {
+   "hash": "d462069bbe999b80710a11ba2f1606ee",
+   "title": "GNNCourse-Part3",
+   "section": ""
+  },
+  "0-3d2029231261af439209347397c9cdae!1-7B7300AE98D01EB7!22127": {
+   "hash": "28e23b28de676a9705fbb6c3062eb81e",
+   "title": "Diffusion models beat GANs",
+   "section": ""
+  },
+  "0-3d2828debd101b47a2fee8c767ba2c79!1-7B7300AE98D01EB7!22271": {
+   "hash": "3111b0d67583392897a0c11f7436b2a7",
+   "title": "4/27 매매일지",
+   "section": ""
+  },
+  "0-3d577b0f01a545010d70bfe309550c25!1-7B7300AE98D01EB7!sd4ecd6d0d7334a688da915f7558605ae": {
+   "hash": "ef02df4bc14e8b1a9336e4ed72cb27ee",
+   "title": "SMC echo handbook",
+   "section": ""
+  },
+  "0-3e32a35dc15a052f07643fa0c5e15ff8!1-7B7300AE98D01EB7!22273": {
+   "hash": "c71074e2c377be98de60aa1bcd8fb1b4",
+   "title": "시세파악 및 모의거래",
+   "section": ""
+  },
+  "0-3f6479be8cf64bbf8ff2551eb5b0014f!1-7B7300AE98D01EB7!22115": {
+   "hash": "184b10fa57657d00275fad77c83e5f70",
+   "title": "PaLM2-VAdapter: Progressively Aligned Language Model Makes a Strong Vision-language Adapter",
+   "section": ""
+  },
+  "0-413691865142b387bc62c2385f20d188!1-7B7300AE98D01EB7!109": {
+   "hash": "3662c7c4bebf0a476d0e6d981fa02c42",
+   "title": "PMC 인증서 MANUAL",
+   "section": ""
+  },
+  "0-414e90fa90aff64db5c731b14ecc0e76!1-7B7300AE98D01EB7!22269": {
+   "hash": "cfbaa8a13c7422ea80fa96034e56be43",
+   "title": "세력에 편승하는 주식투자 in a nutshell by 와조스키",
+   "section": ""
+  },
+  "0-418e5884a88c468e9b79e458c9b1d4cc!185-7B7300AE98D01EB7!se98e1a53add84902a1ad19e7ae9d4a91": {
+   "hash": "92b70b3114471dc1829c94d5c98b415f",
+   "title": "참고자료",
+   "section": ""
+  },
+  "0-41ec9b341d8b49818538f811d32d2d8a!99-7B7300AE98D01EB7!s1dad3385386e4323b18aa6d810d08bf2": {
+   "hash": "3e5a003be880284e118de19472615467",
+   "title": "색소치료 정리",
+   "section": ""
+  },
+  "0-4278cebfa5570f8522bfdd4ba73e7ff1!1-7B7300AE98D01EB7!22109": {
+   "hash": "eb7673344f08f5e0a9837813789e0431",
+   "title": "의료 기술의 다면적 가치평가",
+   "section": ""
+  },
+  "0-439d5c9826ac0b5b2390dafe9129d61a!1-7B7300AE98D01EB7!s7c18af0cfa164e20946f629ad3a335d1": {
+   "hash": "14cb70ce9e8dccaaa8a10f3c7bdfdbb4",
+   "title": "시술심초음파",
+   "section": ""
+  },
+  "0-43a22c30b696499c8adcfae80480b9aa!12-7B7300AE98D01EB7!2931": {
+   "hash": "44dd30b06dede1a465012f0b3a40f886",
+   "title": "Chores",
+   "section": ""
+  },
+  "0-43a22c30b696499c8adcfae80480b9aa!15-7B7300AE98D01EB7!2931": {
+   "hash": "e28a15cd23420a643da76ec2cec174cd",
+   "title": "Home Maintenance",
+   "section": ""
+  },
+  "0-43a22c30b696499c8adcfae80480b9aa!24-7B7300AE98D01EB7!2931": {
+   "hash": "dbf6bc7b22b688c695bf6e98e10d746d",
+   "title": "Router and Passwords",
+   "section": ""
+  },
+  "0-43a22c30b696499c8adcfae80480b9aa!27-7B7300AE98D01EB7!2931": {
+   "hash": "57ab658116d5f990f2988c9469de608d",
+   "title": "Receipts",
+   "section": ""
+  },
+  "0-43a22c30b696499c8adcfae80480b9aa!29-7B7300AE98D01EB7!2931": {
+   "hash": "673e0ab50ccd81024cf3c7dd39bcfc67",
+   "title": "Moving Checklist 🚚",
+   "section": ""
+  },
+  "0-43a22c30b696499c8adcfae80480b9aa!32-7B7300AE98D01EB7!2931": {
+   "hash": "9ab7f9017b188091ca7f1f0eafcf0904",
+   "title": "Plant Care 🌱",
+   "section": ""
+  },
+  "0-440ac747e70d8b42989be7d150ffa51a!1-7B7300AE98D01EB7!22129": {
+   "hash": "ff91f4915f94bb76883af16abee81134",
+   "title": "Bayesian Statistics with R - 이론편",
+   "section": ""
+  },
+  "0-455721eca0c3457a99b579e359b245c6!1-7B7300AE98D01EB7!22433": {
+   "hash": "b9bf93acab8a070b39e9fb475c70bcbe",
+   "title": "A. Machine Learning Project Checklist",
+   "section": ""
+  },
+  "0-45989394fbe74ddcaf800465697fc787!1-7B7300AE98D01EB7!22432": {
+   "hash": "1a5aedbf17f74f1d7dcc64d362cc28fb",
+   "title": "9. Synthetic-Control",
+   "section": ""
+  },
+  "0-45a968d29d9deb4cb3876d3171176333!1-7B7300AE98D01EB7!22118": {
+   "hash": "1a1f3a5507cba5172c9d12f9e3129716",
+   "title": "Style Space Analysis",
+   "section": ""
+  },
+  "0-462e2599fa4d0f76258a9e6dcb90617d!1-7B7300AE98D01EB7!s75437d7d6d7f4020a097971997d659be": {
+   "hash": "52c771b9c0c7a1a9792fc32dcf6f803e",
+   "title": "EndoToday guide - 3. 내시경 소견 용어 및 기술법",
+   "section": ""
+  },
+  "0-465f8162274f23c0b8e15d349754611f!1-7B7300AE98D01EB7!22481": {
+   "hash": "97e5a5e6a3c4d64a202ea670c1af23a2",
+   "title": "유동자산 투자 계획",
+   "section": ""
+  },
+  "0-466358216aa25449af2693f45baf5e90!1-7B7300AE98D01EB7!22125": {
+   "hash": "7cc44357e1006ba9ddf9b5c7df8b0c20",
+   "title": "ch 02_Basic_Differentiation_",
+   "section": ""
+  },
+  "0-8d607c2b3e84fe0b13c660f8a390eb15!1-7B7300AE98D01EB7!s1a079557ab70471481fdbff49fec8d91": {
+   "hash": "c201710ca518ccbace834a6b533a7109",
+   "title": "위내시경 질환 Study",
+   "section": "검진 protocol, DDx",
+   "pinned": true
   }
  },
- "lastRun": "2026-11-03T23:19:40+00:00"
+ "lastRun": "2026-11-04T21:42:16+00:00",
+ "cursor": 161
 }

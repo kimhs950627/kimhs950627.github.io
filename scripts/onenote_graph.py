@@ -78,9 +78,26 @@ def main() -> int:
         limit = int(get("--limit", "0"))
         if limit:
             targets.sort(key=lambda p: p["id"])
-            offset = int(state.get("cursor", 0)) % max(len(targets), 1)
-            targets = (targets + targets[:offset])[offset:offset + limit]
-            state["cursor"] = (offset + limit) % max(len(list(targets)) or 1, 1)
+            total = len(targets)
+            offset = int(state.get("cursor", 0)) % max(total, 1)
+            window = (targets + targets)[offset:offset + limit]
+            targets = window
+            state["cursor"] = (offset + limit) % max(total, 1)
+            # pinned: 매핑된 발행 대상 페이지는 순환 창과 무관하게 매번 확인한다
+            seen = {t["id"] for t in targets}
+            for item in known.items():
+                pid, meta = item
+                if pid in seen or not meta.get("pinned"):
+                    continue
+                targets.append({"id": pid, "title": meta.get("title", "")})
+
+    def save() -> None:
+        state["pages"] = known
+        state["lastRun"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+        STATE.parent.mkdir(parents=True, exist_ok=True)
+        tmp = STATE.with_suffix(".tmp")
+        tmp.write_text(json.dumps(state, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        tmp.replace(STATE)
 
     for item in targets:
         text = fetch_page(item["id"])
@@ -90,15 +107,15 @@ def main() -> int:
         prev = known.get(item["id"], {}).get("hash")
         if prev != h:
             changed.append({"id": item["id"], "title": item["title"],
-                            "section": known.get(item["id"], {}).get("section", ""), "modified": ""})
-        known[item["id"]] = {"hash": h, "title": item["title"],
-                             "section": known.get(item["id"], {}).get("section", "")}
+                            "section": known.get(item["id"], {}).get("section", ""), "modified": "",
+                            "firstSeen": prev is None})
+        entry = dict(known.get(item["id"], {}))
+        entry.update({"hash": h, "title": item["title"] or entry.get("title", "")})
+        known[item["id"]] = entry
+        save()  # 중간 저장 — 긴 실행이 끊겨도 진행분을 잃지 않는다
         time.sleep(1.2)
 
-    state["pages"] = known
-    state["lastRun"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    STATE.parent.mkdir(parents=True, exist_ok=True)
-    STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    save()
     print(json.dumps({"scanned": len(targets), "changed": changed}, ensure_ascii=False))
     return 0
 
