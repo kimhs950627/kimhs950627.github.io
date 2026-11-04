@@ -99,7 +99,7 @@ def apply_one(update: dict, check_only: bool) -> str:
     repo = update["repo"]
     rel = update["file"]
     region = update.get("region", "onenote")
-    html = update["html"]
+    html = update.get("html", "")
     anchored = bool(update.get("anchor_id") or update.get("anchor_heading"))
 
     tmp = Path(tempfile.mkdtemp(prefix="onenote-"))
@@ -110,7 +110,13 @@ def apply_one(update: dict, check_only: bool) -> str:
             return f"{repo}/{rel}: 파일 없음"
         text = target.read_text(encoding="utf-8")
 
-        if anchored:
+        if update.get("remove"):
+            pat = region_pattern(region)
+            if not pat.search(text):
+                return f"{repo}/{rel}: 삭제할 '{region}' 구간 없음"
+            sec = re.search(rf'<section[^>]*id="{re.escape(region)}"[^>]*>.*?</section>\s*\n?', text, re.S)
+            new = text.replace(sec.group(0), "", 1) if sec else pat.sub("", text)
+        elif anchored:
             new, how = insert_into_section(text, update)
             if new == text:
                 return f"{repo}/{rel}: {how} — 건드리지 않음"

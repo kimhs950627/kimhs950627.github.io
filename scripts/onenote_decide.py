@@ -50,10 +50,10 @@ def api_key() -> str:
     sys.exit("COMMANDCODE_API_KEY 없음")
 
 
-def call(prompt: str, max_tokens: int = 8000) -> str:
+def call(prompt: str, max_tokens: int = 8000, system: str | None = None) -> str:
     body = {
         "model": MODEL,
-        "messages": [{"role": "system", "content": SYSTEM}, {"role": "user", "content": prompt}],
+        "messages": [{"role": "system", "content": system or SYSTEM}, {"role": "user", "content": prompt}],
         "max_tokens": max_tokens,
         "temperature": 0.2,
         "reasoning_effort": "low",
@@ -69,9 +69,13 @@ def call(prompt: str, max_tokens: int = 8000) -> str:
         },
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=600) as res:
+    with urllib.request.urlopen(req, timeout=900) as res:
         data = json.loads(res.read())
-    return data["choices"][0]["message"]["content"]
+    choice = data["choices"][0]
+    content = choice.get("message", {}).get("content")
+    if not content:
+        raise RuntimeError(f"빈 응답 (finish_reason={choice.get('finish_reason')})")
+    return content
 
 
 def parse_json(text: str) -> dict:
