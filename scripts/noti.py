@@ -2,7 +2,8 @@
 """noti.py — 새벽 작업 결과를 모아 두었다가 아침에 한 번에 보낸다.
 
   python3 scripts/noti.py add "발행 동기화: 검사 11 · 변경 0"
-  python3 scripts/noti.py flush        # 큐를 비우고 웹훅으로 한 번에 전송
+  python3 scripts/noti.py add-plan     # 신규 페이지 제안 요약(제목·상태·문서 링크)
+  python3 scripts/noti.py flush        # 큐를 비우고 웹훅으로 전송(길면 여러 메시지)
 
 큐 파일: data/noti-queue.jsonl (한 줄에 {"at","kind","text"})
 웹훅: DISCORD_WEBHOOK_URL 환경변수 → 없으면 ~/.config/kimaki/discord-webhook.env
@@ -45,6 +46,90 @@ def add(text: str, kind: str = "sync") -> int:
     return 0
 
 
+PLAN = ROOT / "docs" / "onenote-page-plan.md"
+
+
+def plan_summary() -> str:
+    """신규 페이지 제안을 '결정할 수 있는 형태'로 요약한다(제목·우선순위·상태·링크)."""
+    if not PLAN.exists():
+        return "신규 페이지 제안 문서가 없다"
+    text = PLAN.read_text(encoding="utf-8")
+    published = set()
+    curated = ROOT / "data" / "curated.json"
+    if curated.exists():
+        try:
+            published = set(json.loads(curated.read_text(encoding="utf-8")).get("pages", {}))
+        except json.JSONDecodeError:
+            pass
+
+    items = []
+    for line in text.splitlines():
+        if not line.startswith("### "):
+            continue
+        head = line[4:].strip()
+        if head.startswith("기존 페이지 확장"):
+            continue
+        mark = "✅발행됨" if any(k in head for k in published) else "⬜대기"
+        items.append(f"• {head} — {mark}")
+    if not items:
+        return "제안 항목을 찾지 못했다"
+
+    body = ["**🗂 신규 페이지 제안 — 승인할 번호를 회신**", ""]
+    body += items
+    body += ["", f"전문: {PLAN}"]
+    rendered = rendered_link(PLAN)
+    if rendered:
+        body.append(f"문서: {rendered}")
+    body.append("회신 예: `2,3 승인` / `보류` (번호 없이 승인 시 우선순위대로 진행)")
+    return "\n".join(body)
+
+
+def rendered_link(path: Path) -> str | None:
+    """md-view 로 렌더링 링크를 만든다(실패하면 None)."""
+    import subprocess
+
+    exe = Path.home() / ".local" / "bin" / "md-view"
+    if not exe.exists():
+        return None
+    try:
+        out = subprocess.run([str(exe), str(path)], capture_output=True, text=True, timeout=120)
+        url = (out.stdout or "").strip().splitlines()
+        return url[-1].strip() if url and url[-1].startswith("http") else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def pack(lines: list[str], limit: int) -> list[str]:
+    """문단 단위로 잘라 여러 메시지로 만든다(내용 손실 없이)."""
+    chunks, cur = [], []
+    size = 0
+    for line in lines:
+        extra = len(line) + 1
+        if size + extra > limit and cur:
+            chunks.append("\n".join(cur))
+            cur, size = [], 0
+        cur.append(line)
+        size += extra
+    if cur:
+        chunks.append("\n".join(cur))
+    return chunks
+
+
+def post(url: str, body: str) -> bool:
+    req = urllib.request.Request(
+        url,
+        data=json.dumps({"content": body[:1990]}).encode(),
+        headers={"Content-Type": "application/json", "User-Agent": "pages-hub/1.0 (+https://kimhs950627.github.io/)"},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=20) as res:
+            return res.status in (200, 204)
+    except Exception as err:  # noqa: BLE001
+        print(f"전송 실패: {err}", file=sys.stderr)
+        return False
+
+
 def flush() -> int:
     if not QUEUE.exists() or not QUEUE.read_text(encoding="utf-8").strip():
         print("큐가 비어 있다 — 보내지 않는다")
@@ -59,23 +144,11 @@ def flush() -> int:
     lines = [f"**🌙 새벽 작업 결과 ({day})**", ""]
     for it in items:
         lines.append(f"• {it['text']}")
-    body = "\n".join(lines)[:1900]
 
-    req = urllib.request.Request(
-        url,
-        data=json.dumps({"content": body}).encode(),
-        headers={"Content-Type": "application/json", "User-Agent": "pages-hub/1.0 (+https://kimhs950627.github.io/)"},
-        method="POST",
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=20) as res:
-            ok = res.status in (200, 204)
-    except Exception as err:  # noqa: BLE001
-        print(f"전송 실패: {err}", file=sys.stderr)
-        return 1
-    if not ok:
-        print("전송 실패", file=sys.stderr)
-        return 1
+    for body in pack(lines, 1900):
+        if not post(url, body):
+            print("전송 실패", file=sys.stderr)
+            return 1
     QUEUE.write_text("", encoding="utf-8")
     print(f"sent {len(items)}건")
     return 0
@@ -90,6 +163,8 @@ def main() -> int:
         return add(" ".join(argv[1:]), os.environ.get("NOTI_KIND", "sync"))
     if argv[0] == "add-onenote" and len(argv) > 1:
         return add(" ".join(argv[1:]), "onenote")
+    if argv[0] == "add-plan":
+        return add(plan_summary(), "plan")
     if argv[0] == "flush":
         return flush()
     print(__doc__)

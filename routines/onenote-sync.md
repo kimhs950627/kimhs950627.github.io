@@ -115,6 +115,18 @@ python3 scripts/onenote_submit.py /tmp/opencode/onenote-patch.json --page "<페�
 - 로컬에서는 **적용하지 않는다.** 세션이 짧아지고, PC 가 꺼져도 Actions 가 이어받는다.
 - 원노트 본문이 공개 저장소에 남지 않도록 staging 은 private 이다.
 
+## 4-2. 신규 페이지 제안은 '결정 가능한 형태'로 보낸다
+
+인벤토리(`data/onenote-inventory.json`)나 `docs/onenote-page-plan.md` 가 **새 페이지 제안**을 내면,
+한 줄 요약(“제안 5개”)으로 끝내지 않는다. 아래를 실행해 **제목·우선순위·발행여부·문서 링크**를 큐에 넣는다.
+
+```bash
+python3 scripts/noti.py add-plan
+```
+
+출력 예: `• 2. primary-care-protocol (P0) — 외래 프로토콜 묶음 — ⬜대기` + 렌더링된 문서 링크 +
+“승인할 번호를 회신”. 사용자는 `2,3 승인` 처럼 답한다. 승인 없이는 저장소를 만들지 않는다.
+
 ## 5. 마무리
 
 **보고는 웹훅이 한다. 이 스레드에 결과를 쓰지 않는다.**
