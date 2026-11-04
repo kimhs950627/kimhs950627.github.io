@@ -12,6 +12,7 @@ plan.json    : {"moves":[{"key":"gerd","repo":"…","file":"…","anchor_id":"�
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -27,6 +28,36 @@ SYSTEM = """너는 내시경 학습 워크북의 편집자다. 원노트에서 �
 - 같은 단원에 여러 조각이 가도 된다. 순서는 원문 흐름을 유지한다.
 - 출력은 JSON 하나: {"moves":[{"key":"...","repo":"...","file":"...","anchor_id":"...","reason":"한 문장"}],"drop":["key",...]}
 """
+
+
+def norm_keys(text: str) -> set[str]:
+    return set(re.findall(r"[가-힣]{2,}|[A-Za-z]{3,}", text.lower()))
+
+
+def flat(text: str) -> str:
+    return re.sub(r"[^가-힣A-Za-z0-9]", "", text)
+
+
+def is_duplicate(chunk_text: str, sections: list[dict]) -> dict | None:
+    """보수적 중복 판정 — 확실히 겹칠 때만 True 쪽으로 기운다.
+
+    ① 40자 이상 연속 일치(정규화 후) ② 내용 토큰의 90% 이상이 한 단원에 이미 존재.
+    둘 다 아니면 중복으로 보지 않는다(내용 소실 방지).
+    """
+    key = flat(chunk_text)
+    toks = norm_keys(chunk_text)
+    for sec in sections:
+        body = sec.get("text", "")
+        if len(key) >= 40:
+            fb = flat(body)
+            for i in range(0, len(key) - 40 + 1, 10):
+                if key[i:i + 40] in fb:
+                    return {"anchor_id": sec["id"], "file": sec.get("file", ""), "why": "문장 일치"}
+        if toks:
+            overlap = len(toks & norm_keys(body)) / len(toks)
+            if overlap >= 0.9:
+                return {"anchor_id": sec["id"], "file": sec.get("file", ""), "why": f"토큰 {overlap:.0%} 일치"}
+    return None
 
 
 def main() -> int:
@@ -59,11 +90,30 @@ def main() -> int:
         moves.extend(plan.get("moves", []))
         dropped.extend(plan.get("drop", []))
 
+    # 중복 판정: 후보 페이지 전체 본문과 비교해 확실히 겹치는 조각만 뺀다
+    all_sections = []
+    for p in catalog["pages"]:
+        for s in p["sections"]:
+            all_sections.append({**s, "file": p["file"]})
+    by_key = {c["key"]: c for c in chunks}
+    checked, duplicates = [], []
+    for mv in moves:
+        chunk = by_key.get(mv["key"])
+        if not chunk:
+            continue
+        dup = is_duplicate(chunk["text"], all_sections)
+        if dup:
+            duplicates.append({"key": mv["key"], "matched": dup, "label": chunk["label"][:60]})
+        else:
+            checked.append(mv)
+    moves = checked
+
     allowed = {(p["repo"], p["file"], s["id"]) for p in catalog["pages"] for s in p["sections"]}
     moves = [m for m in moves if (m.get("repo"), m.get("file"), m.get("anchor_id")) in allowed]
-    plan = {"moves": moves, "drop": dropped, "failed": failed}
+    plan = {"moves": moves, "drop": dropped, "failed": failed, "duplicates": duplicates}
     out.write_text(json.dumps(plan, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(json.dumps({"moves": len(moves), "drop": len(dropped), "failed": failed, "out": str(out)}, ensure_ascii=False))
+    print(json.dumps({"moves": len(moves), "duplicates": len(duplicates), "drop": len(dropped),
+                      "failed": failed, "out": str(out)}, ensure_ascii=False))
     return 0
 
 

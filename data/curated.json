@@ -42,6 +42,11 @@
         {
           "label": "감별 증례",
           "url": "https://kimhs950627.github.io/endoscopy-study/egd/07-감별증례.html"
+        },
+        {
+          "label": "합본 PDF (LFS)",
+          "url": "https://media.githubusercontent.com/media/kimhs950627/endoscopy-study/master/downloads/EGD-workbook.pdf",
+          "kind": "pdf"
         }
       ],
       "url": "https://kimhs950627.github.io/endoscopy-study/",
