@@ -241,6 +241,66 @@
       ],
       "url": "https://kimhs950627.github.io/lab-followup/",
       "host": "kimhs950627.github.io/lab-followup"
+    },
+    "primary-care-protocol": {
+      "category": "study",
+      "order": 7,
+      "title": "외래 프로토콜 — 혈압·지질·혈당",
+      "note": "고혈압·이상지질혈증·당뇨의 진단→처방→부작용→추적→급여를 같은 형식으로. 환자용 안내문 1장 포함.",
+      "links": [
+        {
+          "label": "고혈압",
+          "url": "https://kimhs950627.github.io/primary-care-protocol/hypertension.html"
+        },
+        {
+          "label": "이상지질혈증",
+          "url": "https://kimhs950627.github.io/primary-care-protocol/lipid.html"
+        },
+        {
+          "label": "당뇨",
+          "url": "https://kimhs950627.github.io/primary-care-protocol/diabetes.html"
+        },
+        {
+          "label": "환자용 안내문",
+          "url": "https://kimhs950627.github.io/primary-care-protocol/handout.html"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/primary-care-protocol/",
+      "host": "kimhs950627.github.io/primary-care-protocol"
+    },
+    "ward-nights": {
+      "category": "study",
+      "order": 8,
+      "title": "병동 당직 — 야간 호출 대응",
+      "note": "발열·숨참·의식저하·저혈압·혈당·복통출혈을 호출 순서대로. 첫 세트(ABC+BST)와 상의 기준 강조.",
+      "links": [
+        {
+          "label": "발열",
+          "url": "https://kimhs950627.github.io/ward-nights/fever.html"
+        },
+        {
+          "label": "숨참·저산소",
+          "url": "https://kimhs950627.github.io/ward-nights/breathing.html"
+        },
+        {
+          "label": "의식저하",
+          "url": "https://kimhs950627.github.io/ward-nights/mental.html"
+        },
+        {
+          "label": "저혈압·고혈압",
+          "url": "https://kimhs950627.github.io/ward-nights/circulation.html"
+        },
+        {
+          "label": "혈당",
+          "url": "https://kimhs950627.github.io/ward-nights/glucose.html"
+        },
+        {
+          "label": "복통·출혈",
+          "url": "https://kimhs950627.github.io/ward-nights/gi.html"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/ward-nights/",
+      "host": "kimhs950627.github.io/ward-nights"
     }
   },
   "request_url": "https://pages-access.kimhs950627.workers.dev/"

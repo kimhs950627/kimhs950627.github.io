@@ -1,9 +1,9 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-04 02:01 UTC",
-  "total": 13,
-  "link_total": 22,
+  "generated_at": "2026-11-04 02:38 UTC",
+  "total": 15,
+  "link_total": 31,
   "groups": [
     {
       "id": "study",
@@ -50,6 +50,82 @@
           "updated": "2026-11-03"
         },
         {
+          "repo": "primary-care-protocol",
+          "url": "https://kimhs950627.github.io/primary-care-protocol/",
+          "host": "kimhs950627.github.io/primary-care-protocol",
+          "title": "외래 프로토콜 — 혈압·지질·혈당",
+          "note": "고혈압·이상지질혈증·당뇨의 진단→처방→부작용→추적→급여를 같은 형식으로. 환자용 안내문 1장 포함.",
+          "category": "study",
+          "order": 7,
+          "links": [
+            {
+              "label": "고혈압",
+              "url": "https://kimhs950627.github.io/primary-care-protocol/hypertension.html",
+              "status": ""
+            },
+            {
+              "label": "이상지질혈증",
+              "url": "https://kimhs950627.github.io/primary-care-protocol/lipid.html",
+              "status": ""
+            },
+            {
+              "label": "당뇨",
+              "url": "https://kimhs950627.github.io/primary-care-protocol/diabetes.html",
+              "status": ""
+            },
+            {
+              "label": "환자용 안내문",
+              "url": "https://kimhs950627.github.io/primary-care-protocol/handout.html",
+              "status": ""
+            }
+          ],
+          "locked": false,
+          "updated": "2026-11-04"
+        },
+        {
+          "repo": "ward-nights",
+          "url": "https://kimhs950627.github.io/ward-nights/",
+          "host": "kimhs950627.github.io/ward-nights",
+          "title": "병동 당직 — 야간 호출 대응",
+          "note": "발열·숨참·의식저하·저혈압·혈당·복통출혈을 호출 순서대로. 첫 세트(ABC+BST)와 상의 기준 강조.",
+          "category": "study",
+          "order": 8,
+          "links": [
+            {
+              "label": "발열",
+              "url": "https://kimhs950627.github.io/ward-nights/fever.html",
+              "status": ""
+            },
+            {
+              "label": "숨참·저산소",
+              "url": "https://kimhs950627.github.io/ward-nights/breathing.html",
+              "status": ""
+            },
+            {
+              "label": "의식저하",
+              "url": "https://kimhs950627.github.io/ward-nights/mental.html",
+              "status": ""
+            },
+            {
+              "label": "저혈압·고혈압",
+              "url": "https://kimhs950627.github.io/ward-nights/circulation.html",
+              "status": ""
+            },
+            {
+              "label": "혈당",
+              "url": "https://kimhs950627.github.io/ward-nights/glucose.html",
+              "status": ""
+            },
+            {
+              "label": "복통·출혈",
+              "url": "https://kimhs950627.github.io/ward-nights/gi.html",
+              "status": ""
+            }
+          ],
+          "locked": false,
+          "updated": "2026-11-04"
+        },
+        {
           "repo": "endoscopy-study",
           "url": "https://kimhs950627.github.io/endoscopy-study/",
           "host": "kimhs950627.github.io/endoscopy-study",
@@ -71,11 +147,6 @@
             {
               "label": "감별 증례",
               "url": "https://kimhs950627.github.io/endoscopy-study/egd/07-감별증례.html",
-              "status": ""
-            },
-            {
-              "label": "합본 PDF (LFS)",
-              "url": "https://media.githubusercontent.com/media/kimhs950627/endoscopy-study/master/downloads/EGD-workbook.pdf",
               "status": ""
             }
           ],
