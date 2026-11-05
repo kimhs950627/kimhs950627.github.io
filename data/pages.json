@@ -1,9 +1,9 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-05 01:15 UTC",
+  "generated_at": "2026-11-05 23:58 UTC",
   "total": 15,
-  "link_total": 31,
+  "link_total": 32,
   "groups": [
     {
       "id": "study",
@@ -104,6 +104,11 @@
             {
               "label": "의식저하",
               "url": "https://kimhs950627.github.io/ward-nights/mental.html",
+              "status": ""
+            },
+            {
+              "label": "저혈압·고혈압",
+              "url": "https://kimhs950627.github.io/ward-nights/circulation.html",
               "status": ""
             },
             {
@@ -244,7 +249,7 @@
             }
           ],
           "locked": false,
-          "updated": "2026-11-04"
+          "updated": "2026-11-05"
         },
         {
           "repo": "27paper-echo-topic-gdmt",
