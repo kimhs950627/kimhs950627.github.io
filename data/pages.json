@@ -1,9 +1,9 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-05 00:10 UTC",
+  "generated_at": "2026-11-05 01:15 UTC",
   "total": 15,
-  "link_total": 32,
+  "link_total": 31,
   "groups": [
     {
       "id": "study",
@@ -107,11 +107,6 @@
               "status": ""
             },
             {
-              "label": "저혈압·고혈압",
-              "url": "https://kimhs950627.github.io/ward-nights/circulation.html",
-              "status": ""
-            },
-            {
               "label": "혈당",
               "url": "https://kimhs950627.github.io/ward-nights/glucose.html",
               "status": ""
@@ -156,7 +151,7 @@
             }
           ],
           "locked": false,
-          "updated": "2026-11-04"
+          "updated": "2026-11-05"
         },
         {
           "repo": "ktirads-study",
