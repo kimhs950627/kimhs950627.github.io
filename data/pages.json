@@ -1,7 +1,7 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-05 23:58 UTC",
+  "generated_at": "2026-11-06 01:21 UTC",
   "total": 15,
   "link_total": 32,
   "groups": [
@@ -156,7 +156,7 @@
             }
           ],
           "locked": false,
-          "updated": "2026-11-05"
+          "updated": "2026-11-06"
         },
         {
           "repo": "ktirads-study",
