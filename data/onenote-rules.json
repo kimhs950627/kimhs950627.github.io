@@ -1,0 +1,68 @@
+{
+  "_note": "원노트 섹션 → 발행처 규칙. onenote_propose.py 가 이 파일로 매핑 제안을 만든다. 2026-11-07 사용자 결정 반영.",
+  "updated": "2026-11-07",
+  "notebook_skip": ["Medical Deep Learning", "hyunsoo의 전자 필기장"],
+  "groups": {
+    "endoscopy": {
+      "repos": ["endoscopy-study"],
+      "files": ["egd/00-총론.html", "egd/01-식도-양성.html", "egd/02-식도-악성.html", "egd/03-위-양성.html",
+                "egd/04-위-악성.html", "egd/05-십이지장-양성.html", "egd/06-십이지장-악성.html", "egd/07-감별증례.html",
+                "cfs/index.html", "cfs/surveillance.html"],
+      "keywords": ["내시경", "위내시경", "대장내시경", "식도", "위", "십이지장", "대장", "용종", "헬리코박터",
+                   "h.pylori", "진정", "조직검사", "biopsy", "egc", "esd", "바렛", "역류", "궤양", "출혈",
+                   "la 분류", "파리", "협착", "감시", "추적", "장정결", "cfs", "egd", "atlas", "endotoday"]
+    },
+    "liver_lab": {
+      "repos": ["lab-followup"],
+      "files": ["liver.html", "thyroid.html", "urine.html"],
+      "keywords": ["ast", "alt", "alp", "rgtp", "ggt", "간수치", "지방간", "간경변", "간염", "빌리루빈",
+                   "masld", "mash", "fibroscan", "섬유화", "간기능", "lft", "아미노전이", "백혈구", "혈색소",
+                   "빈혈", "크레아티닌", "egfr", "전해질", "나트륨", "칼륨", "요산", "tsh", "갑상선", "소변",
+                   "단백뇨", "현미경", "콜레스테롤", "중성지방", "hdl", "ldl"]
+    },
+    "primary_care": {
+      "repos": ["primary-care-protocol"],
+      "files": ["diabetes.html", "hypertension.html", "lipid.html", "handout.html"],
+      "keywords": ["당뇨", "hba1c", "혈당", "인슐린", "메트포르민", "sglt2", "dpp4", "glp1", "고혈압", "혈압",
+                   "acei", "arb", "지질", "스타틴", "이상지질", "중성지방", "금연", "예방접종", "환자용", "안내문"]
+    },
+    "ward": {
+      "repos": ["ward-nights"],
+      "files": ["gi.html", "fever.html", "glucose.html", "breathing.html", "circulation.html", "mental.html"],
+      "keywords": ["입원", "입환", "당직", "야간", "발열", "항생제", "수액", "혈당", "저혈당", "고혈당",
+                   "호흡곤란", "흉통", "부정맥", "섬망", "의식", "전화", "인계", "응급", "패혈증", "탈수"]
+    },
+    "us_protocol": {
+      "repos": ["ultrasound-protocol-study"],
+      "create": true,
+      "visibility": "public",
+      "files": [],
+      "keywords": ["복부초음파", "경동맥", "간담췌", "담낭", "담도", "췌장", "신장", "비장", "대동맥", "portal",
+                   "imt", "plaque", "혈류", "도플러", "간", "portal vein", "술기", "프로토콜", "핸드북", "판독"]
+    }
+  },
+  "section_map": {
+    "검진 protocol^J DDx": "endoscopy",
+    "위내시경 공부": "endoscopy",
+    "외래진료 공부^J 학회내용 정리^J 일부 입환내용 중복": "endoscopy",
+    "입환^J 당직케어 공부": "ward",
+    "복부초음파 공부": "us_protocol",
+    "경동맥초음파 공부": "us_protocol",
+    "Functional pain/ disorder 공부": "SKIP",
+    "근골격계 초음파 공부": "SKIP",
+    "근골격계 공부 - HD": "SKIP",
+    "통증의학 정리": "SKIP",
+    "갑상선초음파 공부": "SKIP",
+    "Echo_Theory_in_A_nutshell": "SKIP",
+    "Echo_Measure": "SKIP",
+    "한심초 연수강좌 노트": "SKIP",
+    "한심초 인증의 야마": "SKIP",
+    "한심초 필기 공부": "SKIP",
+    "Aesthetics": "SKIP",
+    "IVNT 공부 및 세팅": "SKIP",
+    "초음파 판독문 참고^J Case 수첩": "SKIP",
+    "보드시험준비_보강내용작성": "SKIP",
+    "JMLE": "SKIP"
+  },
+  "mixed_threshold_chars": 5000
+}

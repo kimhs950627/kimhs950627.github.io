@@ -28,6 +28,11 @@ from onenote_recent import call_mcp_raw  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 STATE = ROOT / "data" / "onenote-hashes.json"
 NOTEBOOKS = ["Books_for_Meds", "Medical Deep Learning", "hyunsoo의 전자 필기장"]
+NOTEBOOK_IDS = {
+    "Books_for_Meds": "0-7B7300AE98D01EB7!22475",
+    "Medical Deep Learning": "0-7B7300AE98D01EB7!22106",
+    "hyunsoo의 전자 필기장": "0-7B7300AE98D01EB7!107",
+}
 DEFAULT_LIMIT = 120  # 하루 순환 창(전체 633쪽 → 약 6일 1바퀴). --full 로 전수, --limit 0 과 같다.
 
 
@@ -67,7 +72,13 @@ def fetch_page(page_id: str, retries: int = 3) -> tuple[str, str]:
 
 
 def list_pages(notebook: str) -> list[dict]:
-    sections_raw = call_mcp_raw("listSections", {"notebookName": notebook})
+    """노트북 이름 → 섹션 → 페이지.
+
+    MCP `listSections` 는 notebookId 만 받는다(notebookName 을 주면 전 노트북 섹션 60개를 돌려준다 —
+    2026-11-07 확인). 그래서 이름을 ID 로 바꿔 넘긴다.
+    """
+    args = {"notebookId": NOTEBOOK_IDS[notebook]} if notebook in NOTEBOOK_IDS else {"notebookName": notebook}
+    sections_raw = call_mcp_raw("listSections", args)
     ids = re.findall(r"ID:\s*([^\s]+)", sections_raw or "")
     pages: list[dict] = []
     for sid in ids:
@@ -76,7 +87,7 @@ def list_pages(notebook: str) -> list[dict]:
             name = re.search(r"\*\*(.+?)\*\*", block)
             pid = re.search(r"ID:\s*([^\s]+)", block)
             if name and pid:
-                pages.append({"id": pid.group(1), "title": name.group(1).strip()})
+                pages.append({"id": pid.group(1), "title": name.group(1).strip(), "sectionid": sid})
         time.sleep(1.0)
     return pages
 
