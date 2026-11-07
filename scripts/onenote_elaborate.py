@@ -27,6 +27,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 from onenote_decide import MODEL, call, parse_json  # noqa: E402
+from onenote_html import page_blocks  # noqa: E402
 
 STATE = Path.home() / ".local" / "state" / "onenote"
 REPOS = STATE / "repos"
@@ -98,7 +99,8 @@ def build(repo: str, rel: str, source_text: str, page_title: str) -> dict | None
     region = re.search(r"<!--\s*onenote:start[^>]*-->(.*?)<!--\s*onenote:end\s*-->", html, re.S)
     if region and len(region.group(1)) > 200:
         source_text = region.group(1)
-    secs = [(sid, s) for sid, s in sections(html) if sid != "onenote"]
+    secs, mode = page_blocks(html)
+    secs = [(sid, s) for sid, s in secs if sid != "onenote"]
     if not secs:
         print(f"SKIP {repo}/{rel}: 단원 없음", flush=True)
         return None
@@ -126,8 +128,11 @@ def build(repo: str, rel: str, source_text: str, page_title: str) -> dict | None
         if not old:
             print(f"  ! 알 수 없는 단원 {sid} — 무시", flush=True)
             continue
-        if not new_html.strip().startswith("<section"):
+        if mode == "section" and not new_html.strip().startswith("<section"):
             print(f"  ! {sid}: section 태그 없음 — 무시", flush=True)
+            continue
+        if mode == "h2" and not new_html.strip().startswith("<h2"):
+            print(f"  ! {sid}: h2 시작 아님 — 무시", flush=True)
             continue
         cov = coverage(old, new_html)
         # 새 내용이 실제로 늘었는지 + 기존 사실 보존 확인

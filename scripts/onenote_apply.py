@@ -137,34 +137,23 @@ def apply_one(update: dict, check_only: bool) -> str:
         text = target.read_text(encoding="utf-8")
 
         if update.get("sections"):
-            # elaborate 모드: 기존 단원(section) HTML 을 통째로 교체한다(덧붙이기 아님).
-            # 이 저장소들의 단원은 <section aria-labelledby="x"><h2 id="x"> 모양이라, section 태그에
-            # id 가 없을 수 있다 → 블록 안의 h2 id 로 식별한다.
-            sec_pat = re.compile(r"<section\b[^>]*>.*?</section>", re.S)
-
-            def _sid(block: str) -> str:
-                m = (re.search(r'<h2[^>]*\bid="([^"]+)"', block)
-                     or re.search(r'aria-labelledby="([^"]+)"', block)
-                     or re.search(r'<section[^>]*\bid="([^"]+)"', block))
-                return m.group(1) if m else ""
+            # elaborate 모드: 단원 블록(section 또는 h2 구간)을 통째로 교체한다(덧붙이기 아님).
+            from onenote_html import page_blocks
 
             want = update["sections"]
             drop = set(update.get("remove_sections") or [])
+            blocks, mode = page_blocks(text)
+            new = text
             replaced: list[str] = []
-
-            def _repl(m):
-                block = m.group(0)
-                if block.count("<section") > 1:
-                    return block
-                sid = _sid(block)
-                if sid in want:
-                    replaced.append(sid)
-                    return want[sid].strip()
-                if sid in drop:
-                    return ""
-                return block
-
-            new = sec_pat.sub(_repl, text)
+            for key, block in blocks:
+                if key in want:
+                    new = new.replace(block, want[key].strip(), 1)
+                    replaced.append(key)
+                elif key in drop:
+                    new = new.replace(block, "", 1)
+            if update.get("strip_onenote_inserts"):
+                new = re.sub(r'\n?[ \t]*<div class="onenote-insert"[^>]*>.*?</div>[ \t]*\n?', "\n", new, flags=re.S)
+                new = re.sub(r"<!--\s*onenote-insert:[^>]*-->\n?", "", new)
             new = re.sub(r"\n{3,}", "\n\n", new)
             if not replaced:
                 return f"{repo}/{rel}: 교체할 단원 없음 — 건드리지 않음"

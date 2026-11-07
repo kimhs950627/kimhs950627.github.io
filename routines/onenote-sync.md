@@ -23,17 +23,21 @@ description: >
 키: `$COMMANDCODE_API_KEY` 또는 `~/.config/pfarm/commandcode.env`. 다른 모델·subagent 금지.
 API 가 죽으면 kimaki 세션(같은 모델)으로 폴백하고 그 사실을 한 줄 남긴다.
 
-## 1. a — 변경 감지
+## 1. a — 변경 감지 (전수 스캔 금지)
 
 ```bash
-python3 scripts/onenote_graph.py          # 3개 노트북 · 120쪽/일 순환 + pinned 매일
-python3 scripts/onenote_graph.py --full   # 전수(30분+)
+python3 scripts/onenote_changes.py --since 1d --save-text   # 매일
+python3 scripts/onenote_changes.py --full                   # 주 1회 안전망(일요일)
 ```
 
-- `changed` = 내용이 실제로 바뀐 페이지. `firstSeen` 은 첫 기준선일 뿐이다.
-- `failed` 는 Graph 오류 — **성공으로 보고하지 않는다**.
-- Graph 오류 문구(`Failed to get page content…`)는 절대 본문으로 쓰지 않는다(해시하면 영구 unchanged).
-  실패하면 제목 조회로 폴백하고, 그래도 실패하면 `failed` 에 남긴다.
+- **페이지** `lastModifiedDateTime` 은 못 믿는다(실측: GI 학회 정리 실제 11-03 수정, Graph 페이지 값 08-31).
+  MCP `recentPages` 는 이 필드로 거르므로 0건이 나온다 — 쓰지 않는다.
+- **섹션** `lastModifiedDateTime` 은 최신이다(같은 섹션 11-03, 다른 섹션 11-04·11-05). 그래서
+  ① 노트북→섹션 시각(6+21콜, 수 초)으로 후보 섹션을 고르고 ② 그 섹션 페이지만 **ETag 조건부 GET** 한다.
+  변경 없으면 304(본문 0바이트). 실측: 18쪽 첫 49초 → 재실행 36초·변경 0건.
+- 페이지 delta(`/me/onenote/pages/delta`)는 이 계정에서 400/404 — 대안 없음.
+- `--save-text` 가 본문 캐시와 digest.json 을 함께 갱신한다.
+- 실패(400/5xx)는 `failed` 로 남기고 성공으로 보고하지 않는다.
 
 ## 2. 요약(digest) 갱신 — 매핑의 근거
 
@@ -61,7 +65,8 @@ python3 scripts/onenote_map_model.py      # 아직 안 한 페이지만, >=600�
 ## 4. 기존 페이지 — **덧붙이지 말고 통합 편집(elaborate)**
 
 ```bash
-python3 scripts/onenote_elaborate.py --all     # 단원 단위 교체
+python3 scripts/onenote_elaborate.py --all     # 단원(section/h2 블록) 단위 교체
+python3 scripts/onenote_remerge.py             # (1회성) 이미 덧붙여진 페이지 소급 정리
 ```
 
 - 대상 페이지의 **단원(section) HTML** 과 원노트 내용을 함께 모델에 주고, 새 사실을 **기존 단원의 제자리**에
@@ -72,6 +77,9 @@ python3 scripts/onenote_elaborate.py --all     # 단원 단위 교체
 - 출력 `updates[] = {repo,file,sections:{단원id: 새 HTML}, remove_sections:["onenote"]}`.
 - 신규 주제가 어느 단원에도 안 맞으면 그때만 h3 소절로 가장 가까운 단원에 넣는다.
 - 모델은 **GitHub Actions 에서 호출하는 것을 우선**한다(키는 secret). Actions 로 돌릴 수 없을 때만 로컬.
+- 페이지 구조가 두 가지다: `<section aria-labelledby>` 형과 `<main>` 안 `<h2 id>` 나열 형.
+  `scripts/onenote_html.py` 의 `page_blocks()` 가 둘 다 처리한다(교체 단위 = 블록 전체).
+- 단원이 아예 없는 스텁 페이지(예: endoscopy-study/cfs/index.html)는 통합 대상이 아니라 **새 페이지**로 만든다(§5).
 
 ## 5. 신규 페이지
 
