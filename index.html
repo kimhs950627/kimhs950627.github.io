@@ -45,7 +45,7 @@
     <h1>발행한 페이지<em>.</em></h1>
     <p class="lede">
       깃허브 페이지로 내보낸 학습 자료, 연구 설계, 도구, 여행 계획을 한자리에 모아 둔 색인.
-      새 페이지는 발행 다음 날 자동으로 여기에 붙는다.
+      새 페이지는 발행 다음 날 자동으로 여기에 붙고, 바뀐 내용은 맨 위 '최근 변경'에 쌓인다.
     </p>
     <p class="stats">
       <span><b id="stat-total">—</b> 페이지</span>
@@ -58,9 +58,9 @@
 
 <main class="wrap layout">
   <aside class="rail" aria-labelledby="rail-title">
-    <p class="rail-title" id="rail-title">색인</p>
-    <nav aria-labelledby="rail-title">
-      <ol id="rail-list"></ol>
+    <p class="rail-title" id="rail-title">갈래</p>
+    <nav aria-label="갈래">
+      <div id="rail-list" role="tablist" aria-orientation="vertical" aria-labelledby="rail-title"></div>
     </nav>
     <p class="updated">
       <span id="rail-generated">—</span><br>
@@ -68,7 +68,7 @@
     </p>
   </aside>
 
-  <div class="feed" id="feed" aria-live="polite">
+  <div class="feed" id="feed">
     <noscript>
       <p>목록을 그리려면 자바스크립트가 필요하다.
       <a href="https://github.com/kimhs950627?tab=repositories">깃허브 프로필</a>에서도 볼 수 있다.</p>

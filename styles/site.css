@@ -133,16 +133,21 @@ h1 em {
   font-weight: 500;
 }
 
-/* ── 왼쪽 인덱스 ─────────────────────────────────────── */
+/* ── 갈래 탭 ─────────────────────────────────────────── */
 .rail {
-  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  min-width: 0;
+  background: var(--paper);
+  padding-block: 0.15rem;
 }
 
 @media (min-width: 900px) {
   .rail {
-    display: block;
-    position: sticky;
     top: var(--s5);
+    background: none;
+    padding-block: 0;
   }
 }
 
@@ -157,38 +162,72 @@ h1 em {
   border-bottom: 1px solid var(--rule);
 }
 
-.rail ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+#rail-list {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  gap: 0.1rem;
 }
 
-.rail li {
-  border-bottom: 1px solid rgba(215, 205, 184, 0.55);
+@media (min-width: 900px) {
+  #rail-list {
+    flex-direction: column;
+    gap: 0;
+    overflow: visible;
+  }
 }
 
-.rail a {
-  display: grid;
-  grid-template-columns: 1fr auto;
+.tab {
+  display: flex;
+  flex: 0 0 auto;
   align-items: baseline;
+  justify-content: space-between;
   gap: 1rem;
-  padding: 0.62rem 0;
-  text-decoration: none;
+  padding: 0.58rem 0.1rem;
+  border: 0;
+  border-bottom: 1px solid rgba(215, 205, 184, 0.55);
+  background: none;
   color: var(--ink-2);
+  font: inherit;
   font-size: var(--fs-note);
-  transition: color var(--dur) var(--ease), padding-left var(--dur) var(--ease);
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
 
-.rail a:hover,
-.rail a.is-active {
-  color: var(--accent);
-  padding-left: 6px;
-}
-
-.rail a .c {
+.tab .c {
   font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--ink-3);
+}
+
+.tab:hover,
+.tab[aria-selected="true"] {
+  color: var(--accent);
+}
+
+.tab[aria-selected="true"] {
+  border-bottom-color: var(--accent);
+}
+
+@media (max-width: 899px) {
+  .rail-title,
+  .updated {
+    display: none;
+  }
+
+  .tab {
+    padding: 0.5rem 0.7rem;
+    border-bottom-width: 2px;
+  }
+}
+
+@media (max-width: 899px) {
+  .layout {
+    gap: var(--s3);
+    padding-block: var(--s3) var(--s6);
+  }
 }
 
 .updated {
@@ -205,8 +244,12 @@ h1 em {
   min-width: 0;
 }
 
-.group + .group {
+.group-panel + .group-panel {
   margin-top: var(--s4);
+}
+
+.empty {
+  color: var(--ink-2);
 }
 
 .group-head {
@@ -320,6 +363,19 @@ h1 em {
 }
 
 .chip-tag.is-draft {
+  color: var(--ink-3);
+}
+
+/* '최근 변경' 절의 변경 종류 — 수정·새로 실림·공개 범위 변경 */
+.chip-tag.is-push {
+  color: var(--ink-2);
+}
+
+.chip-tag.is-new {
+  color: var(--accent);
+}
+
+.chip-tag.is-flip {
   color: var(--ink-3);
 }
 

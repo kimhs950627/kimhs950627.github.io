@@ -1,0 +1,18 @@
+{
+  "_note": "scripts/track.py 가 '색인 미등록 후보'에서 빼는 저장소. 사이트가 아닌 저장소, 남의 원본을 포크한 학습용 저장소를 적는다. 페이지 소스가 있는 비공개 저장소는 여기 없으면 자동으로 Cloudflare Pages + Access(소유자만)로 발행되어 색인에 잠금 상태로 실린다.",
+  "repos": [
+    "opencode-skills",
+    "opencode-skills-live",
+    "opencode-profile",
+    "pages-access",
+    "pages-jobs",
+    "set-order",
+    "health-checkup-insights",
+    "dr-point-farming",
+    "doctorville_bot",
+    "doctor_assist_project",
+    "doctor-assist-agent-setup",
+    "claude-code-source-code",
+    "claw-code"
+  ]
+}

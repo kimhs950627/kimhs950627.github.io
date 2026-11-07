@@ -331,6 +331,24 @@
       ],
       "url": "https://kimhs950627.github.io/ultrasound-protocol-study/",
       "host": "kimhs950627.github.io/ultrasound-protocol-study"
+    },
+    "neurology-opd-reference": {
+      "category": "study",
+      "order": 40,
+      "title": "신경과 외래 참고서 — 2026-10 이전 판",
+      "note": "지금 배포판(11월)의 직전 원고. 어지럼·안진 평가가 빠진 판이라 기록용으로만 잠가 둔다.",
+      "url": "https://neurology-opd-reference.pages.dev/",
+      "host": "neurology-opd-reference.pages.dev",
+      "access": "private"
+    },
+    "neurology_guide_for_opd": {
+      "category": "study",
+      "order": 41,
+      "title": "신경과 외래 안내 — 2026-10 이전 판",
+      "note": "어지럼·안진 검사와 정복술이 추가된 중간 원고. 현재 판은 11월 배포본을 쓴다.",
+      "url": "https://neurology-guide-for-opd.pages.dev/",
+      "host": "neurology-guide-for-opd.pages.dev",
+      "access": "private"
     }
   },
   "request_url": "https://pages-access.kimhs950627.workers.dev/"

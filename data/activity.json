@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-11-07 15:54 UTC",
+  "window_days": 21,
+  "baseline": false,
+  "summary": {
+    "repos": 84,
+    "listed": 18,
+    "changed": 0,
+    "unlisted": 0
+  },
+  "changes": [
+    {
+      "at": "2026-11-08",
+      "repo": "ward-nights",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(onenote): 내과병동 당직 어시스트 텍스트 — 출혈·소변량·복통/설사 — 야간 처방",
+      "url": "https://kimhs950627.github.io/ward-nights/",
+      "sha": "b5342d731ded68679902b5107eaf563973ec2ce7"
+    },
+    {
+      "at": "2026-11-08",
+      "repo": "ultrasound-protocol-study",
+      "kind": "new-repo",
+      "label": "새 저장소",
+      "text": "ultrasound-protocol-study",
+      "url": "https://kimhs950627.github.io/ultrasound-protocol-study/"
+    },
+    {
+      "at": "2026-11-08",
+      "repo": "ultrasound-protocol-study",
+      "kind": "pages-on",
+      "label": "페이지 공개",
+      "text": "GitHub Pages 가 켜졌다",
+      "url": "https://kimhs950627.github.io/ultrasound-protocol-study/"
+    },
+    {
+      "at": "2026-11-08",
+      "repo": "primary-care-protocol",
+      "kind": "push",
+      "label": "수정",
+      "text": "feat(onenote): 일차의료 소화기 약속처방 장 추가 (v1.2)",
+      "url": "https://kimhs950627.github.io/primary-care-protocol/",
+      "sha": "c31ef2bdd05ea7fc6ef6de822747d2048cfd435b"
+    },
+    {
+      "at": "2026-11-08",
+      "repo": "lab-followup",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(onenote): Endo 학회 정리 — 갑상선 기능이상(무증상 포함)·갑상선염·임신 중 갑상선·결절 감별의 임상 정리",
+      "url": "https://kimhs950627.github.io/lab-followup/",
+      "sha": "e8e12ff133f19a7ea1549c50c4903f5b464c2701"
+    },
+    {
+      "at": "2026-11-08",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "5b0c5dbc97cf985d099bd6041ab7c2da1e3427c3"
+    }
+  ],
+  "unlisted": []
+}

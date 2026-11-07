@@ -2,3 +2,5 @@ node_modules/
 .DS_Store
 data/onenote-raw/
 data/onenote-manifest.json
+# 비공개 저장소 이름이 들어간 스냅숏 — 워크플로 캐시에만 둔다
+data/repos-state.json

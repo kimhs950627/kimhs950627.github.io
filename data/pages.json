@@ -1,8 +1,8 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-07 14:47 UTC",
-  "total": 16,
+  "generated_at": "2026-11-07 15:59 UTC",
+  "total": 18,
   "link_total": 37,
   "groups": [
     {
@@ -264,6 +264,30 @@
           ],
           "locked": false,
           "updated": "2026-11-01"
+        },
+        {
+          "repo": "neurology-opd-reference",
+          "url": "https://neurology-opd-reference.pages.dev/",
+          "host": "neurology-opd-reference.pages.dev",
+          "title": "신경과 외래 참고서 — 2026-10 이전 판",
+          "note": "지금 배포판(11월)의 직전 원고. 어지럼·안진 평가가 빠진 판이라 기록용으로만 잠가 둔다.",
+          "category": "study",
+          "order": 40,
+          "links": [],
+          "locked": true,
+          "updated": ""
+        },
+        {
+          "repo": "neurology_guide_for_opd",
+          "url": "https://neurology-guide-for-opd.pages.dev/",
+          "host": "neurology-guide-for-opd.pages.dev",
+          "title": "신경과 외래 안내 — 2026-10 이전 판",
+          "note": "어지럼·안진 검사와 정복술이 추가된 중간 원고. 현재 판은 11월 배포본을 쓴다.",
+          "category": "study",
+          "order": 41,
+          "links": [],
+          "locked": true,
+          "updated": ""
         }
       ]
     },

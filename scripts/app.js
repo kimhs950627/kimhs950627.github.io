@@ -1,6 +1,7 @@
-// data/pages.json 을 읽어 목록을 그린다. 문구는 전부 데이터에서만 온다.
+// data/pages.json · data/activity.json 을 읽어 '갈래 탭'으로 목록을 그린다. 문구는 전부 데이터에서만 온다.
 (async function () {
   const feed = document.getElementById("feed");
+  const tablist = document.getElementById("rail-list");
 
   const esc = (s) =>
     String(s ?? "").replace(/[&<>"']/g, (c) => ({
@@ -13,16 +14,22 @@
 
   const pad = (n) => String(n).padStart(2, "0");
 
-  let data;
-  try {
-    const res = await fetch("data/pages.json", { cache: "no-cache" });
-    if (!res.ok) throw new Error(String(res.status));
-    data = await res.json();
-  } catch (err) {
+  const grab = async (path) => {
+    try {
+      const res = await fetch(path, { cache: "no-cache" });
+      return res.ok ? await res.json() : null;
+    } catch (err) {
+      return null;
+    }
+  };
+
+  const data = await grab("data/pages.json");
+  if (!data) {
     feed.innerHTML =
       '<p>목록을 불러오지 못했다. <a href="https://github.com/kimhs950627?tab=repositories">깃허브 프로필</a>에서 확인할 수 있다.</p>';
     return;
   }
+  const activity = await grab("data/activity.json");
 
   const groups = (data.groups || []).filter((g) => g.pages && g.pages.length);
   const total = groups.reduce((sum, g) => sum + g.pages.length, 0);
@@ -42,46 +49,66 @@
   document.getElementById("rail-generated").textContent = `${total}개 · ${data.generated_at || ""}`;
   document.getElementById("foot-generated").textContent = `auto-index · ${data.generated_at || ""}`;
 
-  let i = 0;
+  const changes = ((activity && activity.changes) || []).slice(0, 30);
+  const KIND = {
+    push: "수정",
+    "new-repo": "새 저장소",
+    "pages-on": "페이지 공개",
+    "pages-off": "페이지 중단",
+    visibility: "공개 범위",
+    archive: "보관",
+    deleted: "삭제",
+    listed: "색인 등재",
+  };
+  const TONE = { push: "is-push", "new-repo": "is-new", "pages-on": "is-new", listed: "is-new" };
+
   let n = 0;
 
-  const railList = document.getElementById("rail-list");
-  railList.innerHTML = groups
-    .map(
-      (g) =>
-        `<li><a href="#${esc(g.id)}"><span class="label">${esc(g.label)}</span><span class="c">${g.pages.length}</span></a></li>`,
-    )
-    .join("");
-
-  feed.innerHTML = groups
-    .map((g) => {
-      const head = `
-        <div class="group-head" id="${esc(g.id)}" style="--i:${i++}">
-          <h2>${esc(g.label)}</h2>
-          <span class="c">${g.pages.length}개</span>
-        </div>`;
-
-      const rows = g.pages
-        .map((p) => {
-          const ask = p.locked
-            ? `<a class="chip chip-request" href="${esc(data.request_url || "")}">열람 신청</a>`
-            : "";
-          const sub = (p.links || []).length || p.locked
-            ? `<div class="row-sub">${p.links
-                .map((l) => {
-                  const tag =
-                    l.status === "reviewed"
-                      ? '<span class="chip-tag is-reviewed">검토본</span>'
-                      : l.status === "draft"
-                        ? '<span class="chip-tag is-draft">초안</span>'
-                        : "";
-                  return `<a class="chip" href="${esc(l.url)}" target="_blank" rel="noopener">${tag}<span class="chip-label">${esc(l.label)}</span><span aria-hidden="true">↗</span></a>`;
-                })
-                .join("")}${ask}</div>`
-            : "";
-          return `
+  const changesPanel = changes.length
+    ? `<div class="group-head" style="--i:0">
+          <h2>최근 변경</h2>
+          <span class="c">${changes.length}건</span>
+        </div>
+        ${changes
+          .map((c, k) => {
+            const tone = TONE[c.kind] || "is-flip";
+            return `
         <div class="item">
-          <a class="row" href="${esc(p.url)}" target="_blank" rel="noopener" style="--i:${i++}">
+          <a class="row" href="${esc(c.url)}" target="_blank" rel="noopener" style="--i:${k + 1}">
+            <span class="idx">${esc((c.at || "").slice(5))}</span>
+            <span class="row-main">
+              <span class="row-title"><span class="chip-tag ${tone}">${esc(KIND[c.kind] || c.kind)}</span>${esc(c.text)}</span>
+              <span class="row-host">${esc(c.repo)}</span>
+            </span>
+            <span class="go" aria-hidden="true">↗</span>
+          </a>
+        </div>`;
+          })
+          .join("")}`
+    : "";
+
+  const groupPanels = groups.map((g) => {
+    const rows = g.pages
+      .map((p, k) => {
+        const ask = p.locked
+          ? `<a class="chip chip-request" href="${esc(data.request_url || "")}">열람 신청</a>`
+          : "";
+        const sub = (p.links || []).length || p.locked
+          ? `<div class="row-sub">${p.links
+              .map((l) => {
+                const tag =
+                  l.status === "reviewed"
+                    ? '<span class="chip-tag is-reviewed">검토본</span>'
+                    : l.status === "draft"
+                      ? '<span class="chip-tag is-draft">초안</span>'
+                      : "";
+                return `<a class="chip" href="${esc(l.url)}" target="_blank" rel="noopener">${tag}<span class="chip-label">${esc(l.label)}</span><span aria-hidden="true">↗</span></a>`;
+              })
+              .join("")}${ask}</div>`
+          : "";
+        return `
+        <div class="item">
+          <a class="row" href="${esc(p.url)}" target="_blank" rel="noopener" style="--i:${k + 1}">
             <span class="idx">${pad(++n)}</span>
             <span class="row-main">
               <span class="row-title">${esc(p.title)}${
@@ -96,28 +123,84 @@
           </a>
           ${sub}
         </div>`;
-        })
-        .join("");
+      })
+      .join("");
 
-      return `<section class="group" aria-labelledby="h-${esc(g.id)}">
-        ${head.replace("<h2>", `<h2 id="h-${esc(g.id)}">`)}
-        ${rows}
-      </section>`;
-    })
+    return `<div class="group-head" style="--i:0">
+          <h2>${esc(g.label)}</h2>
+          <span class="c">${g.pages.length}개</span>
+        </div>
+        ${rows}`;
+  });
+
+  const tabs = [];
+  if (changesPanel) tabs.push({ id: "activity", label: "최근 변경", count: changes.length, panel: changesPanel });
+  groups.forEach((g, k) =>
+    tabs.push({ id: g.id, label: g.label, count: g.pages.length, panel: groupPanels[k] }),
+  );
+
+  if (!tabs.length) {
+    feed.innerHTML = '<p class="empty">아직 실린 페이지가 없다.</p>';
+    return;
+  }
+
+  tablist.innerHTML = tabs
+    .map(
+      (t, k) => `
+      <button class="tab" type="button" role="tab" id="tab-${esc(t.id)}"
+        aria-controls="panel-${esc(t.id)}" aria-selected="${k === 0 ? "true" : "false"}"
+        tabindex="${k === 0 ? "0" : "-1"}">
+        <span class="label">${esc(t.label)}</span><span class="c">${t.count}</span>
+      </button>`,
+    )
     .join("");
 
-  requestAnimationFrame(() => feed.classList.add("is-in"));
+  feed.innerHTML = tabs
+    .map(
+      (t, k) => `
+      <section class="group-panel" id="panel-${esc(t.id)}" role="tabpanel"
+        aria-labelledby="tab-${esc(t.id)}"${k === 0 ? "" : " hidden"}>
+        ${t.panel}
+      </section>`,
+    )
+    .join("");
 
-  // 색인에서 지금 보고 있는 갈래를 표시
-  const links = [...railList.querySelectorAll("a")];
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        links.forEach((a) => a.classList.toggle("is-active", a.getAttribute("href") === `#${entry.target.id}`));
-      });
-    },
-    { rootMargin: "-20% 0px -70% 0px" },
-  );
-  feed.querySelectorAll(".group-head").forEach((el) => observer.observe(el));
+  const buttons = [...tablist.querySelectorAll('[role="tab"]')];
+
+  const activate = (id, { focus = false, push = false } = {}) => {
+    const tab = tabs.find((t) => t.id === id) || tabs[0];
+    buttons.forEach((b) => {
+      const on = b.id === `tab-${tab.id}`;
+      b.setAttribute("aria-selected", on ? "true" : "false");
+      b.tabIndex = on ? 0 : -1;
+      b.classList.toggle("is-active", on);
+    });
+    tabs.forEach((t) => {
+      document.getElementById(`panel-${t.id}`).hidden = t.id !== tab.id;
+    });
+    if (focus) document.getElementById(`tab-${tab.id}`).focus();
+    if (push) history.replaceState(null, "", `#${tab.id}`);
+    requestAnimationFrame(() => feed.classList.add("is-in"));
+  };
+
+  tablist.addEventListener("click", (event) => {
+    const button = event.target.closest('[role="tab"]');
+    if (button) activate(button.id.replace(/^tab-/, ""), { push: true });
+  });
+
+  tablist.addEventListener("keydown", (event) => {
+    const current = buttons.findIndex((b) => b === document.activeElement);
+    if (current < 0) return;
+    const move = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+    let next = current;
+    if (event.key in move) next = (current + move[event.key] + buttons.length) % buttons.length;
+    else if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = buttons.length - 1;
+    else return;
+    event.preventDefault();
+    activate(tabs[next].id, { focus: true, push: true });
+  });
+
+  const fromHash = () => (location.hash || "").replace(/^#(panel-)?/, "");
+  activate(fromHash() || tabs[0].id);
 })();
