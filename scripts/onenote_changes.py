@@ -36,16 +36,34 @@ STATE = Path.home() / ".local" / "state" / "onenote" / "sections.json"
 TEXT = Path.home() / ".local" / "state" / "onenote" / "text"
 
 
-def call(url: str, token: str, etag: str = "") -> tuple[int, dict, bytes]:
+RETRY_STATUS = {429, 503, 504}
+
+
+def call(url: str, token: str, etag: str = "", attempts: int = 4) -> tuple[int, dict, bytes]:
+    """429/503/504 는 지수 백오프로 재시도한다(실측: 429 가 섹션 9개를 통째로 실패시켰다)."""
     headers = {"Authorization": f"Bearer {token}"}
     if etag:
         headers["If-None-Match"] = etag
-    req = urllib.request.Request(url, headers=headers)
-    try:
-        with urllib.request.urlopen(req, timeout=180) as res:
-            return res.status, dict(res.headers), res.read()
-    except urllib.error.HTTPError as err:
-        return err.code, dict(err.headers), err.read()
+    delay = 1.0
+    for i in range(attempts):
+        req = urllib.request.Request(url, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=180) as res:
+                return res.status, dict(res.headers), res.read()
+        except urllib.error.HTTPError as err:
+            body = err.read()
+            if err.code not in RETRY_STATUS or i == attempts - 1:
+                return err.code, dict(err.headers), body
+            wait = delay
+            after = (err.headers or {}).get("Retry-After") if err.headers else None
+            if after:
+                try:
+                    wait = min(float(after), 30.0)
+                except ValueError:
+                    pass
+            time.sleep(wait)
+            delay = min(delay * 2, 20.0)
+    raise AssertionError("unreachable")
 
 
 def jget(url: str, token: str) -> dict:
@@ -111,7 +129,9 @@ def main() -> int:
             prev = sec_state.get(sid) or {}
             prev_lm = prev.get("lastModifiedDateTime") or ""
             is_new = not prev
-            touched = is_new or lm > prev_lm or (lm and lm >= since.isoformat())
+            # listingFailed 는 '섹션은 봤지만 페이지 목록을 못 받았다'는 표시 — 성공 전까지 재시도한다.
+            touched = (is_new or prev.get("listingFailed") or lm > prev_lm
+                       or (lm and lm >= since.isoformat()))
             if not (full or touched):
                 continue
             sections_changed += 1
@@ -122,8 +142,11 @@ def main() -> int:
             try:
                 listing = jget(f"{GRAPH}/me/onenote/sections/{sid}/pages?$select=id,title&$top=100", token)["value"]
             except RuntimeError as err:
+                entry["listingFailed"] = True
+                save(state)
                 failed.append({"section": sec["displayName"], "error": str(err)[:80]})
                 continue
+            entry.pop("listingFailed", None)
             for page in listing:
                 pid, title = page["id"], page["title"]
                 prev_etag = (pages_etags.get(pid) or {}).get("etag", "")
