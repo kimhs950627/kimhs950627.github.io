@@ -1,8 +1,8 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-07 00:35 UTC",
-  "total": 15,
+  "generated_at": "2026-11-07 14:43 UTC",
+  "total": 16,
   "link_total": 32,
   "groups": [
     {
@@ -47,7 +47,7 @@
             }
           ],
           "locked": false,
-          "updated": "2026-11-03"
+          "updated": "2026-11-07"
         },
         {
           "repo": "primary-care-protocol",
@@ -80,7 +80,7 @@
             }
           ],
           "locked": false,
-          "updated": "2026-11-04"
+          "updated": "2026-11-07"
         },
         {
           "repo": "ward-nights",
@@ -123,7 +123,7 @@
             }
           ],
           "locked": false,
-          "updated": "2026-11-04"
+          "updated": "2026-11-07"
         },
         {
           "repo": "endoscopy-study",
@@ -156,7 +156,7 @@
             }
           ],
           "locked": false,
-          "updated": "2026-11-06"
+          "updated": "2026-11-07"
         },
         {
           "repo": "ktirads-study",
@@ -378,6 +378,24 @@
           "links": [],
           "locked": false,
           "updated": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "label": "그 밖",
+      "pages": [
+        {
+          "repo": "ultrasound-protocol-study",
+          "url": "https://kimhs950627.github.io/ultrasound-protocol-study/",
+          "host": "kimhs950627.github.io/ultrasound-protocol-study",
+          "title": "검진 초음파 프로토콜",
+          "note": "복부·경동맥·갑상선 초음파의 술기, 소견, 판독문을 한 곳에 정리한 개인 참고서.",
+          "category": "other",
+          "order": 9999,
+          "links": [],
+          "locked": false,
+          "updated": "2026-11-07"
         }
       ]
     }
