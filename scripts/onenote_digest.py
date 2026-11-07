@@ -124,7 +124,7 @@ def main() -> int:
             if f.exists() and not force:
                 text = f.read_text(encoding="utf-8")
             else:
-                text, reason = fetch_page(pid)
+                text, reason = fetch_page(pid, title=item["title"])
                 if not text:
                     failed += 1
                     print(f"FAIL {item['title'][:40]} :: {reason}", flush=True)

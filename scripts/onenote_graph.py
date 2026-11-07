@@ -48,9 +48,10 @@ def digest(text: str) -> str:
 ERROR_MARKERS = ("Failed to get page content", "Something failed", "cannot share any more information")
 
 
-def fetch_page(page_id: str, retries: int = 3) -> tuple[str, str]:
+def fetch_page(page_id: str, retries: int = 3, title: str = "") -> tuple[str, str]:
     """본문을 가져온다. Graph 오류 문구를 본문으로 착각하지 않는다(예전 버그: 오류 문자열을 해시 → 영원히 unchanged).
 
+    getPageContent 가 실패하는 페이지는 제목으로 한 번 더 시도한다(getPageByTitle 은 같은 페이지에서 성공함 — 2026-11-07).
     반환: (본문, 빈 문자열이면 성공 / 실패 사유)
     """
     reason = "no-response"
@@ -61,6 +62,10 @@ def fetch_page(page_id: str, retries: int = 3) -> tuple[str, str]:
             if text and text != "null":
                 if any(marker in text[:300] for marker in ERROR_MARKERS):
                     reason = "graph-error"
+                    if title:
+                        alt = (call_mcp_raw("getPageByTitle", {"title": title, "format": "text"}, timeout=240) or "").strip()
+                        if alt and not any(marker in alt[:300] for marker in ERROR_MARKERS):
+                            return alt, "by-title"
                 else:
                     return text, ""
             else:
@@ -134,7 +139,7 @@ def main() -> int:
         tmp.replace(STATE)
 
     for item in targets:
-        text, reason = fetch_page(item["id"])
+        text, reason = fetch_page(item["id"], title=item.get("title", ""))
         if not text:
             failed.append({"id": item["id"], "title": item["title"], "reason": reason})
             continue
