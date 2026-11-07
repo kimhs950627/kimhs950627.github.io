@@ -20,27 +20,30 @@ description: >
 
 ## 0. 원칙
 
-- **소스는 Graph(웹) 1순위.** 데스크톱 COM 은 캐시가 덜 동기화돼 본문이 잘려 있다(실측: 같은 페이지
-  로컬 8,243자 vs Graph 62,759자 — 진정내시경 파트가 로컬에 없음). COM 은 오프라인 폴백으로만 쓴다.
-- **타임스탬프는 믿지 않는다.** 같은 편집이 Graph 는 9-01, 로컬은 11-03 15:52 로 나왔다. 변경 감지는
-  `scripts/onenote_graph.py` 의 **본문 해시 비교**로만 한다.
-
-- **Graph(MCP) 대신 로컬 원노트 COM 을 쓴다.** MCP 는 429 레이트리밋에 걸리고 `lastModifiedDateTime` 이
-  낡아 최근 수정을 놓친다(실측: GI 학회 정리 2026-11-03 수정이 MCP 에선 9월로 보였다).
+- **본문 소스는 MCP(Graph) 1순위.** 데스크톱 COM 은 캐시가 덜 동기화돼 본문이 잘린다(실측 2026-11-07:
+  같은 페이지 COM 8,219자 vs Graph 62,756자). COM 은 **그림 추출(`piAll`)·오프라인 폴백**에만 쓴다.
+- **타임스탬프는 믿지 않는다.** 같은 편집이 Graph 는 9-01, 로컬은 11-03 15:52 로 나왔다. `recentPages` 는
+  2026-11-07 조회에서 최근 25일 변경 0건을 돌려줬다(실제로는 11-03 수정 존재). 변경 감지는 본문 해시로만.
+- **Graph 오류 문구를 본문으로 쓰지 않는다.** `getPageContent` 가 `Failed to get page content …` 를
+  돌려줄 때가 있고, 그걸 해시하면 모든 페이지가 같은 값으로 고정돼 **영원히 변경 0건**이 된다
+  (2026-11-07 발견). `onenote_graph.py` 는 이제 오류 문구를 거부하고 `failed` 로 따로 보고한다.
+- **커버리지는 3개 노트북 전부.** `Books_for_Meds` 만 보면 `Medical Deep Learning`(385쪽)과
+  `hyunsoo의 전자 필기장`(87쪽)의 수정을 영원히 못 본다.
 - **변경 감지는 코드, 판단은 모델, 적용은 스크립트.** 본문은 파일로만 다루고 컨텍스트에 싣지 않는다.
 - 확신이 없으면 **큐에 제안만** 남기고 파일을 건드리지 않는다.
 
-## 1. 변경 감지 (본문 해시, Graph)
+## 1. 변경 감지 (본문 해시, 3개 노트북)
 
 ```bash
-python3 scripts/onenote_graph.py --notebook Books_for_Meds --limit 40   # 하루 40쪽씩 순환
-python3 scripts/onenote_graph.py --page-id <id>                         # 특정 페이지만
+python3 scripts/onenote_graph.py                 # 3개 노트북 · 하루 120쪽 순환 + pinned 매일
+python3 scripts/onenote_graph.py --full          # 전수 1바퀴(30분+)
+python3 scripts/onenote_graph.py --page-id <id>  # 특정 페이지만
 ```
 
-`changed` 에 실제로 내용이 바뀐 페이지만 나온다. 처음 한 바퀴는 전부 changed 로 뜨는 게 정상이다
-(해시가 없으니까). 300자 미만은 건너뛴다. Graph 가 429 면 로컬 COM 으로 폴백하고 그 사실을 남긴다.
+`changed` 에 실제로 내용이 바뀐 페이지만 나온다. `firstSeen: true` 는 첫 기준선일 뿐 내용 변경이 아니다.
+`failed` 는 Graph 오류로 못 읽은 페이지 — **성공으로 보고하지 않는다**.
 
-## 2. 본문 확보 (파일로만)
+## 2. 구조·그림 파악 (COM, 보조)
 
 ```bash
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$(wslpath -w scripts/onenote-export.ps1)" \
@@ -49,8 +52,9 @@ python3 scripts/onenote_inventory_local.py --manifest data/onenote-manifest.json
   --raw /tmp/opencode/onenote-html --out data/onenote-inventory.json
 ```
 
-`data/onenote-inventory.json` 에 페이지별 제목·섹션·글자수·소제목·키워드·도입부가 있다.
-**본문 전문은 읽지 않는다.** 필요한 페이지만 `data/onenote-raw/<pageid>.xml` 에서 발췌한다.
+COM 내보내기는 **본문이 잘린다**(2026-11-07 실측 GI 8,219자 vs Graph 62,756자). 그래서 여기서는
+소제목·키워드·그림 유무 파악에만 쓰고, **본문 판단 재료는 Graph 에서 받는다**(`onenote_page.py`).
+본문 전문은 컨텍스트에 싣지 않고 파일로만 다룬다.
 
 ## 2-1. 그림이 있는 페이지
 
@@ -65,6 +69,25 @@ python3 scripts/onenote_images.py --xml /tmp/opencode/onenote-img/<id>.xml --pre
 
 `assets.json` 의 `assets` 배열을 `onenote-patch.json` 의 `assets` 로 넣으면 그림도 같은 커밋에 들어간다.
 `tags` 는 본문에 넣을 `<img>` 문자열이다. 그림은 **원본 페이지의 것만** 쓰고, 12장까지만 넣는다(`--max`).
+
+## 2-2. 전체 파악 → 발행처 분류 결정 (이 job 의 핵심, 로컬에서 끝낸다)
+
+변경 감지와 별개로 **매번 전체 구조를 먼저 본다**. 판단 순서는 고정이다.
+
+1. **전체 파악** — `data/onenote-manifest.json`(633쪽: Books_for_Meds 161 · Medical Deep Learning 385 ·
+   hyunsoo 87) + `data/onenote-hashes.json`(내용 해시) + `data/pages-index.json`(현재 발행된 98개 파일).
+2. **섹션 단위 분류** — 각 원노트 섹션을 아래 네 갈래 중 하나로 정한다.
+   - `update` — 기존 발행 파일의 단원에 써넣기(앵커). 예: 검진 protocol → `endoscopy-study`.
+   - `create-public` — 새 페이지를 **공개 GitHub Pages**(공개 repo)로. 학습·참고자료.
+   - `create-private` — 새 페이지를 **Cloudflare Pages**(비공개 repo + Access). 시술·개인·환자 사례.
+   - `skip` — 개인 재무(주식·코인·부동산)·PMC 행정·개원 준비 등 발행 대상 아님.
+3. **기록** — 결정은 **로컬에서 먼저** `data/onenote-map.json`(운영 매핑)과
+   `data/onenote-plan.json`(섹션→발행처·근거·상태)에 적는다. 이 파일이 유일한 결정 기록이다.
+4. **적용은 Actions** — 로컬에서는 저장소를 고치지 않는다. `onenote_submit.py` 로 job 만 넣는다.
+
+분류 기준(사용자 합의): 학습·임상 참고자료는 **public GitHub Pages**, 시술 프로토콜·환자 사례·개인
+행정은 **private Cloudflare Pages**, 개인 재무·투자 노트는 **skip**. 애매하면 publish 하지 않고
+`data/noti-queue.jsonl` 에 제안만 넣는다.
 
 ## 3. 후보 좁히기 (토큰 0)
 
