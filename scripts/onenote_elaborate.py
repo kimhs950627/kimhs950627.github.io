@@ -33,6 +33,7 @@ STATE = Path.home() / ".local" / "state" / "onenote"
 REPOS = STATE / "repos"
 TEXT = STATE / "text"
 MAPPING = STATE / "mapping-model.json"
+DIGEST = STATE / "digest.json"
 TEXT_OUT = Path("/tmp/opencode/elaborate.json")
 
 SYSTEM = """너는 개인 임상 노트를 이미 발행된 참고서 페이지에 **통합 편집**하는 편집자다.
@@ -87,6 +88,50 @@ def sections(html: str) -> list[tuple[str, str]]:
 
 def safe(pid: str) -> str:
     return re.sub(r"[^A-Za-z0-9!._-]", "_", pid)
+
+
+def slice_source(text: str, page_headings: list[str], seg_headings: list[str]) -> str:
+    """페이지 하나가 여러 발행 파일로 갈라질 때, 그 segment 의 소제목 구간만 잘라낸다.
+
+    자르지 않으면 같은 원문이 대상 파일 여러 개에 통째로 들어가 페이지끼리 내용이 중복된다
+    (2026-11-08 실측: '간담췌 파트 술기' 1쪽 → abdomen-technique·abdomen-findings·thyroid·
+    hernia·ct-mr 5개 파일).
+
+    경계는 '다른 segment 의 소제목'으로만 끊는다. 어느 segment 에도 안 잡힌 소제목은
+    앞 구간의 연속으로 본다(그래야 소제목 목록이 잘려 있어도 본문이 사라지지 않는다).
+    """
+    want = {h.strip() for h in (seg_headings or []) if h and h.strip()}
+    if not want:
+        return text
+    page_heads = {h.strip() for h in page_headings if h and h.strip()} | want
+
+    def match(line: str) -> str | None:
+        s = line.strip().lstrip("#").strip()
+        if not s:
+            return None
+        if s in page_heads:
+            return "__seg__" if s in want else "__other__"
+        for h in page_heads:
+            if len(h) >= 6 and (s.startswith(h) or h.startswith(s)):
+                return "__seg__" if h in want else "__other__"
+        return None
+
+    kept: list[str] = []
+    current = None
+    # 첫 소제목 앞의 머리 문단은 '첫 소제목을 가진 segment' 것으로 본다(그렇지 않으면 사라진다)
+    for line in text.splitlines():
+        who = match(line)
+        if who is not None:
+            current = who
+            break
+    for line in text.splitlines():
+        who = match(line)
+        if who is not None:
+            current = who
+        if current == "__seg__":
+            kept.append(line)
+    body = "\n".join(kept).strip()
+    return body or text
 
 
 def build(repo: str, rel: str, source_text: str, page_title: str) -> dict | None:
@@ -162,6 +207,7 @@ def main() -> int:
     min_conf = float(get("--min-confidence", "0.6"))
     out_path = Path(get("--out", str(TEXT_OUT)))
     mapping = json.loads(MAPPING.read_text(encoding="utf-8"))
+    digest = json.loads(DIGEST.read_text(encoding="utf-8")) if DIGEST.exists() else {"pages": {}}
     updates: list[dict] = []
 
     seen: set[tuple[str, str]] = set()
@@ -181,6 +227,13 @@ def main() -> int:
                 continue
             seen.add((repo, rel))
             src = f.read_text(encoding="utf-8", errors="ignore")[:14000]
+            heads: list[str] = []
+            for other in dec.get("segments") or []:  # 경계는 segment 소제목으로만 세운다(digest 소제목은 잘려 있음)
+                heads += [h for h in (other.get("headings") or []) if h not in heads]
+            multi = len({(s2.get("repo"), s2.get("file")) for s2 in dec.get("segments") or []
+                         if s2.get("repo") not in (None, "NEW")}) > 1
+            if multi:  # 한 페이지가 여러 파일로 갈라질 때만 자른다(단일 대상이면 전문을 넣는다)
+                src = slice_source(src, heads, seg.get("headings") or [])[:14000]
             upd = build(repo, rel, src, dec.get("page", ""))
             if upd:
                 updates.append(upd)
