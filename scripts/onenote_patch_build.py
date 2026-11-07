@@ -34,6 +34,17 @@ MAPPING = STATE / "mapping-model.json"
 DIGEST = STATE / "digest.json"
 OUT = Path("/tmp/opencode/patch-existing.json")
 
+SYSTEM_HTML = """너는 개인 학습 노트를 정적 HTML 페이지에 옮기는 편집자다. 주어진 원문 문단을 손실 없이 HTML 조각으로
+바꾼다. JSON 이 아니라 HTML 만 출력한다(설명·머리말·코드펜스 금지).
+
+규칙:
+- 원문에 있는 내용만 쓴다. 요약·창작·추측 금지. 없는 수치는 "확인 필요"로 남긴다.
+- 태그는 h3, h4, p, ul, ol, li, table, thead, tbody, tr, th, td, strong, em, dl, dt, dd 만 쓴다.
+- <html>, <body>, <section>, <script>, style·class 속성 금지.
+- 제목 줄은 h3, 표는 table 로. 원문 구조를 보존한다.
+- 개인정보·연락처·금액·환자 식별자는 옮기지 않는다.
+"""
+
 SYSTEM = """너는 개인 학습 노트를 정적 HTML 페이지에 옮기는 편집자다. 원노트 문단 하나와 대상 파일의 단원(h2) 목록이
 주어지면, 그 내용을 손실 없이 HTML 조각으로 바꾸고 **어느 단원에 넣을지** 고른다.
 
@@ -128,6 +139,8 @@ def main() -> int:
     get = lambda k, d="": a[a.index(k) + 1] if k in a else d
     only_page = get("--page")
     min_conf = float(get("--min-confidence", "0.6"))
+    html_only = "--html-only" in a
+    out_path = Path(get("--out", str(OUT)))
 
     mapping = json.loads(MAPPING.read_text(encoding="utf-8"))
     digest = json.loads(DIGEST.read_text(encoding="utf-8"))["pages"]
@@ -177,7 +190,12 @@ def main() -> int:
 >>>
 """
             try:
-                out = parse_json(call(prompt, max_tokens=6000, system=SYSTEM))
+                if html_only:
+                    raw = call(prompt, max_tokens=16000, system=SYSTEM_HTML)
+                    html_txt = re.sub(r"^```(?:html)?|```$", "", raw.strip(), flags=re.M).strip()
+                    out = {"html": html_txt, "anchor_id": ""}
+                else:
+                    out = parse_json(call(prompt, max_tokens=12000, system=SYSTEM))
             except Exception as err:  # noqa: BLE001
                 skipped.append(f"{page}/{rel}: API 실패 {err}")
                 continue
@@ -209,9 +227,9 @@ def main() -> int:
 
     patch = {"updates": updates, "source": {"generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                                             "model": MODEL, "pages": len({u['source']['page'] for u in updates})}}
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(patch, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(json.dumps({"out": str(OUT), "updates": len(updates), "skipped": skipped}, ensure_ascii=False))
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(patch, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(json.dumps({"out": str(out_path), "updates": len(updates), "skipped": skipped}, ensure_ascii=False))
     return 0
 
 

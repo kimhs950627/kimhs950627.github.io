@@ -58,25 +58,31 @@ python3 scripts/onenote_map_model.py      # 아직 안 한 페이지만, >=600�
 - confidence < 0.6 은 적용하지 않고 큐에 제안만 남긴다.
 - 발행 규칙(공개/비공개/skip)은 `data/onenote-rules.json` 이 SSOT다.
 
-## 4. 패치 생성 (기존 페이지)
+## 4. 기존 페이지 — **덧붙이지 말고 통합 편집(elaborate)**
 
 ```bash
-python3 scripts/onenote_patch_build.py    # confidence>=0.6 · 기존 파일만
+python3 scripts/onenote_elaborate.py --all     # 단원 단위 교체
 ```
 
-- 원문은 **문단 단위로 잘라** 대상 repo 에 보낸다. 모델이 앵커(`h2 id`)까지 고른다.
-- 출력 `/tmp/opencode/patch-existing.json` (updates: repo/file/anchor_id|region/html).
-- 앵커가 없으면 `region: onenote` 구간 삽입(마커가 없으면 `</main>` 앞에 1회 생성).
+- 대상 페이지의 **단원(section) HTML** 과 원노트 내용을 함께 모델에 주고, 새 사실을 **기존 단원의 제자리**에
+  녹여 넣은 단원 HTML 을 받는다. 페이지 아래에 원노트 복사본을 쌓는 방식은 금지.
+- 페이지에 이미 `onenote` 부록(마커 구간)이 쌓여 있으면 그것을 흡수 대상 원문으로 쓰고, 흡수 후
+  **그 단원을 삭제**한다.
+- 검증: 기존 사실(숫자·약물명·고유명사) **보존율 90%** 미만인 단원은 적용하지 않는다(모델이 내용을 흘렸을 때 방어).
+- 출력 `updates[] = {repo,file,sections:{단원id: 새 HTML}, remove_sections:["onenote"]}`.
+- 신규 주제가 어느 단원에도 안 맞으면 그때만 h3 소절로 가장 가까운 단원에 넣는다.
+- 모델은 **GitHub Actions 에서 호출하는 것을 우선**한다(키는 secret). Actions 로 돌릴 수 없을 때만 로컬.
 
 ## 5. 신규 페이지
 
 `mapping-model.json` 의 `repo: "NEW"` 세그먼트는 새 페이지로 만든다.
 
-- 공개 학습자료 → 공개 repo(GitHub Pages). 시술·개인·사례 → 비공개 repo(Cloudflare Pages).
-- 새 repo 는 `gh repo create` 로 만든 뒤 **기존 시리즈의 `styles/` 를 복사**해 톤을 맞춘다
-  (예: `ultrasound-protocol-study` ← `primary-care-protocol` 토큰/CSS).
-- 페이지 본문은 원문 문단에서만 만들고, `create: true` + `index_link` 로 job 에 넣는다.
-- 디자인 표면이면 `design-craft`(+`site-craft`)를 로드하고 `design-lint.py`·`page-check.sh` 를 통과시킨다.
+- **무조건 `design-craft`(+`site-craft`)로 디자인**한다. 기존 시리즈가 있으면 그 토큰·CSS를 재사용해 톤을 맞춘다.
+- **공개/비공개 판단**
+  - 환자정보·검사 원본·사례, 금융·수입, 저작권 있는 자료 → **비공개 Cloudflare Pages** (`publish.py --private`)
+  - 그 외 학습·임상 참고자료 → 공개 GitHub Pages
+- 새 repo 는 `gh repo create` 후 `styles/` 복사, `create: true` + `index_link` 로 job 에 넣는다.
+- `design-lint.py` 0 HIGH, `page-check.sh` 0 HIGH/0 MED 를 통과해야 제출한다.
 
 ## 6. c — 제출 (적용은 Actions)
 

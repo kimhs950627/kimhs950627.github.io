@@ -136,7 +136,38 @@ def apply_one(update: dict, check_only: bool) -> str:
             return f"{repo}/{rel}: 새 페이지 생성·push 완료"
         text = target.read_text(encoding="utf-8")
 
-        if update.get("remove"):
+        if update.get("sections"):
+            # elaborate 모드: 기존 단원(section) HTML 을 통째로 교체한다(덧붙이기 아님).
+            # 이 저장소들의 단원은 <section aria-labelledby="x"><h2 id="x"> 모양이라, section 태그에
+            # id 가 없을 수 있다 → 블록 안의 h2 id 로 식별한다.
+            sec_pat = re.compile(r"<section\b[^>]*>.*?</section>", re.S)
+
+            def _sid(block: str) -> str:
+                m = re.search(r'<h2[^>]*\bid="([^"]+)"', block) or re.search(r'aria-labelledby="([^"]+)"', block)
+                return m.group(1) if m else ""
+
+            want = update["sections"]
+            drop = set(update.get("remove_sections") or [])
+            replaced: list[str] = []
+
+            def _repl(m):
+                block = m.group(0)
+                if block.count("<section") > 1:
+                    return block
+                sid = _sid(block)
+                if sid in want:
+                    replaced.append(sid)
+                    return want[sid].strip()
+                if sid in drop:
+                    return ""
+                return block
+
+            new = sec_pat.sub(_repl, text)
+            new = re.sub(r"\n{3,}", "\n\n", new)
+            if not replaced:
+                return f"{repo}/{rel}: 교체할 단원 없음 — 건드리지 않음"
+            html = "elaborate"
+        elif update.get("remove"):
             pat = region_pattern(region)
             if not pat.search(text):
                 return f"{repo}/{rel}: 삭제할 '{region}' 구간 없음"
@@ -167,7 +198,7 @@ def apply_one(update: dict, check_only: bool) -> str:
         if new == text:
             return f"{repo}/{rel}: 변경 없음"
         if check_only:
-            return f"{repo}/{rel}: 변경 예정 ({len(html)}자)"
+            return f"{repo}/{rel}: 변경 예정 ({len(new) - len(text):+d}자)"
 
         target.write_text(new, encoding="utf-8")
         added = [rel]
