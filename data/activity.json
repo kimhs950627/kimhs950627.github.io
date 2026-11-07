@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-07 16:06 UTC",
+  "generated_at": "2026-11-07 23:11 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
     "repos": 84,
     "listed": 18,
-    "changed": 0,
+    "changed": 4,
     "unlisted": 0
   },
   "changes": [
@@ -14,9 +14,27 @@
       "repo": "ward-nights",
       "kind": "push",
       "label": "수정",
+      "text": "docs(onenote): glucose.html — 덧붙인 원노트 내용을 단원에 통합",
+      "url": "https://kimhs950627.github.io/ward-nights/",
+      "sha": "1955a745a1ce26faf0d3c43dbfd80022d42dfe9b"
+    },
+    {
+      "at": "2026-11-08",
+      "repo": "ward-nights",
+      "kind": "push",
+      "label": "수정",
       "text": "chore(onenote): 내과병동 당직 어시스트 텍스트 — 출혈·소변량·복통/설사 — 야간 처방",
       "url": "https://kimhs950627.github.io/ward-nights/",
       "sha": "b5342d731ded68679902b5107eaf563973ec2ce7"
+    },
+    {
+      "at": "2026-11-08",
+      "repo": "ultrasound-protocol-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "docs(onenote): 참고자료 — 원노트 내용을 단원에 통합",
+      "url": "https://kimhs950627.github.io/ultrasound-protocol-study/",
+      "sha": "d6f48e6ffb5acd214704a4fa48bb679506d0a9d4"
     },
     {
       "at": "2026-11-08",
@@ -48,9 +66,27 @@
       "repo": "lab-followup",
       "kind": "push",
       "label": "수정",
+      "text": "docs(onenote): urine.html — 덧붙인 원노트 내용을 단원에 통합",
+      "url": "https://kimhs950627.github.io/lab-followup/",
+      "sha": "7fdebccc75e75ed7863e0153e190cfc9ea64edd3"
+    },
+    {
+      "at": "2026-11-08",
+      "repo": "lab-followup",
+      "kind": "push",
+      "label": "수정",
       "text": "chore(onenote): Endo 학회 정리 — 갑상선 기능이상(무증상 포함)·갑상선염·임신 중 갑상선·결절 감별의 임상 정리",
       "url": "https://kimhs950627.github.io/lab-followup/",
       "sha": "e8e12ff133f19a7ea1549c50c4903f5b464c2701"
+    },
+    {
+      "at": "2026-11-08",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "03193c0b681accb4c462123bc7e4fc04d4e7b1e5"
     },
     {
       "at": "2026-11-08",
