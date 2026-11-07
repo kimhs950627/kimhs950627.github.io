@@ -107,7 +107,33 @@ def apply_one(update: dict, check_only: bool) -> str:
         clone(repo, tmp / "repo")
         target = tmp / "repo" / rel
         if not target.exists():
-            return f"{repo}/{rel}: 파일 없음"
+            if not (update.get("create") and html):
+                return f"{repo}/{rel}: 파일 없음"
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(html, encoding="utf-8")
+            added = [rel]
+            link = update.get("index_link") or {}
+            if link.get("file") and link.get("html"):
+                ip = tmp / "repo" / link["file"]
+                if ip.exists():
+                    it = ip.read_text(encoding="utf-8")
+                    marker = link.get("before") or "</main>"
+                    if marker in it:
+                        ip.write_text(it.replace(marker, link["html"].rstrip() + "\n" + marker, 1), encoding="utf-8")
+                        added.append(link["file"])
+            if check_only:
+                return f"{repo}/{rel}: 새 페이지 생성 예정"
+            msg = update.get("commit_message") or "chore: 원노트 새 페이지"
+            subprocess.run(["git", "-C", str(tmp / "repo"), "add", *added], check=True)
+            subprocess.run(
+                ["git", "-C", str(tmp / "repo"), "-c", "user.name=kimhs950627", "-c", "user.email=kimhs950627@gmail.com",
+                 "commit", "-q", "-m", msg],
+                check=True,
+            )
+            push = subprocess.run(["git", "-C", str(tmp / "repo"), "push", "-q"], capture_output=True, text=True)
+            if push.returncode != 0:
+                return f"{repo}/{rel}: push 실패 — {push.stderr.strip()[:200]}"
+            return f"{repo}/{rel}: 새 페이지 생성·push 완료"
         text = target.read_text(encoding="utf-8")
 
         if update.get("remove"):
