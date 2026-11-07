@@ -1,9 +1,9 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-07 14:43 UTC",
+  "generated_at": "2026-11-07 14:46 UTC",
   "total": 16,
-  "link_total": 32,
+  "link_total": 37,
   "groups": [
     {
       "id": "study",
@@ -76,6 +76,11 @@
             {
               "label": "환자용 안내문",
               "url": "https://kimhs950627.github.io/primary-care-protocol/handout.html",
+              "status": ""
+            },
+            {
+              "label": "소화기 약속처방",
+              "url": "https://kimhs950627.github.io/primary-care-protocol/gi.html",
               "status": ""
             }
           ],
@@ -152,6 +157,39 @@
             {
               "label": "합본 PDF (LFS)",
               "url": "https://github.com/kimhs950627/endoscopy-study/releases/latest/download/EGD-workbook.pdf",
+              "status": ""
+            }
+          ],
+          "locked": false,
+          "updated": "2026-11-07"
+        },
+        {
+          "repo": "ultrasound-protocol-study",
+          "url": "https://kimhs950627.github.io/ultrasound-protocol-study/",
+          "host": "kimhs950627.github.io/ultrasound-protocol-study",
+          "title": "검진 초음파 프로토콜 — 복부·경동맥·갑상선",
+          "note": "복부·경동맥·갑상선·서혜부 초음파의 술기, 소견, 판독문. 근골격계·통증은 제외.",
+          "category": "study",
+          "order": 13,
+          "links": [
+            {
+              "label": "복부 술기",
+              "url": "https://kimhs950627.github.io/ultrasound-protocol-study/abdomen-technique.html",
+              "status": ""
+            },
+            {
+              "label": "간담췌 소견",
+              "url": "https://kimhs950627.github.io/ultrasound-protocol-study/abdomen-findings.html",
+              "status": ""
+            },
+            {
+              "label": "경동맥",
+              "url": "https://kimhs950627.github.io/ultrasound-protocol-study/carotid.html",
+              "status": ""
+            },
+            {
+              "label": "판독문",
+              "url": "https://kimhs950627.github.io/ultrasound-protocol-study/reporting.html",
               "status": ""
             }
           ],
@@ -378,24 +416,6 @@
           "links": [],
           "locked": false,
           "updated": "2026-11-01"
-        }
-      ]
-    },
-    {
-      "id": "other",
-      "label": "그 밖",
-      "pages": [
-        {
-          "repo": "ultrasound-protocol-study",
-          "url": "https://kimhs950627.github.io/ultrasound-protocol-study/",
-          "host": "kimhs950627.github.io/ultrasound-protocol-study",
-          "title": "검진 초음파 프로토콜",
-          "note": "복부·경동맥·갑상선 초음파의 술기, 소견, 판독문을 한 곳에 정리한 개인 참고서.",
-          "category": "other",
-          "order": 9999,
-          "links": [],
-          "locked": false,
-          "updated": "2026-11-07"
         }
       ]
     }
