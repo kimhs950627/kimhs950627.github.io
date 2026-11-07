@@ -39,12 +39,16 @@ TEXT = Path.home() / ".local" / "state" / "onenote" / "text"
 RETRY_STATUS = {429, 503, 504}
 
 
-def call(url: str, token: str, etag: str = "", attempts: int = 4) -> tuple[int, dict, bytes]:
-    """429/503/504 는 지수 백오프로 재시도한다(실측: 429 가 섹션 9개를 통째로 실패시켰다)."""
+def call(url: str, token: str, etag: str = "", attempts: int = 5) -> tuple[int, dict, bytes]:
+    """429/503/504 는 지수 백오프로 재시도한다.
+
+    실측 2026-11-08: 이 계정은 Retry-After 헤더 없이 20166(too many requests)을 즉시 돌려주고,
+    연속 호출이 모두 막힌다. 7초 안의 재시도로는 풀리지 않아 10s→60s 로 늘려 최대 130초 기다린다.
+    """
     headers = {"Authorization": f"Bearer {token}"}
     if etag:
         headers["If-None-Match"] = etag
-    delay = 1.0
+    delay = 10.0
     for i in range(attempts):
         req = urllib.request.Request(url, headers=headers)
         try:
@@ -58,11 +62,11 @@ def call(url: str, token: str, etag: str = "", attempts: int = 4) -> tuple[int, 
             after = (err.headers or {}).get("Retry-After") if err.headers else None
             if after:
                 try:
-                    wait = min(float(after), 30.0)
+                    wait = min(float(after), 60.0)
                 except ValueError:
                     pass
             time.sleep(wait)
-            delay = min(delay * 2, 20.0)
+            delay = min(delay * 2, 60.0)
     raise AssertionError("unreachable")
 
 
