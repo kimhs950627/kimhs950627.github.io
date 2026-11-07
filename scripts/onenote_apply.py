@@ -143,7 +143,9 @@ def apply_one(update: dict, check_only: bool) -> str:
             sec_pat = re.compile(r"<section\b[^>]*>.*?</section>", re.S)
 
             def _sid(block: str) -> str:
-                m = re.search(r'<h2[^>]*\bid="([^"]+)"', block) or re.search(r'aria-labelledby="([^"]+)"', block)
+                m = (re.search(r'<h2[^>]*\bid="([^"]+)"', block)
+                     or re.search(r'aria-labelledby="([^"]+)"', block)
+                     or re.search(r'<section[^>]*\bid="([^"]+)"', block))
                 return m.group(1) if m else ""
 
             want = update["sections"]
@@ -195,6 +197,9 @@ def apply_one(update: dict, check_only: bool) -> str:
             else:
                 new = pat.sub(lambda m: f"{m.group(1)}\n{html}\n{m.group(3)}", text)
 
+        if not html and not update.get("sections") and not update.get("create") and not update.get("remove"):
+            # 빈 html 로 region 을 지워버리는 사고 방지(2026-11-07: 구버전 스크립트가 부록을 비웠다)
+            return f"{repo}/{rel}: 빈 html — 건드리지 않음"
         if new == text:
             return f"{repo}/{rel}: 변경 없음"
         if check_only:
