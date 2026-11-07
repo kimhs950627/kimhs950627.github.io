@@ -1,335 +1,337 @@
 {
- "_note": "손으로 고치는 파일. 여기 없는 저장소는 자동으로 '그 밖'에 들어가고 제목·설명은 그 페이지의 <title>·meta description을 쓴다. links 는 그 페이지 안의 워크북·장 단위 바로가기다(빌드할 때 200 확인 후 남는다).",
- "category_order": [
-  {
-   "id": "study",
-   "label": "임상 학습"
-  },
-  {
-   "id": "research",
-   "label": "연구 설계"
-  },
-  {
-   "id": "tooling",
-   "label": "도구"
-  },
-  {
-   "id": "travel",
-   "label": "여행"
-  },
-  {
-   "id": "other",
-   "label": "그 밖"
-  }
- ],
- "pages": {
-  "endoscopy-study": {
-   "category": "study",
-   "order": 10,
-   "title": "내시경 워크북 — EGD · CFS",
-   "note": "상부위장관내시경과 대장내시경 학습 워크북. EndoTODAY 참고서와 학회 노트를 매일 갱신.",
-   "links": [
+  "_note": "손으로 고치는 파일. 여기 없는 저장소는 자동으로 '그 밖'에 들어가고 제목·설명은 그 페이지의 <title>·meta description을 쓴다. links 는 그 페이지 안의 워크북·장 단위 바로가기다(빌드할 때 200 확인 후 남는다).",
+  "category_order": [
     {
-     "label": "EGD 워크북",
-     "url": "https://kimhs950627.github.io/endoscopy-study/egd/",
-     "kind": "workbook"
+      "id": "study",
+      "label": "임상 학습"
     },
     {
-     "label": "CFS(대장) 워크북",
-     "url": "https://kimhs950627.github.io/endoscopy-study/cfs/",
-     "kind": "workbook"
+      "id": "research",
+      "label": "연구 설계"
     },
     {
-     "label": "감별 증례",
-     "url": "https://kimhs950627.github.io/endoscopy-study/egd/07-감별증례.html"
+      "id": "tooling",
+      "label": "도구"
     },
     {
-     "label": "합본 PDF (LFS)",
-     "url": "https://github.com/kimhs950627/endoscopy-study/releases/latest/download/EGD-workbook.pdf",
-     "kind": "pdf"
+      "id": "travel",
+      "label": "여행"
+    },
+    {
+      "id": "other",
+      "label": "그 밖"
     }
-   ],
-   "url": "https://kimhs950627.github.io/endoscopy-study/",
-   "host": "kimhs950627.github.io/endoscopy-study"
-  },
-  "ktirads-study": {
-   "category": "study",
-   "order": 20,
-   "title": "K-TIRADS 2021 암기 노트",
-   "note": "갑상선결절 초음파 분류 체계를 외우기 위한 노트.",
-   "links": [
-    {
-     "label": "5분 요약",
-     "url": "https://kimhs950627.github.io/ktirads-study/01-1-한-문장-정의와-5분-요약.html"
+  ],
+  "pages": {
+    "endoscopy-study": {
+      "category": "study",
+      "order": 10,
+      "title": "내시경 워크북 — EGD · CFS",
+      "note": "상부위장관내시경과 대장내시경 학습 워크북. EndoTODAY 참고서와 학회 노트를 매일 갱신.",
+      "links": [
+        {
+          "label": "EGD 워크북",
+          "url": "https://kimhs950627.github.io/endoscopy-study/egd/",
+          "kind": "workbook"
+        },
+        {
+          "label": "CFS(대장) 워크북",
+          "url": "https://kimhs950627.github.io/endoscopy-study/cfs/",
+          "kind": "workbook"
+        },
+        {
+          "label": "감별 증례",
+          "url": "https://kimhs950627.github.io/endoscopy-study/egd/07-감별증례.html"
+        },
+        {
+          "label": "합본 PDF (LFS)",
+          "url": "https://github.com/kimhs950627/endoscopy-study/releases/latest/download/EGD-workbook.pdf",
+          "kind": "pdf"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "host": "kimhs950627.github.io/endoscopy-study"
     },
-    {
-     "label": "등급별 악성률 표",
-     "url": "https://kimhs950627.github.io/ktirads-study/04-4-등급별-악성률과-생검-기준-한-표.html"
+    "ktirads-study": {
+      "category": "study",
+      "order": 20,
+      "title": "K-TIRADS 2021 암기 노트",
+      "note": "갑상선결절 초음파 분류 체계를 외우기 위한 노트.",
+      "links": [
+        {
+          "label": "5분 요약",
+          "url": "https://kimhs950627.github.io/ktirads-study/01-1-한-문장-정의와-5분-요약.html"
+        },
+        {
+          "label": "등급별 악성률 표",
+          "url": "https://kimhs950627.github.io/ktirads-study/04-4-등급별-악성률과-생검-기준-한-표.html"
+        },
+        {
+          "label": "증례 연습",
+          "url": "https://kimhs950627.github.io/ktirads-study/09-9-예시-증례-연습용-실제-환자-아님.html"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/ktirads-study/",
+      "host": "kimhs950627.github.io/ktirads-study"
     },
-    {
-     "label": "증례 연습",
-     "url": "https://kimhs950627.github.io/ktirads-study/09-9-예시-증례-연습용-실제-환자-아님.html"
+    "fundoscopy-study": {
+      "category": "study",
+      "order": 30,
+      "title": "안저 판독 · Vision Mamba",
+      "note": "안저 AI 앱과 학습자료를 한데 모은 프로젝트 허브. Vision Mamba 설명 포함.",
+      "links": [
+        {
+          "label": "Vision Mamba 설명",
+          "url": "https://kimhs950627.github.io/fundoscopy-study/docs/vision-mamba.html"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/fundoscopy-study/",
+      "host": "kimhs950627.github.io/fundoscopy-study"
+    },
+    "ml_dl_study_material": {
+      "category": "study",
+      "order": 40,
+      "title": "ML/DL 학습 워크북",
+      "note": "단계별 워크북. softmax·cross-entropy 수치 예제부터 시작한다.",
+      "links": [
+        {
+          "label": "CT-HMM · HFmrEF 워크북",
+          "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/ct-hmm-hfmref/",
+          "kind": "workbook"
+        },
+        {
+          "label": "softmax · cross-entropy 워크북",
+          "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/softmax-cross-entropy/",
+          "kind": "workbook"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/ml_dl_study_material/",
+      "host": "kimhs950627.github.io/ml_dl_study_material"
+    },
+    "27paper-echo-hfmref": {
+      "category": "research",
+      "order": 10,
+      "title": "HFmrEF는 두 갈래로 갈라진다",
+      "note": "EF 40–49에서 진행·회복·사망을 다중상태 모형과 CT-HMM으로 예측하는 연구 설계. MIMIC-IV-ECHO 5,315명.",
+      "links": [
+        {
+          "label": "리뷰 노트",
+          "url": "https://kimhs950627.github.io/27paper-echo-hfmref/review/"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/27paper-echo-hfmref/",
+      "host": "kimhs950627.github.io/27paper-echo-hfmref"
+    },
+    "27paper-echo-topic-gdmt": {
+      "category": "research",
+      "order": 20,
+      "title": "EF가 떨어져도 약은 그대로",
+      "note": "EF 하락 후 4제 요법이 시작되지 않는 환자를 예측하는 치료 격차 연구 설계.",
+      "links": [
+        {
+          "label": "리뷰 노트",
+          "url": "https://kimhs950627.github.io/27paper-echo-topic-gdmt/review/"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/27paper-echo-topic-gdmt/",
+      "host": "kimhs950627.github.io/27paper-echo-topic-gdmt"
+    },
+    "27paper-echo-plan": {
+      "category": "research",
+      "order": 30,
+      "title": "EF 40–50%에서 무엇을 더 볼 것인가",
+      "note": "영상과 예후 라벨을 함께 가진 공개 데이터의 실지형, 그리고 재층화 연구 계획.",
+      "url": "https://kimhs950627.github.io/27paper-echo-plan/",
+      "host": "kimhs950627.github.io/27paper-echo-plan"
+    },
+    "ksecho-research": {
+      "category": "research",
+      "order": 40,
+      "title": "KSEcho 연구 자료",
+      "note": "심초음파 AI·오픈데이터 전략과 도플러 E/e′ 실험설계.",
+      "links": [
+        {
+          "label": "도플러 프로토콜",
+          "url": "https://kimhs950627.github.io/ksecho-research/doppler-protocol.html"
+        },
+        {
+          "label": "AI 트랙",
+          "url": "https://kimhs950627.github.io/ksecho-research/ai-tracks.html"
+        },
+        {
+          "label": "리더 연구",
+          "url": "https://kimhs950627.github.io/ksecho-research/reader-study.html"
+        },
+        {
+          "label": "에코 AI 리포트",
+          "url": "https://kimhs950627.github.io/ksecho-research/reports/echo-ai-report.html"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/ksecho-research/",
+      "host": "kimhs950627.github.io/ksecho-research"
+    },
+    "ai-research-copilot": {
+      "category": "tooling",
+      "order": 10,
+      "title": "AI Research Copilot",
+      "note": "논문·발표 워크플로를 자동화하는 OpenCode 스킬 7종과 KNHANES 실전 가이드.",
+      "links": [
+        {
+          "label": "가이드",
+          "url": "https://kimhs950627.github.io/ai-research-copilot/guide/"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/ai-research-copilot/",
+      "host": "kimhs950627.github.io/ai-research-copilot"
+    },
+    "iberia-2027-02": {
+      "category": "travel",
+      "order": 10,
+      "title": "포르투갈 · 스페인 2027-02",
+      "note": "4도시 10박 11일. 항공·숙소·일정·예산을 한 파일로 정리한 여행 계획.",
+      "url": "https://kimhs950627.github.io/iberia-2027-02/",
+      "host": "kimhs950627.github.io/iberia-2027-02"
+    },
+    "hcc-vs-hemangioma": {
+      "category": "research",
+      "order": 50,
+      "url": "https://kimhs950627.github.io/hcc-vs-hemangioma/talk/",
+      "title": "AI가 예측한 간암, 확률을 넘어 유사도 점수까지",
+      "note": "B-mode 간초음파로 간세포암과 혈관종을 가르는 분류 연구. 학회 발표 13장과 브라우저 추론 데모.",
+      "links": [
+        {
+          "label": "추론 데모",
+          "url": "https://kimhs950627.github.io/hcc-vs-hemangioma/web-demo/"
+        },
+        {
+          "label": "연구 저장소",
+          "url": "https://github.com/kimhs950627/hcc-vs-hemangioma"
+        }
+      ],
+      "manual": true
+    },
+    "neurology-outpatient-reference": {
+      "category": "study",
+      "order": 5,
+      "access": "private",
+      "url": "https://neuro-ref.pages.dev/",
+      "title": "신경과 외래 참고서",
+      "note": "일차의료를 위한 초기평가·치료·추적관리. 증상별 접근과 부록. 승인한 이메일만 열린다.",
+      "host": "neuro-ref.pages.dev",
+      "slug": "neuro-ref"
+    },
+    "lab-followup": {
+      "category": "study",
+      "order": 6,
+      "title": "검진 Lab 이상 후속관리",
+      "note": "혈뇨·단백뇨, 간수치 상승, 무증상 갑상선기능이상. 재검 주기와 의뢰 기준을 도해로 정리.",
+      "links": [
+        {
+          "label": "혈뇨·단백뇨",
+          "url": "https://kimhs950627.github.io/lab-followup/urine.html"
+        },
+        {
+          "label": "간수치 상승",
+          "url": "https://kimhs950627.github.io/lab-followup/liver.html"
+        },
+        {
+          "label": "갑상선기능",
+          "url": "https://kimhs950627.github.io/lab-followup/thyroid.html"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/lab-followup/",
+      "host": "kimhs950627.github.io/lab-followup"
+    },
+    "primary-care-protocol": {
+      "category": "study",
+      "order": 7,
+      "title": "외래 프로토콜 — 혈압·지질·혈당",
+      "note": "고혈압·이상지질혈증·당뇨의 진단→처방→부작용→추적→급여를 같은 형식으로. 환자용 안내문 1장 포함.",
+      "links": [
+        {
+          "label": "고혈압",
+          "url": "https://kimhs950627.github.io/primary-care-protocol/hypertension.html"
+        },
+        {
+          "label": "이상지질혈증",
+          "url": "https://kimhs950627.github.io/primary-care-protocol/lipid.html"
+        },
+        {
+          "label": "당뇨",
+          "url": "https://kimhs950627.github.io/primary-care-protocol/diabetes.html"
+        },
+        {
+          "label": "환자용 안내문",
+          "url": "https://kimhs950627.github.io/primary-care-protocol/handout.html"
+        },
+        {
+          "label": "소화기 약속처방",
+          "url": "https://kimhs950627.github.io/primary-care-protocol/gi.html"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/primary-care-protocol/",
+      "host": "kimhs950627.github.io/primary-care-protocol"
+    },
+    "ward-nights": {
+      "category": "study",
+      "order": 8,
+      "title": "병동 당직 — 야간 호출 대응",
+      "note": "발열·숨참·의식저하·저혈압·혈당·복통출혈을 호출 순서대로. 첫 세트(ABC+BST)와 상의 기준 강조.",
+      "links": [
+        {
+          "label": "발열",
+          "url": "https://kimhs950627.github.io/ward-nights/fever.html"
+        },
+        {
+          "label": "숨참·저산소",
+          "url": "https://kimhs950627.github.io/ward-nights/breathing.html"
+        },
+        {
+          "label": "의식저하",
+          "url": "https://kimhs950627.github.io/ward-nights/mental.html"
+        },
+        {
+          "label": "저혈압·고혈압",
+          "url": "https://kimhs950627.github.io/ward-nights/circulation.html"
+        },
+        {
+          "label": "혈당",
+          "url": "https://kimhs950627.github.io/ward-nights/glucose.html"
+        },
+        {
+          "label": "복통·출혈",
+          "url": "https://kimhs950627.github.io/ward-nights/gi.html"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/ward-nights/",
+      "host": "kimhs950627.github.io/ward-nights"
+    },
+    "ultrasound-protocol-study": {
+      "category": "study",
+      "order": 13,
+      "title": "검진 초음파 프로토콜 — 복부·경동맥·갑상선",
+      "note": "복부·경동맥·갑상선·서혜부 초음파의 술기, 소견, 판독문. 근골격계·통증은 제외.",
+      "links": [
+        {
+          "label": "복부 술기",
+          "url": "https://kimhs950627.github.io/ultrasound-protocol-study/abdomen-technique.html"
+        },
+        {
+          "label": "간담췌 소견",
+          "url": "https://kimhs950627.github.io/ultrasound-protocol-study/abdomen-findings.html"
+        },
+        {
+          "label": "경동맥",
+          "url": "https://kimhs950627.github.io/ultrasound-protocol-study/carotid.html"
+        },
+        {
+          "label": "판독문",
+          "url": "https://kimhs950627.github.io/ultrasound-protocol-study/reporting.html"
+        }
+      ],
+      "url": "https://kimhs950627.github.io/ultrasound-protocol-study/",
+      "host": "kimhs950627.github.io/ultrasound-protocol-study"
     }
-   ],
-   "url": "https://kimhs950627.github.io/ktirads-study/",
-   "host": "kimhs950627.github.io/ktirads-study"
   },
-  "fundoscopy-study": {
-   "category": "study",
-   "order": 30,
-   "title": "안저 판독 · Vision Mamba",
-   "note": "안저 AI 앱과 학습자료를 한데 모은 프로젝트 허브. Vision Mamba 설명 포함.",
-   "links": [
-    {
-     "label": "Vision Mamba 설명",
-     "url": "https://kimhs950627.github.io/fundoscopy-study/docs/vision-mamba.html"
-    }
-   ],
-   "url": "https://kimhs950627.github.io/fundoscopy-study/",
-   "host": "kimhs950627.github.io/fundoscopy-study"
-  },
-  "ml_dl_study_material": {
-   "category": "study",
-   "order": 40,
-   "title": "ML/DL 학습 워크북",
-   "note": "단계별 워크북. softmax·cross-entropy 수치 예제부터 시작한다.",
-   "links": [
-    {
-     "label": "CT-HMM · HFmrEF 워크북",
-     "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/ct-hmm-hfmref/",
-     "kind": "workbook"
-    },
-    {
-     "label": "softmax · cross-entropy 워크북",
-     "url": "https://kimhs950627.github.io/ml_dl_study_material/workbooks/softmax-cross-entropy/",
-     "kind": "workbook"
-    }
-   ],
-   "url": "https://kimhs950627.github.io/ml_dl_study_material/",
-   "host": "kimhs950627.github.io/ml_dl_study_material"
-  },
-  "27paper-echo-hfmref": {
-   "category": "research",
-   "order": 10,
-   "title": "HFmrEF는 두 갈래로 갈라진다",
-   "note": "EF 40–49에서 진행·회복·사망을 다중상태 모형과 CT-HMM으로 예측하는 연구 설계. MIMIC-IV-ECHO 5,315명.",
-   "links": [
-    {
-     "label": "리뷰 노트",
-     "url": "https://kimhs950627.github.io/27paper-echo-hfmref/review/"
-    }
-   ],
-   "url": "https://kimhs950627.github.io/27paper-echo-hfmref/",
-   "host": "kimhs950627.github.io/27paper-echo-hfmref"
-  },
-  "27paper-echo-topic-gdmt": {
-   "category": "research",
-   "order": 20,
-   "title": "EF가 떨어져도 약은 그대로",
-   "note": "EF 하락 후 4제 요법이 시작되지 않는 환자를 예측하는 치료 격차 연구 설계.",
-   "links": [
-    {
-     "label": "리뷰 노트",
-     "url": "https://kimhs950627.github.io/27paper-echo-topic-gdmt/review/"
-    }
-   ],
-   "url": "https://kimhs950627.github.io/27paper-echo-topic-gdmt/",
-   "host": "kimhs950627.github.io/27paper-echo-topic-gdmt"
-  },
-  "27paper-echo-plan": {
-   "category": "research",
-   "order": 30,
-   "title": "EF 40–50%에서 무엇을 더 볼 것인가",
-   "note": "영상과 예후 라벨을 함께 가진 공개 데이터의 실지형, 그리고 재층화 연구 계획.",
-   "url": "https://kimhs950627.github.io/27paper-echo-plan/",
-   "host": "kimhs950627.github.io/27paper-echo-plan"
-  },
-  "ksecho-research": {
-   "category": "research",
-   "order": 40,
-   "title": "KSEcho 연구 자료",
-   "note": "심초음파 AI·오픈데이터 전략과 도플러 E/e′ 실험설계.",
-   "links": [
-    {
-     "label": "도플러 프로토콜",
-     "url": "https://kimhs950627.github.io/ksecho-research/doppler-protocol.html"
-    },
-    {
-     "label": "AI 트랙",
-     "url": "https://kimhs950627.github.io/ksecho-research/ai-tracks.html"
-    },
-    {
-     "label": "리더 연구",
-     "url": "https://kimhs950627.github.io/ksecho-research/reader-study.html"
-    },
-    {
-     "label": "에코 AI 리포트",
-     "url": "https://kimhs950627.github.io/ksecho-research/reports/echo-ai-report.html"
-    }
-   ],
-   "url": "https://kimhs950627.github.io/ksecho-research/",
-   "host": "kimhs950627.github.io/ksecho-research"
-  },
-  "ai-research-copilot": {
-   "category": "tooling",
-   "order": 10,
-   "title": "AI Research Copilot",
-   "note": "논문·발표 워크플로를 자동화하는 OpenCode 스킬 7종과 KNHANES 실전 가이드.",
-   "links": [
-    {
-     "label": "가이드",
-     "url": "https://kimhs950627.github.io/ai-research-copilot/guide/"
-    }
-   ],
-   "url": "https://kimhs950627.github.io/ai-research-copilot/",
-   "host": "kimhs950627.github.io/ai-research-copilot"
-  },
-  "iberia-2027-02": {
-   "category": "travel",
-   "order": 10,
-   "title": "포르투갈 · 스페인 2027-02",
-   "note": "4도시 10박 11일. 항공·숙소·일정·예산을 한 파일로 정리한 여행 계획.",
-   "url": "https://kimhs950627.github.io/iberia-2027-02/",
-   "host": "kimhs950627.github.io/iberia-2027-02"
-  },
-  "hcc-vs-hemangioma": {
-   "category": "research",
-   "order": 50,
-   "url": "https://kimhs950627.github.io/hcc-vs-hemangioma/talk/",
-   "title": "AI가 예측한 간암, 확률을 넘어 유사도 점수까지",
-   "note": "B-mode 간초음파로 간세포암과 혈관종을 가르는 분류 연구. 학회 발표 13장과 브라우저 추론 데모.",
-   "links": [
-    {
-     "label": "추론 데모",
-     "url": "https://kimhs950627.github.io/hcc-vs-hemangioma/web-demo/"
-    },
-    {
-     "label": "연구 저장소",
-     "url": "https://github.com/kimhs950627/hcc-vs-hemangioma"
-    }
-   ],
-   "manual": true
-  },
-  "neurology-outpatient-reference": {
-   "category": "study",
-   "order": 5,
-   "access": "private",
-   "url": "https://neuro-ref.pages.dev/",
-   "title": "신경과 외래 참고서",
-   "note": "일차의료를 위한 초기평가·치료·추적관리. 증상별 접근과 부록. 승인한 이메일만 열린다.",
-   "host": "neuro-ref.pages.dev",
-   "slug": "neuro-ref"
-  },
-  "lab-followup": {
-   "category": "study",
-   "order": 6,
-   "title": "검진 Lab 이상 후속관리",
-   "note": "혈뇨·단백뇨, 간수치 상승, 무증상 갑상선기능이상. 재검 주기와 의뢰 기준을 도해로 정리.",
-   "links": [
-    {
-     "label": "혈뇨·단백뇨",
-     "url": "https://kimhs950627.github.io/lab-followup/urine.html"
-    },
-    {
-     "label": "간수치 상승",
-     "url": "https://kimhs950627.github.io/lab-followup/liver.html"
-    },
-    {
-     "label": "갑상선기능",
-     "url": "https://kimhs950627.github.io/lab-followup/thyroid.html"
-    }
-   ],
-   "url": "https://kimhs950627.github.io/lab-followup/",
-   "host": "kimhs950627.github.io/lab-followup"
-  },
-  "primary-care-protocol": {
-   "category": "study",
-   "order": 7,
-   "title": "외래 프로토콜 — 혈압·지질·혈당",
-   "note": "고혈압·이상지질혈증·당뇨의 진단→처방→부작용→추적→급여를 같은 형식으로. 환자용 안내문 1장 포함.",
-   "links": [
-    {
-     "label": "고혈압",
-     "url": "https://kimhs950627.github.io/primary-care-protocol/hypertension.html"
-    },
-    {
-     "label": "이상지질혈증",
-     "url": "https://kimhs950627.github.io/primary-care-protocol/lipid.html"
-    },
-    {
-     "label": "당뇨",
-     "url": "https://kimhs950627.github.io/primary-care-protocol/diabetes.html"
-    },
-    {
-     "label": "환자용 안내문",
-     "url": "https://kimhs950627.github.io/primary-care-protocol/handout.html"
-    },
-    {
-     "label": "소화기 약속처방",
-     "url": "https://kimhs950627.github.io/primary-care-protocol/gi.html"
-    }
-   ],
-   "url": "https://kimhs950627.github.io/primary-care-protocol/",
-   "host": "kimhs950627.github.io/primary-care-protocol"
-  },
-  "ward-nights": {
-   "category": "study",
-   "order": 8,
-   "title": "병동 당직 — 야간 호출 대응",
-   "note": "발열·숨참·의식저하·저혈압·혈당·복통출혈을 호출 순서대로. 첫 세트(ABC+BST)와 상의 기준 강조.",
-   "links": [
-    {
-     "label": "발열",
-     "url": "https://kimhs950627.github.io/ward-nights/fever.html"
-    },
-    {
-     "label": "숨참·저산소",
-     "url": "https://kimhs950627.github.io/ward-nights/breathing.html"
-    },
-    {
-     "label": "의식저하",
-     "url": "https://kimhs950627.github.io/ward-nights/mental.html"
-    },
-    {
-     "label": "저혈압·고혈압",
-     "url": "https://kimhs950627.github.io/ward-nights/circulation.html"
-    },
-    {
-     "label": "혈당",
-     "url": "https://kimhs950627.github.io/ward-nights/glucose.html"
-    },
-    {
-     "label": "복통·출혈",
-     "url": "https://kimhs950627.github.io/ward-nights/gi.html"
-    }
-   ],
-   "url": "https://kimhs950627.github.io/ward-nights/",
-   "host": "kimhs950627.github.io/ward-nights"
-  },
-  "ultrasound-protocol-study": {
-   "category": "study",
-   "order": 13,
-   "title": "검진 초음파 프로토콜 — 복부·경동맥·갑상선",
-   "note": "복부·경동맥·갑상선·서혜부 초음파의 술기, 소견, 판독문. 근골격계·통증은 제외.",
-   "links": [
-    {
-     "label": "복부 술기",
-     "url": "https://kimhs950627.github.io/ultrasound-protocol-study/abdomen-technique.html"
-    },
-    {
-     "label": "간담췌 소견",
-     "url": "https://kimhs950627.github.io/ultrasound-protocol-study/abdomen-findings.html"
-    },
-    {
-     "label": "경동맥",
-     "url": "https://kimhs950627.github.io/ultrasound-protocol-study/carotid.html"
-    },
-    {
-     "label": "판독문",
-     "url": "https://kimhs950627.github.io/ultrasound-protocol-study/reporting.html"
-    }
-   ]
-  }
- },
- "request_url": "https://pages-access.kimhs950627.workers.dev/"
+  "request_url": "https://pages-access.kimhs950627.workers.dev/"
 }
