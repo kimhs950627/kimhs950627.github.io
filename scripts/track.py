@@ -369,8 +369,9 @@ def main() -> int:
     baseline = not prev_repos
 
     fresh = [] if baseline else diff(prev_repos, cur, today)
+    # 기준선이 없어도(첫 실행·캐시 만료) 이미 쌓인 이력은 지우지 않는다.
     prev_activity = json.loads(ACTIVITY.read_text(encoding="utf-8")) if ACTIVITY.exists() else {}
-    changes = keep_history({} if baseline else prev_activity, fresh, today)
+    changes = keep_history(prev_activity, fresh, today)
 
     listed = listed_repos()
     rows = unlisted(cur, listed, ignored(), tok)
@@ -394,7 +395,7 @@ def main() -> int:
             }
             for name in added
         ] + fresh
-        changes = keep_history({} if baseline else prev_activity, fresh, today)
+        changes = keep_history(prev_activity, fresh, today)
 
     # 이 저장소는 공개다 — 비공개 저장소의 이름·커밋 메시지는 activity.json 에 넣지 않는다.
     # 전체 스냅숏(data/repos-state.json)은 .gitignore 로 빼고 워크플로 캐시에만 둔다.

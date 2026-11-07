@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: track
+  group: pages-index
   cancel-in-progress: false
 
 jobs:
@@ -77,6 +77,14 @@ jobs:
             echo "변경 없음"
           else
             git commit -m "chore: 색인 변경 추적"
-            git pull --rebase --autostash origin master || true
-            git push || (git pull --rebase --autostash origin master && git push)
+            for attempt in 1 2 3; do
+              if git push origin HEAD:master; then echo "pushed"; exit 0; fi
+              echo "재시도 $attempt — 최신 커밋으로 rebase"
+              if ! git pull --rebase --autostash origin master; then
+                echo "rebase 충돌 — 이번 실행은 건너뛴다(다음 실행이 다시 만든다)"
+                git rebase --abort || true
+                exit 0
+              fi
+            done
+            exit 1
           fi
