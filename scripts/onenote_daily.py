@@ -165,7 +165,16 @@ def main() -> int:
     for i, job in enumerate(jobs, 1):
         label = {"1-elaborate": "병합", "2-images": "그림", "3-polish": "문장"}.get(job.stem, job.stem)
         dest = out_dir / f"{stamp}-{i}-{job.stem}.json"
-        dest.write_text(job.read_text(encoding="utf-8"), encoding="utf-8")
+        doc = json.loads(job.read_text(encoding="utf-8"))
+        if not doc.get("source"):
+            # 알림이 '?' 로 뜨지 않도록 페이지 이름을 최상위에 남긴다
+            pages: list[str] = []
+            for upd in doc.get("updates", []):
+                name = (upd.get("source") or {}).get("page") or ""
+                if name and name not in pages:
+                    pages.append(name)
+            doc["source"] = {"page": " · ".join(pages[:3]) or job.stem}
+        dest.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
         n = len(json.loads(job.read_text(encoding="utf-8"))["updates"])
         written.append(str(dest))
         print(f"  job {i}: {label} · {n}건 → {dest.name}", flush=True)
