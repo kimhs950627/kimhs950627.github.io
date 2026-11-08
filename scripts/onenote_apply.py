@@ -136,7 +136,16 @@ def apply_one(update: dict, check_only: bool) -> str:
             return f"{repo}/{rel}: 새 페이지 생성·push 완료"
         text = target.read_text(encoding="utf-8")
 
-        if update.get("sections"):
+        if update.get("remove_regex") and not update.get("sections"):
+            # 파일 전체에서 정규식으로 제거(섹션 밖에 잘못 들어간 그림 등)
+            new = text
+            for pat in update["remove_regex"]:
+                new = re.sub(pat, "\n", new, flags=re.S)
+            new = re.sub(r"\n{3,}", "\n\n", new)
+            if new == text:
+                return f"{repo}/{rel}: 변경 없음(정규식 일치 0)"
+            html = "regex"
+        elif update.get("sections"):
             # elaborate 모드: 단원 블록(section 또는 h2 구간)을 통째로 교체한다(덧붙이기 아님).
             from onenote_html import page_blocks
 
