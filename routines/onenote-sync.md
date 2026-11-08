@@ -82,6 +82,19 @@ python3 scripts/onenote_remerge.py             # (1회성) 이미 덧붙여진 �
   `scripts/onenote_html.py` 의 `page_blocks()` 가 둘 다 처리한다(교체 단위 = 블록 전체).
 - 단원이 아예 없는 스텁 페이지(예: endoscopy-study/cfs/index.html)는 통합 대상이 아니라 **새 페이지**로 만든다(§5).
 
+## 4-0. 문장 다듬기 — 병합문은 그대로 내보내지 않는다
+
+```bash
+python3 scripts/onenote_polish.py --merged        # 문단 단위(중복·장문·공허한 수식만)
+python3 scripts/onenote_rewrite.py --file <repo/file>   # 단원 재작성(사실 보존 검증 통과 시만)
+```
+
+- 편집 규칙 SSOT: **`data/editorial-style.md`** (design-craft 의 AI 티 제거 원칙을 임상 문서에 옮긴 것).
+  Actions 는 같은 파일을 **비공개 `pages-jobs/skills/editorial-style.md`** 에서 읽는다.
+- 검증: 수치 100% · 영문 98% · 한글 87% 이상 보존, 길이 ±15% 일 때만 적용. 미달이면 원문 유지.
+- 전체 단원 재작성은 사실 손실이 커서(실측 영문 66~74%) **검증 통과분만** 반영한다.
+- Actions 실행: `pages-jobs` 의 **문장 편집(edit.yml)** 워크플로(`mode=polish|rewrite`, `files=` 입력).
+
 ## 4-1. 그림(이미지) 반입 — 본문 단원 안에 넣는다
 
 ```bash
