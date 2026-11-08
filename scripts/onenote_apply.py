@@ -154,8 +154,10 @@ def apply_one(update: dict, check_only: bool) -> str:
             if update.get("strip_onenote_inserts"):
                 new = re.sub(r'\n?[ \t]*<div class="onenote-insert"[^>]*>.*?</div>[ \t]*\n?', "\n", new, flags=re.S)
                 new = re.sub(r"<!--\s*onenote-insert:[^>]*-->\n?", "", new)
+            for pat in update.get("remove_regex") or []:
+                new = re.sub(pat, "\n", new, flags=re.S)
             new = re.sub(r"\n{3,}", "\n\n", new)
-            if not replaced:
+            if not replaced and not update.get("remove_regex"):
                 return f"{repo}/{rel}: 교체할 단원 없음 — 건드리지 않음"
             html = "elaborate"
         elif update.get("remove"):
@@ -186,7 +188,8 @@ def apply_one(update: dict, check_only: bool) -> str:
             else:
                 new = pat.sub(lambda m: f"{m.group(1)}\n{html}\n{m.group(3)}", text)
 
-        if not html and not update.get("sections") and not update.get("create") and not update.get("remove"):
+        if (not html and not update.get("sections") and not update.get("create")
+                and not update.get("remove") and not update.get("remove_regex")):
             # 빈 html 로 region 을 지워버리는 사고 방지(2026-11-07: 구버전 스크립트가 부록을 비웠다)
             return f"{repo}/{rel}: 빈 html — 건드리지 않음"
         if new == text:
