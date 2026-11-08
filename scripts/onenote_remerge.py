@@ -158,6 +158,7 @@ def build(repo: str, rel: str) -> dict | None:
 def main() -> int:
     args = sys.argv[1:]
     only = args[args.index("--file") + 1] if "--file" in args else ""
+    out_path = Path(args[args.index("--out") + 1]) if "--out" in args else OUT
     lst = targets()
     if only:
         lst = [t for t in lst if f"{t[0]}/{t[1]}" == only]
@@ -176,8 +177,8 @@ def main() -> int:
         time.sleep(0.4)
 
     doc = {"updates": updates, "generated": datetime.now(timezone.utc).isoformat(timespec="seconds")}
-    OUT.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(json.dumps({"out": str(OUT), "updates": len(updates)}, ensure_ascii=False))
+    out_path.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(json.dumps({"out": str(out_path), "updates": len(updates)}, ensure_ascii=False))
     return 0
 
 

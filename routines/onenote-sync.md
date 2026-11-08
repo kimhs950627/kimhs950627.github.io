@@ -11,11 +11,12 @@ description: >
 
 이 job 은 다섯 가지를 반드시 끝낸다.
 
-- **a. 수정 내역 catch** — 3개 노트북 전수, 본문 해시 비교(시각은 안 믿는다)
+- **a. 수정 내역 catch** — **바뀐 섹션만** 고른 뒤 그 안의 페이지만 ETag 로 확인(§1). 페이지 시각은 안 믿는다
 - **b. 매핑 결정** — Command Code API `deepseek/deepseek-v4.1-flash` + `reasoning_effort: low`
 - **c. repo 전달** — 비공개 staging `pages-jobs` 에 job(+plan) 커밋
 - **d. 페이지 생성·수정 + 허브 리스팅** — GitHub Actions 가 적용, 이어서 `kimhs950627.github.io` 색인 갱신
 - **e. 웹훅 noti** — Actions 가 `notify.py send` 1회
+- **f. 그림 반입** — 원노트 그림을 내려받아 해당 단원 본문에 넣는다(§4-1). 텍스트만 옮기고 끝내지 않는다.
 
 ## 0. 모델 고정
 
@@ -80,6 +81,21 @@ python3 scripts/onenote_remerge.py             # (1회성) 이미 덧붙여진 �
 - 페이지 구조가 두 가지다: `<section aria-labelledby>` 형과 `<main>` 안 `<h2 id>` 나열 형.
   `scripts/onenote_html.py` 의 `page_blocks()` 가 둘 다 처리한다(교체 단위 = 블록 전체).
 - 단원이 아예 없는 스텁 페이지(예: endoscopy-study/cfs/index.html)는 통합 대상이 아니라 **새 페이지**로 만든다(§5).
+
+## 4-1. 그림(이미지) 반입 — 본문 단원 안에 넣는다
+
+```bash
+python3 scripts/onenote_images_pull.py --max-per-page 6 --out /tmp/opencode/images.json
+```
+
+- 원노트 페이지 HTML(Graph)의 `<img>` 리소스를 access token 으로 내려받아 repo `assets/onenote/<page-slug>-NN.<ext>` 로 저장한다.
+- 배치: 그림 앞뒤 문맥(220자)과 **모든 대상 파일의 단원 텍스트**를 키워드 점수로 비교해 **가장 맞는 단원 하나에만** 넣는다.
+  같은 그림을 여러 페이지에 복사하지 않는다.
+- 캡션: `<img alt>` 가 6~60자면 그것을, 아니면 문맥 첫 구절. 원노트 alt 는 글자마다 공백이 있으므로 붙여서 쓴다.
+- job 에는 `assets[] = {path, base64}` 로 실어 보내고 Actions 가 커밋한다(그림 파일을 로컬에만 두고 끝내지 않는다).
+- 어느 단원에도 맞지 않으면 넣지 않는다. 페이지 끝에 몰아넣지 않는다.
+- 원노트 API 는 429 를 자주 준다 → 1.2초 간격 + 429 면 15·30·45초 백오프.
+- 환자 식별 정보가 보이는 그림은 공개 repo 에 넣지 않는다(§5 공개/비공개 판단).
 
 ## 5. 신규 페이지
 
