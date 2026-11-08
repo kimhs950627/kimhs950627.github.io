@@ -38,6 +38,14 @@ TEXT = Path.home() / ".local" / "state" / "onenote" / "text"
 
 RETRY_STATUS = {429, 503, 504}
 
+T0 = time.time()
+METRICS = {"retries": 0, "wait": 0.0, "pages": 0}
+
+
+def log(msg: str) -> None:
+    """진행 로그는 stderr 로 — stdout 은 JSON 전용(파이프 소비자 보호)."""
+    print(f"[{time.time() - T0:6.1f}s] {msg}", file=sys.stderr, flush=True)
+
 
 def call(url: str, token: str, etag: str = "", attempts: int = 5) -> tuple[int, dict, bytes]:
     """429/503/504 는 지수 백오프로 재시도한다.
@@ -65,6 +73,9 @@ def call(url: str, token: str, etag: str = "", attempts: int = 5) -> tuple[int, 
                     wait = min(float(after), 60.0)
                 except ValueError:
                     pass
+            METRICS["retries"] += 1
+            METRICS["wait"] += wait
+            log(f"  ! HTTP {err.code} → {wait:.0f}s 대기 (재시도 {METRICS['retries']}회, 누적 {METRICS['wait']:.0f}s)")
             time.sleep(wait)
             delay = min(delay * 2, 60.0)
     raise AssertionError("unreachable")
@@ -119,13 +130,16 @@ def main() -> int:
     checked = 0
     sections_scanned = sections_changed = 0
 
+    log("노트북 목록 조회")
     notebooks = jget(f"{GRAPH}/me/onenote/notebooks?$select=id,displayName&$top=50", token)["value"]
+    log(f"노트북 {len(notebooks)}개: " + ", ".join(nb["displayName"] for nb in notebooks))
     for nb in notebooks:
         if nb["displayName"] not in (NOTEBOOKS if not only_nb else [only_nb]):
             continue
         sections = jget(
             f"{GRAPH}/me/onenote/notebooks/{nb['id']}/sections?$select=id,displayName,lastModifiedDateTime&$top=100",
             token)["value"]
+        log(f"[{nb['displayName']}] 섹션 {len(sections)}개")
         for sec in sections:
             sections_scanned += 1
             sid = sec["id"]
@@ -139,6 +153,7 @@ def main() -> int:
             if not (full or touched):
                 continue
             sections_changed += 1
+            sec_t0 = time.time()
             entry = sec_state.setdefault(sid, {})
             entry.update({"displayName": sec["displayName"], "notebook": nb["displayName"],
                           "lastModifiedDateTime": lm})
@@ -151,11 +166,13 @@ def main() -> int:
                 failed.append({"section": sec["displayName"], "error": str(err)[:80]})
                 continue
             entry.pop("listingFailed", None)
+            log(f"  · {sec['displayName']}: 페이지 {len(listing)}개 (목록 {time.time() - sec_t0:.1f}s)")
             for page in listing:
                 pid, title = page["id"], page["title"]
                 prev_etag = (pages_etags.get(pid) or {}).get("etag", "")
                 status, headers, body = call(f"{GRAPH}/me/onenote/pages/{pid}/content", token, prev_etag)
                 checked += 1
+                METRICS["pages"] += 1
                 etag = headers.get("ETag") or headers.get("etag") or prev_etag
                 if status == 304:
                     continue
@@ -174,12 +191,15 @@ def main() -> int:
                     rec["chars"] = len(plain)
                 changed.append(rec)
 
+    log(f"완료: 섹션 {sections_changed}/{sections_scanned} 확인, 페이지 {checked}개, "
+        f"재시도 {METRICS['retries']}회(대기 {METRICS['wait']:.0f}s), {time.time() - started:.1f}s")
     state["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     save(state)
     print(json.dumps({
         "sections_scanned": sections_scanned, "sections_changed": sections_changed,
         "pages_checked": checked, "changed": changed, "failed": failed,
         "seconds": round(time.time() - started, 1), "mode": "full" if full else "incremental",
+        "retries": METRICS["retries"], "retry_wait_seconds": round(METRICS["wait"], 1),
     }, ensure_ascii=False))
     return 0
 
