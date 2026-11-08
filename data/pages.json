@@ -1,7 +1,7 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-08 00:09 UTC",
+  "generated_at": "2026-11-08 00:38 UTC",
   "total": 18,
   "link_total": 37,
   "groups": [
@@ -128,7 +128,7 @@
             }
           ],
           "locked": false,
-          "updated": "2026-11-07"
+          "updated": "2026-11-08"
         },
         {
           "repo": "endoscopy-study",
@@ -161,7 +161,7 @@
             }
           ],
           "locked": false,
-          "updated": "2026-11-07"
+          "updated": "2026-11-08"
         },
         {
           "repo": "ultrasound-protocol-study",
@@ -439,7 +439,7 @@
           "order": 10,
           "links": [],
           "locked": false,
-          "updated": "2026-11-01"
+          "updated": "2026-11-08"
         }
       ]
     }
