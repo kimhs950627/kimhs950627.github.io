@@ -1,14 +1,59 @@
 {
-  "generated_at": "2026-11-07 23:11 UTC",
+  "generated_at": "2026-11-08 23:15 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
     "repos": 84,
     "listed": 18,
-    "changed": 4,
+    "changed": 5,
     "unlisted": 0
   },
   "changes": [
+    {
+      "at": "2026-11-09",
+      "repo": "ward-nights",
+      "kind": "push",
+      "label": "수정",
+      "text": "docs(onenote): glucose.html — 병합 문단 문장 정리(12개)",
+      "url": "https://kimhs950627.github.io/ward-nights/",
+      "sha": "4f3c4d014c7ba357e59e7c792c815770cac7b9c3"
+    },
+    {
+      "at": "2026-11-09",
+      "repo": "ultrasound-protocol-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "fix(onenote): reporting 깨진 캡션 그림 제거",
+      "url": "https://kimhs950627.github.io/ultrasound-protocol-study/",
+      "sha": "a8843547c3b48272755ee6d78198ca2830a77e50"
+    },
+    {
+      "at": "2026-11-09",
+      "repo": "lab-followup",
+      "kind": "push",
+      "label": "수정",
+      "text": "docs(onenote): liver.html — 병합 문단 문장 정리(5개)",
+      "url": "https://kimhs950627.github.io/lab-followup/",
+      "sha": "9b2d67f8fc05de3acd9beb1bd54bedda97d85599"
+    },
+    {
+      "at": "2026-11-09",
+      "repo": "iberia-2027-02",
+      "kind": "push",
+      "label": "수정",
+      "text": "주간 갱신: 항공·숙박 실시간 요금 반영 (2026-11-08)",
+      "url": "https://kimhs950627.github.io/iberia-2027-02/",
+      "sha": "1b3f9a38ae47ebdd78de37adb5807163e180333b"
+    },
+    {
+      "at": "2026-11-09",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "a1a446f90f3a21a6428300766e6e7fbbea135be7"
+    },
     {
       "at": "2026-11-08",
       "repo": "ward-nights",
