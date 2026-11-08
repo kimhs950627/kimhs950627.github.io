@@ -1,3 +1,9 @@
+> **실행 위치 (2026-11-08 변경)**: 이 루틴은 이제 **GitHub Actions** 가 실행한다.
+> `kimhs950627/pages-jobs` 의 `원노트 동기화(onenote-sync.yml)`, 매일 **04:30 KST**(cron `30 19 * * *`).
+> kimaki 루틴 131 은 삭제됨. 이 문서는 절차·규칙의 SSOT 로 남는다(수동 실행·복구용).
+> 흐름: 감지 → 매핑 → 병합 → [그림] → 문장 → `jobs/*.json` 커밋 → `apply.yml`(반영·색인·웹훅).
+> 상태는 `pages-jobs/state/` 에 커밋되어 다음 실행이 이어받는다.
+
 ---
 title: 원노트 → 발행물 동기화
 description: >
