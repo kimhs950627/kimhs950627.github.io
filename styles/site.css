@@ -379,6 +379,13 @@ h1 em {
   color: var(--ink-3);
 }
 
+/* 목록 각 줄의 '새 페이지 · 수정 N일 전' 표시 */
+.row-title .chip-tag {
+  border-right: 0;
+  padding-right: 0;
+  margin-right: 0.45rem;
+}
+
 .chip:hover {
   color: var(--accent);
   border-color: var(--accent);

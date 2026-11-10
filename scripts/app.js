@@ -50,6 +50,39 @@
   document.getElementById("foot-generated").textContent = `auto-index · ${data.generated_at || ""}`;
 
   const changes = ((activity && activity.changes) || []).slice(0, 30);
+
+  // 목록 각 줄에 '새 페이지 · 수정' 표시를 붙이기 위한 저장소별 최신 표시
+  const FRESH_DAYS = 7;
+  const stamps = new Map();
+  for (const c of (activity && activity.changes) || []) {
+    const fresh = c.kind === "listed" || c.kind === "new-repo" || c.kind === "pages-on";
+    if (c.kind !== "push" && !fresh) continue;
+    const at = c.at || "";
+    const prev = stamps.get(c.repo);
+    if (!prev || at > prev.at || (at === prev.at && fresh && !prev.fresh)) {
+      stamps.set(c.repo, { at, fresh });
+    }
+  }
+
+  const daysSince = (iso) => {
+    const t = new Date(`${iso}T00:00:00+09:00`).getTime();
+    return Number.isNaN(t) ? null : Math.floor((Date.now() - t) / 86400000);
+  };
+
+  const badgeFor = (repo) => {
+    const stamp = stamps.get(repo);
+    if (!stamp) return "";
+    const days = daysSince(stamp.at);
+    if (stamp.fresh) {
+      return days === null || days > FRESH_DAYS
+        ? ""
+        : '<span class="chip-tag is-new">새 페이지</span>';
+    }
+    if (days === null) return "";
+    if (days <= 0) return '<span class="chip-tag is-push">오늘 수정</span>';
+    if (days > FRESH_DAYS) return "";
+    return `<span class="chip-tag is-push">수정 ${days}일 전</span>`;
+  };
   const KIND = {
     push: "수정",
     "new-repo": "새 저장소",
@@ -111,7 +144,7 @@
           <a class="row" href="${esc(p.url)}" target="_blank" rel="noopener" style="--i:${k + 1}">
             <span class="idx">${pad(++n)}</span>
             <span class="row-main">
-              <span class="row-title">${esc(p.title)}${
+              <span class="row-title">${badgeFor(p.repo)}${esc(p.title)}${
                 p.locked ? '<span class="lock" title="열람 승인 필요">비공개</span>' : ""
               }</span>
               <span class="row-note">${esc(p.note)}</span>

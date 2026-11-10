@@ -18,6 +18,8 @@ GitHub Actions (매일)
 
 index.html + scripts/app.js
    └─ data/pages.json · data/activity.json 을 읽어 '갈래 탭'(최근 변경 · 임상 학습 · 연구 설계 · 도구 · 여행)으로 그린다
+      · 목록의 각 줄에도 activity.json 의 최근 7일 기록으로 '새 페이지'(색인 등재·페이지 공개)와
+        '수정 N일 전'(그 저장소의 최신 push)을 붙인다
 ```
 
 새 저장소에 GitHub Pages 를 켜면 **다음 실행에서 자동으로 목록에 붙는다.** 손볼 것은 없다.
