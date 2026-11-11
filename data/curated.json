@@ -349,6 +349,14 @@
       "url": "https://neurology-guide-for-opd.pages.dev/",
       "host": "neurology-guide-for-opd.pages.dev",
       "access": "private"
+    },
+    "health-checkup-insights": {
+      "category": "other",
+      "order": 900,
+      "url": "https://health-checkup-insights.pages.dev/",
+      "host": "health-checkup-insights.pages.dev",
+      "access": "private",
+      "title": "health-checkup-insights"
     }
   },
   "request_url": "https://pages-access.kimhs950627.workers.dev/"

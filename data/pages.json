@@ -1,8 +1,8 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-11 00:59 UTC",
-  "total": 18,
+  "generated_at": "2026-11-11 06:47 UTC",
+  "total": 20,
   "link_total": 37,
   "groups": [
     {
@@ -439,7 +439,37 @@
           "order": 10,
           "links": [],
           "locked": false,
-          "updated": "2026-11-08"
+          "updated": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "label": "그 밖",
+      "pages": [
+        {
+          "repo": "health-checkup-insights",
+          "url": "https://health-checkup-insights.pages.dev/",
+          "host": "health-checkup-insights.pages.dev",
+          "title": "health-checkup-insights",
+          "note": "",
+          "category": "other",
+          "order": 900,
+          "links": [],
+          "locked": true,
+          "updated": ""
+        },
+        {
+          "repo": "ecg-echo",
+          "url": "https://kimhs950627.github.io/ecg-echo/",
+          "host": "kimhs950627.github.io/ecg-echo",
+          "title": "ECG → Echo Report — 심전도 이미지로 심초음파 소견 예측",
+          "note": "EchoNext 파형 10만 장을 GE MAC5K 결과지 이미지로 렌더한 데이터셋과, 심초음파 12개 라벨 예측 모델의 EDA·데모.",
+          "category": "other",
+          "order": 9999,
+          "links": [],
+          "locked": false,
+          "updated": "2026-11-11"
         }
       ]
     }
