@@ -1,14 +1,23 @@
 {
-  "generated_at": "2026-11-10 15:29 UTC",
+  "generated_at": "2026-11-11 00:18 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
     "repos": 84,
     "listed": 18,
-    "changed": 0,
+    "changed": 1,
     "unlisted": 0
   },
   "changes": [
+    {
+      "at": "2026-11-11",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "047cec0220bdc808dd94929aa15c5c4b6161ea23"
+    },
     {
       "at": "2026-11-10",
       "repo": "endoscopy-study",
