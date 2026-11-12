@@ -1,14 +1,48 @@
 {
-  "generated_at": "2026-11-11 00:18 UTC",
+  "generated_at": "2026-11-12 01:44 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
-    "repos": 84,
-    "listed": 18,
-    "changed": 1,
+    "repos": 85,
+    "listed": 20,
+    "changed": 4,
     "unlisted": 0
   },
   "changes": [
+    {
+      "at": "2026-11-12",
+      "repo": "iberia-2027-02",
+      "kind": "push",
+      "label": "수정",
+      "text": "주간 갱신: 항공·숙박 실시간 요금 반영 (2026-11-12)",
+      "url": "https://kimhs950627.github.io/iberia-2027-02/",
+      "sha": "8248277fb1efed95b7af620da3788011ca5c21a5"
+    },
+    {
+      "at": "2026-11-12",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "4214abe2017a6cb2fa864c95b02a7c879d649f4e"
+    },
+    {
+      "at": "2026-11-12",
+      "repo": "ecg-echo",
+      "kind": "new-repo",
+      "label": "새 저장소",
+      "text": "ECG printout render dataset + structural heart disease label EDA and deployment plan",
+      "url": "https://kimhs950627.github.io/ecg-echo/"
+    },
+    {
+      "at": "2026-11-12",
+      "repo": "ecg-echo",
+      "kind": "pages-on",
+      "label": "페이지 공개",
+      "text": "GitHub Pages 가 켜졌다",
+      "url": "https://kimhs950627.github.io/ecg-echo/"
+    },
     {
       "at": "2026-11-11",
       "repo": "endoscopy-study",
