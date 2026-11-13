@@ -1,14 +1,32 @@
 {
-  "generated_at": "2026-11-12 01:44 UTC",
+  "generated_at": "2026-11-13 00:46 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
     "repos": 85,
     "listed": 20,
-    "changed": 4,
+    "changed": 2,
     "unlisted": 0
   },
   "changes": [
+    {
+      "at": "2026-11-13",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "3feacdb8f5fcab0e4c06f423192a3a48cfc30bd3"
+    },
+    {
+      "at": "2026-11-13",
+      "repo": "ecg-echo",
+      "kind": "push",
+      "label": "수정",
+      "text": "demo: subtract the 240-image mean CAM so explanations stop pointing at blank paper",
+      "url": "https://kimhs950627.github.io/ecg-echo/",
+      "sha": "d47a48f39d4c3eaa2ec0eb711022345757b2baa1"
+    },
     {
       "at": "2026-11-12",
       "repo": "iberia-2027-02",
