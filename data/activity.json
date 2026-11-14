@@ -1,14 +1,41 @@
 {
-  "generated_at": "2026-11-14 00:32 UTC",
+  "generated_at": "2026-11-14 23:28 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
     "repos": 85,
     "listed": 20,
-    "changed": 1,
+    "changed": 3,
     "unlisted": 0
   },
   "changes": [
+    {
+      "at": "2026-11-15",
+      "repo": "iberia-2027-02",
+      "kind": "push",
+      "label": "수정",
+      "text": "주간 갱신: 항공·숙박 실시간 요금 반영 (2026-11-15)",
+      "url": "https://kimhs950627.github.io/iberia-2027-02/",
+      "sha": "1fed76208cb9ecc6cec59b508169d6bf7cb69320"
+    },
+    {
+      "at": "2026-11-15",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "7468c4234e5c9d28e25f5dd7ec5b1dfc5c5b118e"
+    },
+    {
+      "at": "2026-11-15",
+      "repo": "ecg-echo",
+      "kind": "push",
+      "label": "수정",
+      "text": "site: new tab explaining probability calibration with worked numbers",
+      "url": "https://kimhs950627.github.io/ecg-echo/",
+      "sha": "e9e85129ee7b3156033715ad7ba5eb36261f5ff9"
+    },
     {
       "at": "2026-11-14",
       "repo": "endoscopy-study",
