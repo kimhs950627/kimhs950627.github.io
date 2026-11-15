@@ -1,14 +1,50 @@
 {
-  "generated_at": "2026-11-14 23:28 UTC",
+  "generated_at": "2026-11-15 23:37 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
     "repos": 85,
     "listed": 20,
-    "changed": 3,
+    "changed": 4,
     "unlisted": 0
   },
   "changes": [
+    {
+      "at": "2026-11-16",
+      "repo": "iberia-2027-02",
+      "kind": "push",
+      "label": "수정",
+      "text": "주간 갱신: 항공·숙박 실시간 요금 반영 (2026-11-16)",
+      "url": "https://kimhs950627.github.io/iberia-2027-02/",
+      "sha": "d4bbfd0523d47bf3b0c65511a49f463615cd2b98"
+    },
+    {
+      "at": "2026-11-16",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "019b4b32e4be02a5e81579cf0dda9ca10ba43756"
+    },
+    {
+      "at": "2026-11-16",
+      "repo": "ecg-echo",
+      "kind": "push",
+      "label": "수정",
+      "text": "Simplify demo: one-line clinical interpretation per label, research content collapsed",
+      "url": "https://kimhs950627.github.io/ecg-echo/",
+      "sha": "ec38b3c01412f9063628f9f201920134c0a463aa"
+    },
+    {
+      "at": "2026-11-16",
+      "repo": "27paper-echo-hfmref",
+      "kind": "push",
+      "label": "수정",
+      "text": "Explain capture curve in plain terms: per-100 walkthrough and reading guide",
+      "url": "https://kimhs950627.github.io/27paper-echo-hfmref/",
+      "sha": "e750357e20fd81458a37117a50ad1939159fc82f"
+    },
     {
       "at": "2026-11-15",
       "repo": "iberia-2027-02",
