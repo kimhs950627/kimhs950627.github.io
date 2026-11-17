@@ -1,14 +1,41 @@
 {
-  "generated_at": "2026-11-15 23:37 UTC",
+  "generated_at": "2026-11-17 02:42 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
     "repos": 85,
     "listed": 20,
-    "changed": 4,
+    "changed": 3,
     "unlisted": 0
   },
   "changes": [
+    {
+      "at": "2026-11-17",
+      "repo": "iberia-2027-02",
+      "kind": "push",
+      "label": "수정",
+      "text": "주간 갱신: 항공·숙박 실시간 요금 반영 (2026-11-16)",
+      "url": "https://kimhs950627.github.io/iberia-2027-02/",
+      "sha": "7ada596eade4c3be0ba3648ca2874f74c8343c4a"
+    },
+    {
+      "at": "2026-11-17",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "019cd63a0c4d5bf78bb4c63f701039d919d67388"
+    },
+    {
+      "at": "2026-11-17",
+      "repo": "ecg-echo",
+      "kind": "push",
+      "label": "수정",
+      "text": "Disable MI output on demo: PTB-XL model does not transfer to EchoNext renders",
+      "url": "https://kimhs950627.github.io/ecg-echo/",
+      "sha": "4a0057877aec53b26daaaa6131769ecffabf274a"
+    },
     {
       "at": "2026-11-16",
       "repo": "iberia-2027-02",
