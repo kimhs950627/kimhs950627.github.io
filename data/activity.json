@@ -1,14 +1,32 @@
 {
-  "generated_at": "2026-11-18 01:55 UTC",
+  "generated_at": "2026-11-19 01:34 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
     "repos": 85,
     "listed": 20,
-    "changed": 1,
+    "changed": 2,
     "unlisted": 0
   },
   "changes": [
+    {
+      "at": "2026-11-19",
+      "repo": "iberia-2027-02",
+      "kind": "push",
+      "label": "수정",
+      "text": "Alhambra official price 22.08 in D7",
+      "url": "https://kimhs950627.github.io/iberia-2027-02/",
+      "sha": "9734158399e8fdbaa2636bf5497730a4dde9a798"
+    },
+    {
+      "at": "2026-11-19",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "16fb7bd180ec415dcd8d2c16044eeb53a233b53b"
+    },
     {
       "at": "2026-11-18",
       "repo": "endoscopy-study",
