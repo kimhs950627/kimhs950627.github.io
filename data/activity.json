@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19 01:34 UTC",
+  "generated_at": "2026-11-20 01:28 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
@@ -9,6 +9,24 @@
     "unlisted": 0
   },
   "changes": [
+    {
+      "at": "2026-11-20",
+      "repo": "iberia-2027-02",
+      "kind": "push",
+      "label": "수정",
+      "text": "동적 지도(Leaflet) 추가 · 도착일 지도 세분화 · 식당 동선 정리",
+      "url": "https://kimhs950627.github.io/iberia-2027-02/",
+      "sha": "adb9dc882de5824b991c30e29c0aa3389143c2d8"
+    },
+    {
+      "at": "2026-11-20",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "069e97d02820dfbe90dcfcf11ee1b04ebd062840"
+    },
     {
       "at": "2026-11-19",
       "repo": "iberia-2027-02",
