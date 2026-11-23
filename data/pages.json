@@ -1,9 +1,9 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-23 01:22 UTC",
+  "generated_at": "2026-11-23 06:33 UTC",
   "total": 21,
-  "link_total": 37,
+  "link_total": 39,
   "groups": [
     {
       "id": "study",
@@ -157,6 +157,29 @@
             {
               "label": "합본 PDF (LFS)",
               "url": "https://github.com/kimhs950627/endoscopy-study/releases/latest/download/EGD-workbook.pdf",
+              "status": ""
+            }
+          ],
+          "locked": false,
+          "updated": "2026-11-23"
+        },
+        {
+          "repo": "fm_board_enhance",
+          "url": "https://kimhs950627.github.io/fm_board_enhance/",
+          "host": "kimhs950627.github.io/fm_board_enhance",
+          "title": "가정의학과 기출 개념 단권화",
+          "note": "2020–2025 가정의학과 기출에서 되짚어볼 개념과 문제를 모아 한 권으로 묶는 기록장. 브라우저에서 쓰면 HTML·PDF로 자동 빌드된다.",
+          "category": "study",
+          "order": 11,
+          "links": [
+            {
+              "label": "새 기록 쓰기",
+              "url": "https://kimhs950627.github.io/fm_board_enhance/new.html",
+              "status": ""
+            },
+            {
+              "label": "전체 PDF",
+              "url": "https://kimhs950627.github.io/fm_board_enhance/pdf/fm_board_all.pdf",
               "status": ""
             }
           ],
@@ -470,18 +493,6 @@
           "links": [],
           "locked": false,
           "updated": "2026-11-17"
-        },
-        {
-          "repo": "fm_board_enhance",
-          "url": "https://kimhs950627.github.io/fm_board_enhance/",
-          "host": "kimhs950627.github.io/fm_board_enhance",
-          "title": "가정의학과 기출 개념 단권화",
-          "note": "",
-          "category": "other",
-          "order": 9999,
-          "links": [],
-          "locked": false,
-          "updated": "2026-11-22"
         }
       ]
     }
