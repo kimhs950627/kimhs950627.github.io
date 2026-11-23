@@ -1,8 +1,8 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-22 00:53 UTC",
-  "total": 20,
+  "generated_at": "2026-11-23 00:00 UTC",
+  "total": 21,
   "link_total": 37,
   "groups": [
     {
@@ -470,6 +470,18 @@
           "links": [],
           "locked": false,
           "updated": "2026-11-17"
+        },
+        {
+          "repo": "fm_board_enhance",
+          "url": "https://kimhs950627.github.io/fm_board_enhance/",
+          "host": "kimhs950627.github.io/fm_board_enhance",
+          "title": "가정의학과 기출 개념 단권화",
+          "note": "",
+          "category": "other",
+          "order": 9999,
+          "links": [],
+          "locked": false,
+          "updated": "2026-11-22"
         }
       ]
     }
