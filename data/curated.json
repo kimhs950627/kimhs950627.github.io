@@ -321,7 +321,8 @@
           "label": "전체 PDF",
           "url": "https://kimhs950627.github.io/fm_board_enhance/pdf/fm_board_all.pdf"
         }
-      ]
+      ],
+      "host": "kimhs950627.github.io/fm_board_enhance"
     },
     "ultrasound-protocol-study": {
       "category": "study",
