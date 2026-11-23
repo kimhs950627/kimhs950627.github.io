@@ -1,14 +1,48 @@
 {
-  "generated_at": "2026-11-21 23:59 UTC",
+  "generated_at": "2026-11-23 00:31 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
-    "repos": 86,
-    "listed": 20,
-    "changed": 1,
+    "repos": 87,
+    "listed": 21,
+    "changed": 4,
     "unlisted": 0
   },
   "changes": [
+    {
+      "at": "2026-11-23",
+      "repo": "iberia-2027-02",
+      "kind": "push",
+      "label": "수정",
+      "text": "주간 갱신: 항공·숙박 실시간 요금 반영 (2026-11-22)",
+      "url": "https://kimhs950627.github.io/iberia-2027-02/",
+      "sha": "6ce24f733a5d995380015d85f8b0f7cb2e6f599c"
+    },
+    {
+      "at": "2026-11-23",
+      "repo": "fm_board_enhance",
+      "kind": "new-repo",
+      "label": "새 저장소",
+      "text": "fm_board_enhance",
+      "url": "https://kimhs950627.github.io/fm_board_enhance/"
+    },
+    {
+      "at": "2026-11-23",
+      "repo": "fm_board_enhance",
+      "kind": "pages-on",
+      "label": "페이지 공개",
+      "text": "GitHub Pages 가 켜졌다",
+      "url": "https://kimhs950627.github.io/fm_board_enhance/"
+    },
+    {
+      "at": "2026-11-23",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "1daef11f623d0e7dce3bcf559de5329a93ccd28d"
+    },
     {
       "at": "2026-11-22",
       "repo": "endoscopy-study",
