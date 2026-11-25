@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24 04:30 UTC",
+  "generated_at": "2026-11-25 03:14 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
@@ -9,6 +9,33 @@
     "unlisted": 0
   },
   "changes": [
+    {
+      "at": "2026-11-25",
+      "repo": "iberia-2027-02",
+      "kind": "push",
+      "label": "수정",
+      "text": "2월 행사 조사 추가: 크리스마스 마켓 없음, 대신 공연 2편",
+      "url": "https://kimhs950627.github.io/iberia-2027-02/",
+      "sha": "b4448f486766217ce1b72f35c36e691ea1270fab"
+    },
+    {
+      "at": "2026-11-25",
+      "repo": "fm_board_enhance",
+      "kind": "push",
+      "label": "수정",
+      "text": "nightly: 계층 정리·기록 병합",
+      "url": "https://kimhs950627.github.io/fm_board_enhance/",
+      "sha": "6a71ee3721079fa44a55761a5a0fb42af1f9b586"
+    },
+    {
+      "at": "2026-11-25",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "3b236d2ba5198b06dbcb2e3ce8169e36606e274a"
+    },
     {
       "at": "2026-11-24",
       "repo": "iberia-2027-02",
