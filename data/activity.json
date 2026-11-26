@@ -1,14 +1,32 @@
 {
-  "generated_at": "2026-11-25 03:14 UTC",
+  "generated_at": "2026-11-26 02:31 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
     "repos": 87,
     "listed": 21,
-    "changed": 3,
+    "changed": 2,
     "unlisted": 0
   },
   "changes": [
+    {
+      "at": "2026-11-26",
+      "repo": "fm_board_enhance",
+      "kind": "push",
+      "label": "수정",
+      "text": "note: HTN (entry.md)",
+      "url": "https://kimhs950627.github.io/fm_board_enhance/",
+      "sha": "a9352c732cf2a05d4f3a16162595f721f3dacf7d"
+    },
+    {
+      "at": "2026-11-26",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "203bf8b47a11e1464db47a53a7092c1d4dec94fd"
+    },
     {
       "at": "2026-11-25",
       "repo": "iberia-2027-02",
