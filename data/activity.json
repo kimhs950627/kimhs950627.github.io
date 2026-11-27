@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26 02:31 UTC",
+  "generated_at": "2026-11-27 02:30 UTC",
   "window_days": 21,
   "baseline": false,
   "summary": {
@@ -9,6 +9,24 @@
     "unlisted": 0
   },
   "changes": [
+    {
+      "at": "2026-11-27",
+      "repo": "fm_board_enhance",
+      "kind": "push",
+      "label": "수정",
+      "text": "fix(polish): 목록 번호·서식 표식을 내용 누락으로 오판하던 문제",
+      "url": "https://kimhs950627.github.io/fm_board_enhance/",
+      "sha": "a97544468bad448b54f054ddc188f957cb2ed27a"
+    },
+    {
+      "at": "2026-11-27",
+      "repo": "endoscopy-study",
+      "kind": "push",
+      "label": "수정",
+      "text": "chore(pdf): 합본·북마크 재생성 [skip ci]",
+      "url": "https://kimhs950627.github.io/endoscopy-study/",
+      "sha": "d858ddb9043fa860ce53d84dd5975acb8d11ef69"
+    },
     {
       "at": "2026-11-26",
       "repo": "fm_board_enhance",
