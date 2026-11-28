@@ -1,7 +1,7 @@
 {
   "owner": "kimhs950627",
   "request_url": "https://pages-access.kimhs950627.workers.dev/",
-  "generated_at": "2026-11-28 01:48 UTC",
+  "generated_at": "2026-11-28 02:20 UTC",
   "total": 21,
   "link_total": 39,
   "groups": [
@@ -161,7 +161,7 @@
             }
           ],
           "locked": false,
-          "updated": "2026-11-27"
+          "updated": "2026-11-28"
         },
         {
           "repo": "fm_board_enhance",
@@ -184,7 +184,7 @@
             }
           ],
           "locked": false,
-          "updated": "2026-11-27"
+          "updated": "2026-11-28"
         },
         {
           "repo": "ultrasound-protocol-study",
